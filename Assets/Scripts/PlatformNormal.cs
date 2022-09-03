@@ -11,6 +11,9 @@ namespace Unity1Week
         private int score = 1;
 
         [SerializeField]
+        private Color landedColor = Color.white;
+
+        [SerializeField]
         private SpriteRenderer spriteRenderer;
 
         private bool _landed;
@@ -19,7 +22,6 @@ namespace Unity1Week
         public void ResetState()
         {
             _landed = false;
-            spriteRenderer.color = Color.white;
         }
 
         protected override void Awake()
@@ -40,7 +42,7 @@ namespace Unity1Week
                 return;
             }
 
-            spriteRenderer.color = Color.red;
+            spriteRenderer.color = landedColor;
 
             _landed = true;
         }
