@@ -39,6 +39,24 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BackSky
+    uniqueID: 3400288691
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BackFar
+    uniqueID: 2930721649
+    locked: 0
+  - name: BackFar2
+    uniqueID: 333420001
+    locked: 0
+  - name: Platform
+    uniqueID: 2368285235
+    locked: 0
+  - name: Player
+    uniqueID: 3348306731
+    locked: 0
+  - name: BackNear
+    uniqueID: 3578205029
     locked: 0
