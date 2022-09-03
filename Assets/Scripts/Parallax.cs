@@ -13,6 +13,9 @@ namespace Unity1Week
         private float parallaxEffect;
 
         [SerializeField]
+        private float parallaxEffectY = 1f;
+
+        [SerializeField]
         private float cameraOrthoSize = 4f;
 
         [SerializeField]
@@ -25,18 +28,21 @@ namespace Unity1Week
         private float width = 1f;
 
         private float startPos;
+        private float startPosY;
 
         void Start()
         {
             startPos = transform.position.x;
+            startPosY = transform.position.y;
         }
 
         void LateUpdate()
         {
-            float temp = (cam.transform.position.x * (1 - parallaxEffect));
             float distance = (cam.transform.position.x * parallaxEffect);
 
-            transform.position = new Vector3(startPos + distance, transform.position.y, transform.position.z);
+            float distanceY = ((cam.transform.position.y - startPosY) * parallaxEffectY);
+
+            transform.position = new Vector3(startPos + distance, startPosY + distanceY, transform.position.z);
 
             // カメラ範囲外に見切れたら次の位置に移動する
             var halfWidth = cameraAspect * cameraOrthoSize;

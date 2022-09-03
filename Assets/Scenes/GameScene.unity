@@ -290,6 +290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 800590566}
   parallaxEffect: -0.2
+  parallaxEffectY: 0.1
   cameraOrthoSize: 4
   cameraAspect: 1.7777778
   margin: 5
@@ -1036,6 +1037,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 800590566}
   parallaxEffect: 0.6
+  parallaxEffectY: 0.4
   cameraOrthoSize: 4
   cameraAspect: 1.7777778
   margin: 5
@@ -1397,6 +1399,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 800590566}
   parallaxEffect: 1
+  parallaxEffectY: 1
   cameraOrthoSize: 4
   cameraAspect: 1.7777778
   margin: 5
@@ -1498,6 +1501,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 800590566}
   parallaxEffect: 0.2
+  parallaxEffectY: 0.2
   cameraOrthoSize: 4
   cameraAspect: 1.7777778
   margin: 5
@@ -1548,6 +1552,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 800590566}
   parallaxEffect: 1
+  parallaxEffectY: 1
   cameraOrthoSize: 4
   cameraAspect: 1.7777778
   margin: 5
@@ -3181,16 +3186,16 @@ CompositeCollider2D:
     - - X: 199999707
         Y: -40000000
       - X: 199999707
-        Y: 40000000
+        Y: 50000000
       - X: -200000000
-        Y: 39999707
+        Y: 49999707
       - X: -199999707
         Y: -40000000
   m_CompositePaths:
     m_Paths:
     - - {x: 19.99994, y: -4}
-      - {x: 19.99994, y: 4}
-      - {x: -20, y: 3.9999416}
+      - {x: 19.99994, y: 5}
+      - {x: -20, y: 4.999942}
       - {x: -19.99994, y: -4}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
@@ -3274,6 +3279,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 800590566}
   parallaxEffect: 0.2
+  parallaxEffectY: 0.2
   cameraOrthoSize: 4
   cameraAspect: 1.7777778
   margin: 5
@@ -3329,6 +3335,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 800590566}
   parallaxEffect: 0.6
+  parallaxEffectY: 0.4
   cameraOrthoSize: 4
   cameraAspect: 1.7777778
   margin: 5
@@ -3731,7 +3738,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 1
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3742,7 +3749,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 40, y: 8}
+  m_Size: {x: 40, y: 9}
   m_EdgeRadius: 0
 --- !u!4 &1415053557 stripped
 Transform:
@@ -3878,6 +3885,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 800590566}
   parallaxEffect: -0.2
+  parallaxEffectY: 0.1
   cameraOrthoSize: 4
   cameraAspect: 1.7777778
   margin: 5
@@ -4485,6 +4493,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 800590566}
   parallaxEffect: -0.2
+  parallaxEffectY: 0.1
   cameraOrthoSize: 4
   cameraAspect: 1.7777778
   margin: 5
@@ -4540,6 +4549,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 800590566}
   parallaxEffect: 0.6
+  parallaxEffectY: 0.4
   cameraOrthoSize: 4
   cameraAspect: 1.7777778
   margin: 5
@@ -4717,6 +4727,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 800590566}
   parallaxEffect: 0.2
+  parallaxEffectY: 0.2
   cameraOrthoSize: 4
   cameraAspect: 1.7777778
   margin: 5
@@ -4836,6 +4847,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 800590566}
   parallaxEffect: 1
+  parallaxEffectY: 1
   cameraOrthoSize: 4
   cameraAspect: 1.7777778
   margin: 5
