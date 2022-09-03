@@ -42,6 +42,9 @@ TagManager:
   - name: BackSky
     uniqueID: 3400288691
     locked: 0
+  - name: Cloud
+    uniqueID: 366953171
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
