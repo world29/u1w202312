@@ -1,21 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Unity1Week
 {
-    public class GameController : MonoBehaviour
+    public class GameController : MonoBehaviour, IGameControllerRequests
     {
-        private int _score;
+        [HideInInspector]
+        public UnityEvent<float> OnScoreChanged = new UnityEvent<float>();
+
+        private float _score;
+
+        void OnEnable()
+        {
+            BroadcastReceivers.RegisterBroadcastReceiver<IGameControllerRequests>(gameObject);
+        }
+
+        void OnDisable()
+        {
+            BroadcastReceivers.UnregisterBroadcastReceiver<IGameControllerRequests>(gameObject);
+        }
 
         void Start()
         {
             _score = 0;
         }
 
-        public void AddScore(int scoreToAdd)
+        // IGameControllerRequests
+        public void AddScore(float scoreToAdd)
         {
             _score += scoreToAdd;
+
+            OnScoreChanged.Invoke(_score);
         }
 
         public void DamageToPlayer(int damageAmount)

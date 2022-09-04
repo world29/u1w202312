@@ -42,7 +42,12 @@ namespace Unity1Week
                 return;
             }
 
+            // スコアを加算する
+            BroadcastExecuteEvents.Execute<IGameControllerRequests>(null,
+                (handler, eventData) => handler.AddScore(score));
+
             spriteRenderer.color = landedColor;
+
 
             _landed = true;
         }
