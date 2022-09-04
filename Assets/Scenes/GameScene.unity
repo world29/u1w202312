@@ -159,7 +159,7 @@ Transform:
   - {fileID: 1804920016}
   - {fileID: 405986645}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &49388836
 GameObject:
@@ -772,7 +772,7 @@ Transform:
   m_Children:
   - {fileID: 1430962589}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &314330056
 BoxCollider2D:
@@ -930,7 +930,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -958,7 +958,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &347618001
 MonoBehaviour:
@@ -2312,7 +2312,7 @@ Transform:
   - {fileID: 824925936}
   - {fileID: 369896955}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &836074898
 MonoBehaviour:
@@ -2328,8 +2328,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: 9.8
   speed: 2
-  timeMax: 3
-  timeStep: 0.2
+  timeMax: 1
+  timeStep: 0.1
   projectileLine: {fileID: 824925935}
   playerMovement: {fileID: 314330058}
 --- !u!1 &838017489
@@ -2808,6 +2808,81 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &974980984
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 974980985}
+  - component: {fileID: 974980986}
+  - component: {fileID: 974980987}
+  m_Layer: 0
+  m_Name: UISceneLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &974980985
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974980984}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &974980986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974980984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff9c9d4d923bc9544a919e205992ee2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialSceneName: UIScene
+  resultSceneName: ResultScene
+  mainCamera: {fileID: 800590568}
+--- !u!114 &974980987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974980984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15779f48529cf844fb52618d074756a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: d1f009263f939aa42b2da2497b22726a, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 974980986}
+        m_TargetAssemblyTypeName: Unity1Week.UISceneLoader, Assembly-CSharp
+        m_MethodName: LoadResultScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &980741502
 GameObject:
   m_ObjectHideFlags: 0
@@ -5154,7 +5229,6 @@ GameObject:
   - component: {fileID: 2101225282}
   - component: {fileID: 2101225283}
   - component: {fileID: 2101225284}
-  - component: {fileID: 2101225285}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -5174,7 +5248,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2101225283
 MonoBehaviour:
@@ -5188,6 +5262,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 459c0ccc2d4aed048834b0c38c9a6cf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnScoreChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2101225284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5216,20 +5293,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2101225285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2101225281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff9c9d4d923bc9544a919e205992ee2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneName: UIScene
-  mainCamera: {fileID: 800590568}
 --- !u!1001 &6518159951957052163
 PrefabInstance:
   m_ObjectHideFlags: 0

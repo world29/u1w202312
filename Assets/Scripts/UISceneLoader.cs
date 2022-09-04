@@ -10,17 +10,25 @@ namespace Unity1Week
     public class UISceneLoader : MonoBehaviour
     {
         [SerializeField]
-        private string sceneName;
+        private string initialSceneName;
+
+        [SerializeField]
+        private string resultSceneName;
 
         [SerializeField]
         private Camera mainCamera;
 
         void Start()
         {
-            StartCoroutine(LoadUIScene());
+            StartCoroutine(LoadSceneAdditive(initialSceneName));
         }
 
-        private IEnumerator LoadUIScene()
+        public void LoadResultScene()
+        {
+            StartCoroutine(LoadSceneAdditive(resultSceneName));
+        }
+
+        private IEnumerator LoadSceneAdditive(string sceneName)
         {
             var op = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
 

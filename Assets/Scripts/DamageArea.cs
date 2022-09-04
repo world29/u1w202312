@@ -13,6 +13,7 @@ namespace Unity1Week
         {
             if (other.CompareTag("Player"))
             {
+                Debug.Log("Player died.");
                 onPlayerDied.Raise();
             }
         }

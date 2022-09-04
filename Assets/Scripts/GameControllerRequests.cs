@@ -8,5 +8,13 @@ namespace Unity1Week
     public interface IGameControllerRequests : IEventSystemHandler
     {
         void AddScore(float scoreToAdd);
+
+        void Retry();
+
+        void BackToTitle();
+
+        void Pause();
+
+        void Resume();
     }
 }
