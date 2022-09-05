@@ -20,10 +20,16 @@ namespace Unity1Week
         private Collider2D anyCollider;
 
         [SerializeField]
+        private float offsetFactor = 0.1f;
+
+        [SerializeField]
         private float springDuration = 2f;
 
         [SerializeField]
         private float springFactor = 1f;
+
+        [SerializeField]
+        private float springAttenuation = 0.9f;
 
         private bool _scoreAdded;
 
@@ -32,6 +38,9 @@ namespace Unity1Week
         private Vector3 _passengerPos;
 
         private Coroutine _coroutine;
+        private bool _dragging;
+        private Vector2 _dragPos;
+        private Vector2 _dragPosBegin;
 
         // 内部状態をリセット
         public void ResetState()
@@ -46,6 +55,8 @@ namespace Unity1Week
             {
                 StopCoroutine(_coroutine);
             }
+            _dragging = false;
+            _dragPos = _dragPosBegin = Vector2.zero;
 
             anyCollider.enabled = true;
         }
@@ -60,6 +71,28 @@ namespace Unity1Week
             ResetState();
         }
 
+        protected override void Update()
+        {
+            base.Update();
+
+            if (!_dragging)
+            {
+                return;
+            }
+
+            // 引っ張った方向にオフセット
+            var worldPos = Camera.main.ScreenToWorldPoint(new Vector3(_dragPos.x, _dragPos.y, -Camera.main.transform.position.z));
+            var worldPosBegin = Camera.main.ScreenToWorldPoint(new Vector3(_dragPosBegin.x, _dragPosBegin.y, -Camera.main.transform.position.z));
+
+            var diff = worldPos - worldPosBegin;
+
+            var offset = diff.normalized * Mathf.Log(diff.magnitude * offsetFactor + 1, 2);
+            Debug.Log($"{offset}");
+
+            transform.position = _startPos + offset;
+            _passenger.position = _passengerPos + offset;
+        }
+
         protected override void OnPassengerEnter(Transform passenger)
         {
             _startPos = transform.position;
@@ -67,6 +100,8 @@ namespace Unity1Week
             _passengerPos = _passenger.position;
 
             BroadcastReceivers.RegisterBroadcastReceiver<ICustomDragEvent>(gameObject);
+
+            Debug.Log($"OnPassengerEnter");
 
             // スコア加算済みなら以降はスキップ
             if (_scoreAdded)
@@ -87,6 +122,8 @@ namespace Unity1Week
         {
             _passenger = null;
 
+            Debug.Log($"OnPassengerExit");
+
             BroadcastReceivers.UnregisterBroadcastReceiver<ICustomDragEvent>(gameObject);
         }
 
@@ -97,24 +134,19 @@ namespace Unity1Week
 
         public void OnBeginDrag(Vector2 screenPos)
         {
+            _dragging = true;
+            _dragPosBegin = screenPos;
         }
 
         public void OnDrag(Vector2 screenPos, Vector2 beginScreenPos)
         {
-            // 引っ張った方向にオフセット
-            var worldPos = Camera.main.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, -Camera.main.transform.position.z));
-            var worldPosBegin = Camera.main.ScreenToWorldPoint(new Vector3(beginScreenPos.x, beginScreenPos.y, -Camera.main.transform.position.z));
-
-            var diff = worldPos - worldPosBegin;
-
-            var offset = diff * 0.1f;
-
-            transform.position = _startPos + offset;
-            _passenger.position = _passengerPos + offset;
+            _dragging = true;
+            _dragPos = screenPos;
         }
 
         public void OnEndDrag(Vector2 screenPos)
         {
+            _dragging = false;
             _coroutine = StartCoroutine(SpringCoroutine());
         }
 
@@ -132,7 +164,7 @@ namespace Unity1Week
                 velocity += acc;
 
                 // 減衰
-                velocity *= 0.9f;
+                velocity *= springAttenuation;
 
                 transform.position += velocity * Time.deltaTime;
 
