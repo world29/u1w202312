@@ -27,7 +27,7 @@ namespace Unity1Week
             _passengersPrevFrame = new HashSet<Transform>();
         }
 
-        protected void Update()
+        protected virtual void Update()
         {
             // 前フレームでは乗っていたが今フレームでは乗っていない (降りた)オブジェクトに対する処理
             foreach (var passenger in _passengersPrevFrame)
@@ -52,7 +52,7 @@ namespace Unity1Week
             }
         }
 
-        protected void LateUpdate()
+        protected virtual void LateUpdate()
         {
             // 上に乗っているオブジェクトリストをクリアする
             _passengersPrevFrame = new HashSet<Transform>(_passengers);

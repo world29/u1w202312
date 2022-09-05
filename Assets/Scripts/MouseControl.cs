@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 namespace Unity1Week
 {
-    public class MouseControl : MonoBehaviour
+    public class MouseControl : MonoBehaviour, ICustomDragEvent
     {
         [SerializeField]
         private float gravity = 9.8f;
@@ -27,85 +27,77 @@ namespace Unity1Week
         [SerializeField]
         private PlayerMovement playerMovement;
 
-        private Mouse _mouse;
-
-        private Vector2 _screenPointDown;
-        private Vector2 _screenPointUp;
         private float _launchSpeed;
         private float _launchAngle;
 
+        void OnEnable()
+        {
+            BroadcastReceivers.RegisterBroadcastReceiver<ICustomDragEvent>(gameObject);
+        }
+
+        void OnDisable()
+        {
+            BroadcastReceivers.UnregisterBroadcastReceiver<ICustomDragEvent>(gameObject);
+        }
+
         void Start()
         {
-            _mouse = Mouse.current;
-
             //projectileLine.material = new Material(Shader.Find("Sprites/Default"));
             projectileLine.widthMultiplier = 0.1f;
             projectileLine.enabled = false;
         }
 
-        void Update()
+        public void OnBeginDrag(Vector2 screenPos)
+        {
+        }
+
+        public void OnDrag(Vector2 screenPos, Vector2 beginScreenPos)
         {
             if (!playerMovement.IsGrounded)
             {
                 return;
             }
 
-            // マウス押している
-            if (_mouse.leftButton.isPressed)
+            var z = -Camera.main.transform.position.z;
+
+            var worldPoint = Camera.main.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, z));
+            var worldPointDown = Camera.main.ScreenToWorldPoint(new Vector3(beginScreenPos.x, beginScreenPos.y, z));
+
+            var diff = worldPoint - worldPointDown;
+            if (diff.x == 0.0f)
             {
-                var z = -Camera.main.transform.position.z;
+                diff.x = 0.1f;
+            }
 
-                var screenPoint = _mouse.position.ReadValue();
+            float speedMultiplier = diff.magnitude;
+            _launchSpeed = speed * speedMultiplier;
 
-                var worldPoint = Camera.main.ScreenToWorldPoint(new Vector3(screenPoint.x, screenPoint.y, z));
-                var worldPointDown = Camera.main.ScreenToWorldPoint(new Vector3(_screenPointDown.x, _screenPointDown.y, z));
+            // マウスの移動と逆方向に飛ぶ
+            diff *= -1.0f;
+            _launchAngle = Mathf.Atan2(diff.y, diff.x);
 
-                var diff = worldPoint - worldPointDown;
-                if (diff.x == 0.0f)
+            // 予測の表示
+            var points = ProjectileArcPoints(_launchSpeed, _launchAngle, gravity, timeMax, timeStep);
+            if (points.Length >= 2)
+            {
+                Vector3[] positions = new Vector3[points.Length];
+                for (int i = 0; i < points.Length; i++)
                 {
-                    diff.x = 0.1f;
+                    var center = playerMovement.Position;
+                    positions[i] = new Vector3(points[i].x + center.x, points[i].y + center.y, z);
                 }
+                projectileLine.SetPositions(positions);
+                projectileLine.positionCount = positions.Length;
 
-                float speedMultiplier = diff.magnitude;
-                _launchSpeed = speed * speedMultiplier;
-
-                // マウスの移動と逆方向に飛ぶ
-                diff *= -1.0f;
-                _launchAngle = Mathf.Atan2(diff.y, diff.x);
-
-                // 予測の表示
-                var points = ProjectileArcPoints(_launchSpeed, _launchAngle, gravity, timeMax, timeStep);
-                if (points.Length >= 2)
-                {
-                    Vector3[] positions = new Vector3[points.Length];
-                    for (int i = 0; i < points.Length; i++)
-                    {
-                        var center = playerMovement.Position;
-                        positions[i] = new Vector3(points[i].x + center.x, points[i].y + center.y, z);
-                    }
-                    projectileLine.SetPositions(positions);
-                    projectileLine.positionCount = positions.Length;
-
-                    projectileLine.enabled = true;
-                }
+                projectileLine.enabled = true;
             }
+        }
 
-            // マウス押された
-            if (_mouse.leftButton.wasPressedThisFrame)
-            {
-                _screenPointDown = _mouse.position.ReadValue();
-            }
+        public void OnEndDrag(Vector2 screenPos)
+        {
+            LaunchPlayer(_launchSpeed, _launchAngle);
 
-            // マウス離した
-            if (_mouse.leftButton.wasReleasedThisFrame)
-            {
-                // 発射
-                _screenPointUp = _mouse.position.ReadValue();
-
-                projectileLine.enabled = false;
-
-                LaunchPlayer(_launchSpeed, _launchAngle);
-            }
+            projectileLine.enabled = false;
         }
 
         // 発射

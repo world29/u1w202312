@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 using System.Linq;
@@ -38,14 +39,23 @@ namespace Unity1Week
             var scene = SceneManager.GetSceneByName(sceneName);
             var rootObjects = scene.GetRootGameObjects();
 
-            var canvasObj = rootObjects.
-                FirstOrDefault(obj => obj.TryGetComponent(out Canvas canvas));
+            var canvasObj = rootObjects
+                .FirstOrDefault(obj => obj.TryGetComponent(out Canvas canvas));
 
             var uiCanvas = canvasObj.GetComponent<Canvas>();
             var cameraToDestroy = uiCanvas.worldCamera;
             uiCanvas.worldCamera = mainCamera;
 
             Destroy(cameraToDestroy.gameObject);
+
+            // UI シーンの EventSystem を削除する
+            var eventSystemObj = rootObjects
+                .FirstOrDefault(obj => obj.TryGetComponent(out EventSystem eventSystem));
+
+            if (eventSystemObj != null)
+            {
+                Destroy(eventSystemObj);
+            }
         }
     }
 }
