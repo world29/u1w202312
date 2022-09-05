@@ -134,13 +134,12 @@ namespace Unity1Week
 
         public void OnBeginDrag(Vector2 screenPos)
         {
-            _dragging = true;
-            _dragPosBegin = screenPos;
         }
 
         public void OnDrag(Vector2 screenPos, Vector2 beginScreenPos)
         {
             _dragging = true;
+            _dragPosBegin = beginScreenPos;
             _dragPos = screenPos;
         }
 
