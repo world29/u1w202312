@@ -2495,9 +2495,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 314cdea186e21a34e9e82d2a7599bca8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemPrefab: {fileID: 1874934063139121174, guid: 5bd53b297a41f5c4aa99b14a863955f8, type: 3}
-  percent: 100
-  spawnMergin: 0.1
+  lootTable:
+  - prefab: {fileID: 1874934063139121174, guid: 5bd53b297a41f5c4aa99b14a863955f8, type: 3}
+    weight: 70
+  - prefab: {fileID: 1874934063139121174, guid: dd7e26df131f036429c370acf78b3585, type: 3}
+    weight: 25
+  - prefab: {fileID: 1874934063139121174, guid: cc461fb565567aa498a55dca8b44f6ad, type: 3}
+    weight: 5
+  dropPercent: 25
+  spawnMerginTop: 0.1
+  spawnMerginBottom: 0.3
 --- !u!4 &1290981006
 Transform:
   m_ObjectHideFlags: 0

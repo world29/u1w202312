@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 1874934063139121161}
   - component: {fileID: 1874934063139121160}
   - component: {fileID: 1874934063139121172}
-  - component: {fileID: 1874934063139121175}
+  - component: {fileID: 1158668565231837925}
   - component: {fileID: 1874934063139121174}
   m_Layer: 0
-  m_Name: CrystalSmall
+  m_Name: CrystalMiddle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 1032886527
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7479642271789056252, guid: dad1b2993477c71438fadd0cab18bd7b, type: 3}
+  m_Sprite: {fileID: 67756102831307358, guid: dad1b2993477c71438fadd0cab18bd7b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -106,7 +106,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &1874934063139121175
+--- !u!61 &1158668565231837925
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,14 +123,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.40625, y: 0.53125}
+    oldSize: {x: 0.65625, y: 0.75}
     newSize: {x: 0.40625, y: 0.53125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.40625, y: 0.53125}
+  m_Size: {x: 0.65625, y: 0.75}
   m_EdgeRadius: 0
 --- !u!114 &1874934063139121174
 MonoBehaviour:
@@ -144,4 +144,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809b77ea0b83f994e93be4feb2f57104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 3
+  score: 10

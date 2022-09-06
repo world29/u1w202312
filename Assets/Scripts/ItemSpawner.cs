@@ -1,16 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace Unity1Week
 {
+    [System.Serializable]
+    public class ItemInfo
+    {
+        public Item prefab;
+
+        public int weight;
+    }
+
     public class ItemSpawner : MonoBehaviour, IPlatformEvent
     {
         [SerializeField]
-        private Item itemPrefab;
+        private List<ItemInfo> lootTable = new List<ItemInfo>();
 
         [SerializeField, Range(0, 100)]
-        private int percent = 50;
+        private int dropPercent = 10;
 
         // アイテムを生成する範囲のマージン (画面端に生成されて見切れるのを防ぐ)
         [SerializeField]
@@ -20,6 +29,7 @@ namespace Unity1Week
         private float spawnMerginBottom = 0.3f;
 
         private float _worldTop;
+        private bool _itemSpawned; // 連続でアイテムが出ないようにするためのフラグ
 
         void OnEnable()
         {
@@ -35,11 +45,22 @@ namespace Unity1Week
         {
             // 画面の上端
             _worldTop = Camera.main.ViewportToWorldPoint(Vector2.one).y;
+
+            _itemSpawned = false;
+
+            Debug.Assert(lootTable.Sum((x) => x.weight) == 100);
         }
 
         public void OnPlatformSpawned(PlatformNormal prevPlatform, PlatformNormal platform)
         {
-            if (percent <= Random.Range(0, 100))
+            if (_itemSpawned)
+            {
+                _itemSpawned = false;
+                return;
+            }
+
+            // まず、アイテムをドロップするかどうか
+            if (dropPercent <= Random.Range(0, 100))
             {
                 return;
             }
@@ -59,8 +80,24 @@ namespace Unity1Week
                 return;
             }
 
+            // どのアイテムがドロップするか抽選
+            int rand = Random.Range(0, 100);
+            int idx = 0;
+            int totalWeight = 0;
+            for (; idx < lootTable.Count; idx++)
+            {
+                totalWeight += lootTable[idx].weight;
+
+                if (rand < totalWeight)
+                {
+                    break;
+                }
+            }
+
             var spawnPosition = new Vector3(mid.x, Random.Range(spawnBottom, spawnTop), 0);
-            Instantiate(itemPrefab, spawnPosition, Quaternion.identity);
+            Instantiate(lootTable[idx].prefab, spawnPosition, Quaternion.identity);
+
+            _itemSpawned = true;
         }
     }
 }
