@@ -29,6 +29,7 @@ namespace Unity1Week
 
         private float _launchSpeed;
         private float _launchAngle;
+        private bool _landing;
 
         void OnEnable()
         {
@@ -45,6 +46,7 @@ namespace Unity1Week
             //projectileLine.material = new Material(Shader.Find("Sprites/Default"));
             projectileLine.widthMultiplier = 0.1f;
             projectileLine.enabled = false;
+            _landing = false;
         }
 
         public void OnBeginDrag(Vector2 screenPos)
@@ -57,6 +59,8 @@ namespace Unity1Week
             {
                 return;
             }
+
+            _landing = true;
 
             var z = -Camera.main.transform.position.z;
 
@@ -95,9 +99,14 @@ namespace Unity1Week
 
         public void OnEndDrag(Vector2 screenPos)
         {
-            LaunchPlayer(_launchSpeed, _launchAngle);
+            if (_landing)
+            {
+                LaunchPlayer(_launchSpeed, _launchAngle);
 
-            projectileLine.enabled = false;
+                projectileLine.enabled = false;
+
+                _landing = false;
+            }
         }
 
         // 発射
