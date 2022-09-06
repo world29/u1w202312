@@ -16,6 +16,9 @@ namespace Unity1Week
         [SerializeField]
         private Transform platform;
 
+        [SerializeField]
+        private PlatformManager platformManager;
+
         void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Player"))
@@ -39,6 +42,9 @@ namespace Unity1Week
             if (platform.TryGetComponent(out PlatformNormal platformNormal))
             {
                 platformNormal.ResetState();
+
+                // プラットフォーム生成通知
+                platformManager.NotifyPlatformSpawned(platformNormal);
             }
         }
 
