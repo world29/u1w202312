@@ -29,18 +29,20 @@ namespace Unity1Week
 
         private float startPos;
         private float startPosY;
+        private float camStartPosY;
 
         void Start()
         {
             startPos = transform.position.x;
             startPosY = transform.position.y;
+            camStartPosY = cam.transform.position.y;
         }
 
         void LateUpdate()
         {
             float distance = (cam.transform.position.x * parallaxEffect);
 
-            float distanceY = ((cam.transform.position.y - startPosY) * parallaxEffectY);
+            float distanceY = ((cam.transform.position.y - camStartPosY) * parallaxEffectY);
 
             transform.position = new Vector3(startPos + distance, startPosY + distanceY, transform.position.z);
 
