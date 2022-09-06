@@ -178,9 +178,6 @@ namespace Unity1Week
                         */
                     }
 
-                    moveAmount.y = (hit.distance - skinWidth) * directionY;
-                    rayLength = hit.distance;
-
                     collisions.below = directionY == -1;
                     collisions.above = directionY == 1;
 
@@ -189,9 +186,13 @@ namespace Unity1Week
                     {
                         if (hit.collider.TryGetComponent(out IPlatform platform))
                         {
-                            platform.OnLandingPlatform(gameObject.transform);
+                            var moveVelocity = moveAmount / Time.deltaTime;
+                            platform.OnLandingPlatform(gameObject.transform, moveVelocity);
                         }
                     }
+
+                    moveAmount.y = (hit.distance - skinWidth) * directionY;
+                    rayLength = hit.distance;
                 }
             }
         }

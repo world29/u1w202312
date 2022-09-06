@@ -10,6 +10,7 @@ namespace Unity1Week
         /// 上に載っているものを通知する。フレーム毎にリセットされるため、載っているフレームで毎回呼ぶ必要がある
         /// </summary>
         /// <param name="passenger"></param>
-        void OnLandingPlatform(Transform passenger);
+        /// <param name="velocity">接地したときの速度</param>
+        void OnLandingPlatform(Transform passenger, Vector2 velocity);
     }
 }

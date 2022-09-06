@@ -153,8 +153,14 @@ MonoBehaviour:
   landedColor: {r: 1, g: 1, b: 1, a: 1}
   spriteRenderer: {fileID: 6518159952000259257}
   anyCollider: {fileID: 9054808150926063727}
+  offsetFactor: 0.1
   springDuration: 2
   springFactor: 10
+  springAttenuation: 0.9
+  landingSpeed: 5
+  landingDuration: 2
+  landingFactor: 2
+  landingAttenuation: 0.9
 --- !u!68 &9054808150926063727
 EdgeCollider2D:
   m_ObjectHideFlags: 0

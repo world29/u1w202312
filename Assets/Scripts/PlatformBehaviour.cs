@@ -10,21 +10,24 @@ namespace Unity1Week
     {
         private HashSet<Transform> _passengers;
         private HashSet<Transform> _passengersPrevFrame;
+        private Dictionary<Transform, Vector2> _passengerVelocityMap;
 
-        protected abstract void OnPassengerEnter(Transform passenger);
+        protected abstract void OnPassengerEnter(Transform passenger, Vector2 velocity);
         protected abstract void OnPassengerExit(Transform passenger);
         protected abstract void OnPassengerStay(Transform passenger);
 
         // IPlatform
-        public void OnLandingPlatform(Transform passenger)
+        public void OnLandingPlatform(Transform passenger, Vector2 velocity)
         {
             _passengers.Add(passenger);
+            _passengerVelocityMap[passenger] = velocity;
         }
 
         protected virtual void Awake()
         {
             _passengers = new HashSet<Transform>();
             _passengersPrevFrame = new HashSet<Transform>();
+            _passengerVelocityMap = new Dictionary<Transform, Vector2>();
         }
 
         protected virtual void Update()
@@ -43,7 +46,7 @@ namespace Unity1Week
             {
                 if (!_passengersPrevFrame.Contains(passenger))
                 {
-                    OnPassengerEnter(passenger);
+                    OnPassengerEnter(passenger, _passengerVelocityMap[passenger]);
                 }
                 else
                 {

@@ -31,6 +31,18 @@ namespace Unity1Week
         [SerializeField]
         private float springAttenuation = 0.9f;
 
+        [SerializeField]
+        private float landingSpeed = 5f;
+
+        [SerializeField]
+        private float landingDuration = 1f;
+
+        [SerializeField]
+        private float landingFactor = 1f;
+
+        [SerializeField]
+        private float landingAttenuation = 0.8f;
+
         private bool _scoreAdded;
 
         private Vector3 _startPos;
@@ -41,6 +53,7 @@ namespace Unity1Week
         private bool _dragging;
         private Vector2 _dragPos;
         private Vector2 _dragPosBegin;
+        private Coroutine _landingAnimationCoroutine;
 
         // 内部状態をリセット
         public void ResetState()
@@ -87,13 +100,12 @@ namespace Unity1Week
             var diff = worldPos - worldPosBegin;
 
             var offset = diff.normalized * Mathf.Log(diff.magnitude * offsetFactor + 1, 2);
-            Debug.Log($"{offset}");
 
             transform.position = _startPos + offset;
             _passenger.position = _passengerPos + offset;
         }
 
-        protected override void OnPassengerEnter(Transform passenger)
+        protected override void OnPassengerEnter(Transform passenger, Vector2 velocity)
         {
             _startPos = transform.position;
             _passenger = passenger;
@@ -102,6 +114,8 @@ namespace Unity1Week
             BroadcastReceivers.RegisterBroadcastReceiver<ICustomDragEvent>(gameObject);
 
             Debug.Log($"OnPassengerEnter");
+
+            _landingAnimationCoroutine = StartCoroutine(LandingAnimationCoroutine(velocity));
 
             // スコア加算済みなら以降はスキップ
             if (_scoreAdded)
@@ -141,6 +155,11 @@ namespace Unity1Week
             _dragging = true;
             _dragPosBegin = beginScreenPos;
             _dragPos = screenPos;
+
+            if (_landingAnimationCoroutine != null)
+            {
+                StopCoroutine(_landingAnimationCoroutine);
+            }
         }
 
         public void OnEndDrag(Vector2 screenPos)
@@ -175,6 +194,34 @@ namespace Unity1Week
             transform.position = _startPos;
 
             anyCollider.enabled = true;
+        }
+
+        private IEnumerator LandingAnimationCoroutine(Vector2 _velocity)
+        {
+            var velocity = Vector3.down * landingSpeed;
+
+            float timer = 0;
+            while (timer < landingDuration)
+            {
+                var diff = _startPos - transform.position;
+                var acc = diff * landingFactor;
+                velocity += acc;
+
+                // 減衰
+                velocity *= landingAttenuation;
+
+                // プラットフォームと上に乗ったプレイヤーを移動する
+                Vector3 offset = velocity * Time.deltaTime;
+                transform.position += offset;
+                if (_passenger)
+                {
+                    _passenger.position += offset;
+                }
+
+                yield return null;
+
+                timer += Time.deltaTime;
+            }
         }
 
     }
