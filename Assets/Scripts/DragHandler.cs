@@ -18,8 +18,6 @@ namespace Unity1Week
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            Debug.Log($"OnBeginDrag{eventData.position}");
-
             _beginPos = eventData.position;
 
             BroadcastExecuteEvents.Execute<ICustomDragEvent>(null,
@@ -34,8 +32,6 @@ namespace Unity1Week
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            Debug.Log($"OnEndDrag{eventData.position}");
-
             BroadcastExecuteEvents.Execute<ICustomDragEvent>(null,
                 (handler, _) => handler.OnEndDrag(eventData.position));
         }
