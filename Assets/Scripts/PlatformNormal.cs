@@ -43,6 +43,12 @@ namespace Unity1Week
         [SerializeField]
         private float landingAttenuation = 0.8f;
 
+        [SerializeField]
+        private float gravityFactor = 0.1f;
+
+        [SerializeField]
+        private float threshold = 0.01f;
+
         private bool _scoreAdded;
 
         private Vector3 _startPos;
@@ -198,14 +204,30 @@ namespace Unity1Week
 
         private IEnumerator LandingAnimationCoroutine(Vector2 _velocity)
         {
-            var velocity = Vector3.down * landingSpeed;
+            //var velocity = (Vector3)_velocity.normalized * landingSpeed;
+            var velocity = Vector3.Lerp(Vector3.down, (Vector3)_velocity.normalized, 0.5f) * landingSpeed;
+            //var velocity = Vector3.down * landingSpeed;
 
             float timer = 0;
             while (timer < landingDuration)
             {
                 var diff = _startPos - transform.position;
                 var acc = diff * landingFactor;
+                Debug.DrawRay(transform.position, acc, Color.red);
                 velocity += acc;
+
+                // 原点から離れるとき、鉛直方向に近づくような力が働く。
+                if (velocity.magnitude > threshold)
+                {
+                    var newDiff = _startPos - (transform.position + velocity * Time.deltaTime);
+                    if (diff.magnitude < newDiff.magnitude)
+                    {
+                        var dotproduct = Vector3.Dot(velocity.y > 0 ? Vector3.up : Vector3.down, velocity.normalized);
+                        var acc2 = new Vector3(-acc.y, acc.x, 0).normalized * (1.0f - dotproduct) * gravityFactor;
+                        Debug.DrawRay(transform.position + velocity * Time.deltaTime, acc2, Color.blue);
+                        velocity += acc2;
+                    }
+                }
 
                 // 減衰
                 velocity *= landingAttenuation;

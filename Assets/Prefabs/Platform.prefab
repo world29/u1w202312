@@ -157,10 +157,12 @@ MonoBehaviour:
   springDuration: 2
   springFactor: 10
   springAttenuation: 0.9
-  landingSpeed: 5
+  landingSpeed: 10
   landingDuration: 2
   landingFactor: 2
   landingAttenuation: 0.9
+  gravityFactor: 2
+  threshold: 1
 --- !u!68 &9054808150926063727
 EdgeCollider2D:
   m_ObjectHideFlags: 0
