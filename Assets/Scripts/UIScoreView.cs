@@ -18,12 +18,12 @@ namespace Unity1Week
 
         void Start()
         {
-            scoreText.text = "Score: 0";
+            scoreText.text = "0";
         }
 
         public void UpdateScore(float score)
         {
-            scoreText.text = $"Score: {score}";
+            scoreText.text = $"{score}";
         }
     }
 }
