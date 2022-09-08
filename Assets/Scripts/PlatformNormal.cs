@@ -140,6 +140,11 @@ namespace Unity1Week
                 return;
             }
 
+            // プラットフォームの中心と、プレイヤー位置の差分によって、Good か Nice を出す
+            var distance = Mathf.Abs(_startPos.x - _passengerPos.x);
+            BroadcastExecuteEvents.Execute<IGameControllerRequests>(null,
+                (handler, eventData) => handler.OnLandingPlatform(_passengerPos, distance));
+
             // スコアを加算する
             BroadcastExecuteEvents.Execute<IGameControllerRequests>(null,
                 (handler, eventData) => handler.AddScore(score));

@@ -8,8 +8,17 @@ namespace Unity1Week
 {
     public class GameController : MonoBehaviour, IGameControllerRequests
     {
+        [SerializeField]
+        private float distanceThreshold = 0.2f;
+
         [HideInInspector]
         public UnityEvent<float> OnScoreChanged = new UnityEvent<float>();
+
+        [HideInInspector]
+        public UnityEvent<Vector3> OnLandingNear = new UnityEvent<Vector3>();
+
+        [HideInInspector]
+        public UnityEvent<Vector3> OnLandingFar = new UnityEvent<Vector3>();
 
         [HideInInspector]
         public float Score => _score;
@@ -40,6 +49,19 @@ namespace Unity1Week
 
             OnScoreChanged.Invoke(_score);
         }
+
+        public void OnLandingPlatform(Vector3 landingPosition, float distance)
+        {
+            if (distance <= distanceThreshold)
+            {
+                OnLandingNear.Invoke(landingPosition);
+            }
+            else
+            {
+                OnLandingFar.Invoke(landingPosition);
+            }
+        }
+
 
         public void Retry()
         {
