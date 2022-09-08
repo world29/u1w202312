@@ -60,6 +60,7 @@ namespace Unity1Week
         private Vector2 _dragPos;
         private Vector2 _dragPosBegin;
         private Coroutine _landingAnimationCoroutine;
+        private Animator _animator;
 
         // 内部状態をリセット
         public void ResetState()
@@ -74,6 +75,12 @@ namespace Unity1Week
             {
                 StopCoroutine(_coroutine);
             }
+
+            if (_landingAnimationCoroutine != null)
+            {
+                StopCoroutine(_landingAnimationCoroutine);
+            }
+
             _dragging = false;
             _dragPos = _dragPosBegin = Vector2.zero;
 
@@ -83,6 +90,8 @@ namespace Unity1Week
         protected override void Awake()
         {
             base.Awake();
+
+            TryGetComponent(out _animator);
         }
 
         void Start()
@@ -172,6 +181,17 @@ namespace Unity1Week
         {
             _dragging = false;
             _coroutine = StartCoroutine(SpringCoroutine());
+        }
+
+        void OnAnimatorMove()
+        {
+            var deltaPos = _animator.deltaPosition;
+            transform.position += deltaPos;
+
+            if (_passenger)
+            {
+                _passenger.position += deltaPos;
+            }
         }
 
         private IEnumerator SpringCoroutine()
