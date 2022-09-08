@@ -132,6 +132,8 @@ namespace Unity1Week
 
             _landingAnimationCoroutine = StartCoroutine(LandingAnimationCoroutine(velocity));
 
+            _animator.SetTrigger("flap");
+
             // スコア加算済みなら以降はスキップ
             if (_scoreAdded)
             {
@@ -181,6 +183,8 @@ namespace Unity1Week
         {
             _dragging = false;
             _coroutine = StartCoroutine(SpringCoroutine());
+
+            _animator.SetTrigger("flap");
         }
 
         void OnAnimatorMove()
