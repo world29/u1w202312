@@ -60,6 +60,8 @@ namespace Unity1Week
                 return;
             }
 
+            playerMovement.SetCharging(true);
+
             _landing = true;
 
             var z = -Camera.main.transform.position.z;
@@ -112,6 +114,7 @@ namespace Unity1Week
         // 発射
         private void LaunchPlayer(float speed, float angle)
         {
+            playerMovement.SetCharging(false);
             playerMovement.Jump(speed, angle);
         }
 
