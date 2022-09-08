@@ -1,0 +1,13 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: far3Override
+  m_Controller: {fileID: 9100000, guid: 178aab001a38c4a10925ca28e090539c, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: add731fa4351640a8b313a553325299c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 7b4ee0c2b9e794ebb911d68de033d7f1, type: 2}
