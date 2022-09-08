@@ -62,6 +62,8 @@ namespace Unity1Week
         private Coroutine _landingAnimationCoroutine;
         private Animator _animator;
 
+        private float _startSize;
+
         // 内部状態をリセット
         public void ResetState()
         {
@@ -87,6 +89,12 @@ namespace Unity1Week
             anyCollider.enabled = true;
         }
 
+        public void ChangeSize(float size)
+        {
+            var scl = _startSize * size;
+            transform.localScale = new Vector3(scl, scl, 1);
+        }
+
         protected override void Awake()
         {
             base.Awake();
@@ -97,6 +105,8 @@ namespace Unity1Week
         void Start()
         {
             ResetState();
+
+            _startSize = transform.localScale.x;
         }
 
         protected override void Update()

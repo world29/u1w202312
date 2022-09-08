@@ -27,7 +27,7 @@ namespace Unity1Week
                 SpawnPlatform();
 
                 // 次の位置に移動する
-                MoveNextPosition();
+                MoveNextPosition(platformManager.GetPlatformInterval());
             }
         }
 
@@ -44,14 +44,36 @@ namespace Unity1Week
             {
                 platformNormal.ResetState();
 
+                float min, max;
+                platformManager.GetPlatformWidth(out min, out max);
+                var t = NormDist01();
+                var size = Mathf.Lerp(min, max, t);
+                platformNormal.ChangeSize(size);
+                Debug.Log($"size: {size}, t: {t}");
+
                 // プラットフォーム生成通知
                 platformManager.NotifyPlatformSpawned(platformNormal);
             }
         }
 
-        private void MoveNextPosition()
+        private void MoveNextPosition(float offset)
         {
-            transform.Translate(nextOffset, 0, 0);
+            transform.Translate(offset, 0, 0);
+        }
+
+        private static float NormDist01()
+        {
+            return Mathf.Clamp01((NormalDistribution() + 3f) / 6f);
+        }
+
+        private static float NormalDistribution()
+        {
+            var ret = 0f;
+            for (int i = 0; i < 12; i++)
+            {
+                ret += Random.value;
+            }
+            return ret - 6f;
         }
 
 #if UNITY_EDITOR
