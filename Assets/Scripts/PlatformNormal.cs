@@ -74,6 +74,12 @@ namespace Unity1Week
             {
                 StopCoroutine(_coroutine);
             }
+
+            if (_landingAnimationCoroutine != null)
+            {
+                StopCoroutine(_landingAnimationCoroutine);
+            }
+
             _dragging = false;
             _dragPos = _dragPosBegin = Vector2.zero;
 

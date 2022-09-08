@@ -39,7 +39,8 @@ namespace Unity1Week
             platform.position = new Vector3(transform.position.x + x, transform.position.y + y, platform.position.z);
 
             // プラットフォームの状態をリセット
-            if (platform.TryGetComponent(out PlatformNormal platformNormal))
+            var platformNormal = platform.GetComponentInChildren<PlatformNormal>();
+            if (platformNormal)
             {
                 platformNormal.ResetState();
 
