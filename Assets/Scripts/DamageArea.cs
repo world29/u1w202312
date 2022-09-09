@@ -7,14 +7,13 @@ namespace Unity1Week
     public class DamageArea : MonoBehaviour
     {
         [SerializeField]
-        private GameEvent onPlayerDied;
+        private GameEvent damageEvent;
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Player"))
             {
-                Debug.Log("Player died.");
-                onPlayerDied.Raise();
+                damageEvent.Raise();
             }
         }
     }

@@ -9,6 +9,18 @@ namespace Unity1Week
         [SerializeField]
         private float gravity = 9.8f;
 
+        [SerializeField]
+        private float hitStop = 1f;
+
+        [SerializeField]
+        private float knockbackTime = 2f;
+
+        [SerializeField]
+        private Vector2 knockbackForce = new Vector2(-3, 6);
+
+        [SerializeField]
+        private GameEvent deathEvent;
+
         [HideInInspector]
         public Vector3 Position { get => transform.position; }
 
@@ -24,6 +36,7 @@ namespace Unity1Week
         private bool _isLanding;
         private bool _isGroundedPrev;
         private Coroutine _landingCoroutine;
+        private Coroutine _damageCoroutine;
 
         void Start()
         {
@@ -40,6 +53,11 @@ namespace Unity1Week
 
         void Update()
         {
+            if (_damageCoroutine != null)
+            {
+                return;
+            }
+
             if (!_controller.IsGrounded)
             {
                 _velocity.y -= gravity * Time.deltaTime;
@@ -96,6 +114,61 @@ namespace Unity1Week
             });
 
             _isLanding = false;
+        }
+
+        public void DealDamage()
+        {
+            if (_damageCoroutine != null)
+            {
+                return;
+            }
+
+            _damageCoroutine = StartCoroutine(DamageCoroutine());
+        }
+
+        private IEnumerator DamageCoroutine()
+        {
+            // 時間を止めてダメージアニメーションを再生し、落ちていく
+            SoundManager.StopBgm(0);
+
+            _animator.Play("damage");
+            _animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+
+            Time.timeScale = 0f;
+            yield return new WaitForSecondsRealtime(hitStop);
+            Time.timeScale = 1f;
+
+            // ノックバック
+            _velocity = knockbackForce;
+
+            yield return new WaitWhile(() =>
+            {
+                transform.Translate(_velocity * Time.unscaledDeltaTime);
+
+                _velocity.y -= gravity * Time.unscaledDeltaTime;
+
+                return CheckAlive();
+            });
+
+            deathEvent.Raise();
+
+            _animator.updateMode = AnimatorUpdateMode.Normal;
+        }
+
+        private bool CheckAlive()
+        {
+            var viewportPos = Camera.main.WorldToViewportPoint(transform.position);
+
+            var rect = new Rect(-0.2f, -0.2f, 1.2f, 1.2f);
+            if (!rect.Contains(viewportPos))
+            {
+                // 画面外
+                Debug.Log($"Player outside screen.");
+
+                return false;
+            }
+
+            return true;
         }
 
         // プレイヤーの状態に応じてアニメーションステートを切り替える

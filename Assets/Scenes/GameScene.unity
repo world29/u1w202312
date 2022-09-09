@@ -693,7 +693,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 347617998}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -8.16, z: 0}
+  m_LocalPosition: {x: 0, y: -6.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -724,7 +724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37bedb3d4bcc33a4a8277343b191a7e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onPlayerDied: {fileID: 11400000, guid: d1f009263f939aa42b2da2497b22726a, type: 2}
+  damageEvent: {fileID: 11400000, guid: 319b4100a0ad68c4394ac0bd1b4b4a86, type: 2}
 --- !u!4 &348611379 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7984111368635895796, guid: 333170213ed2d7844a1da8f95614ac41, type: 3}
@@ -4443,6 +4443,8 @@ GameObject:
   - component: {fileID: 1989774711}
   - component: {fileID: 1989774713}
   - component: {fileID: 1989774714}
+  - component: {fileID: 1989774715}
+  - component: {fileID: 1989774716}
   m_Layer: 0
   m_Name: CM vcam1
   m_TagString: Untagged
@@ -4532,6 +4534,47 @@ MonoBehaviour:
   m_BoundingShape2D: {fileID: 1213677869}
   m_ConfineScreenEdges: 1
   m_Damping: 0.2
+--- !u!114 &1989774715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989774710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15779f48529cf844fb52618d074756a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 319b4100a0ad68c4394ac0bd1b4b4a86, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1989774716}
+        m_TargetAssemblyTypeName: Unity1Week.CinemachineFollowDetach, Assembly-CSharp
+        m_MethodName: DetachFollowTarget
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1989774716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989774710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08eefa67498af5741ae6cdd96a854781, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vcam: {fileID: 1989774711}
 --- !u!4 &2093196319 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2702586352931528968, guid: e8e523448fb76b14c9c4883e2ae21cb1, type: 3}
