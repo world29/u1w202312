@@ -185,6 +185,7 @@ MonoBehaviour:
   hitStop: 0.3
   knockbackTime: 2
   knockbackForce: {x: -1, y: 5}
+  damageSe: {fileID: 8300000, guid: c32a4ec2ae08d449daeb37c1b96ec5b9, type: 3}
   deathEvent: {fileID: 11400000, guid: d1f009263f939aa42b2da2497b22726a, type: 2}
 --- !u!114 &2249334382074262165
 MonoBehaviour:
