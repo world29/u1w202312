@@ -23,6 +23,12 @@ namespace Unity1Week
         [SerializeField]
         private Sprite spriteNice;
 
+        [SerializeField]
+        private Vector2 offset;
+
+        [SerializeField]
+        private Vector2 velocity;
+
         private RectTransform _rectTransform;
 
         void Awake()
@@ -37,33 +43,27 @@ namespace Unity1Week
 
         public void ShowGood(Vector3 worldPosition)
         {
-            image.sprite = spriteGood;
-
-            var worldPos = worldPosition + Vector3.up * 2f;
-
-            if (WorldToScreenLocalPoint(worldPos, out var localPos))
-            {
-                image.rectTransform.localPosition = localPos;
-
-                image.enabled = true;
-
-                DOVirtual.DelayedCall(1f, () => image.enabled = false);
-            }
+            ShowImage(spriteGood, worldPosition);
         }
 
         public void ShowNice(Vector3 worldPosition)
         {
-            image.sprite = spriteNice;
+            ShowImage(spriteNice, worldPosition);
+        }
 
-            var worldPos = worldPosition + Vector3.up * 2f;
-
-            if (WorldToScreenLocalPoint(worldPos, out var localPos))
+        private void ShowImage(Sprite sprite, Vector3 worldPosition)
+        {
+            if (WorldToScreenLocalPoint(worldPosition, out var localPos))
             {
-                image.rectTransform.localPosition = localPos;
+                image.rectTransform.localPosition = localPos + offset;
+                image.sprite = sprite;
+                image.color = new Color(image.color.r, image.color.g, image.color.b, 1);
+
+                var targetPos = (Vector2)image.rectTransform.localPosition + velocity;
+                image.rectTransform.DOAnchorPos(targetPos, 1);
+                image.DOFade(0, 1).OnComplete(() => image.enabled = false);
 
                 image.enabled = true;
-
-                DOVirtual.DelayedCall(1f, () => image.enabled = false);
             }
         }
 
