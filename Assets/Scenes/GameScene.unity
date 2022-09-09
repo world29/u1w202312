@@ -4349,7 +4349,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceThreshold: 0.2
+  comboTimeWindow: 3
   OnScoreChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnComboChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnComboTimerStoped:
     m_PersistentCalls:
       m_Calls: []
   OnLandingNear:

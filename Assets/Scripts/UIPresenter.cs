@@ -12,6 +12,9 @@ namespace Unity1Week
         [SerializeField]
         private UIEvaluationView evaluationView;
 
+        [SerializeField]
+        private UIComboView comboView;
+
         private GameController _gameController;
 
         void Start()
@@ -19,6 +22,18 @@ namespace Unity1Week
             GameObject.FindGameObjectWithTag("GameController").TryGetComponent(out _gameController);
 
             _gameController.OnScoreChanged.AddListener((score) => scoreView.UpdateScore(score));
+            _gameController.OnComboChanged.AddListener((combo) =>
+            {
+                if (combo > 0)
+                {
+                    comboView.ShowCombo(combo, _gameController.ComboTimeWindow);
+                }
+            });
+
+            _gameController.OnComboTimerStoped.AddListener((timeRemained) =>
+            {
+                comboView.StopComboTimer();
+            });
 
             _gameController.OnLandingNear.AddListener((landingPosition) => evaluationView.ShowGood(landingPosition));
             _gameController.OnLandingFar.AddListener((landingPosition) => evaluationView.ShowNice(landingPosition));

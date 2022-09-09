@@ -9,7 +9,9 @@ namespace Unity1Week
     {
         void AddScore(float scoreToAdd);
 
-        void OnLandingPlatform(Vector3 landingPosition, float distance);
+        void OnLandedPlatform(Vector3 landingPosition, float distance, int landedCount);
+
+        void OnLeftPlatform();
 
         void Retry();
 

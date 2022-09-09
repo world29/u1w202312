@@ -49,7 +49,7 @@ namespace Unity1Week
         [SerializeField]
         private float threshold = 0.01f;
 
-        private bool _scoreAdded;
+        private int _landedCount;
 
         private Vector3 _startPos;
         private Transform _passenger;
@@ -67,7 +67,7 @@ namespace Unity1Week
         // 内部状態をリセット
         public void ResetState()
         {
-            _scoreAdded = false;
+            _landedCount = 0;
 
             _startPos = Vector3.zero;
             _passenger = null;
@@ -138,37 +138,36 @@ namespace Unity1Week
 
             BroadcastReceivers.RegisterBroadcastReceiver<ICustomDragEvent>(gameObject);
 
-            Debug.Log($"OnPassengerEnter");
+            //Debug.Log($"OnPassengerEnter");
 
             _landingAnimationCoroutine = StartCoroutine(LandingAnimationCoroutine(velocity));
 
             _animator.SetTrigger("flap");
 
-            // スコア加算済みなら以降はスキップ
-            if (_scoreAdded)
-            {
-                return;
-            }
+            ++_landedCount;
 
             // プラットフォームの中心と、プレイヤー位置の差分によって、Good か Nice を出す
             var distance = Mathf.Abs(_startPos.x - _passengerPos.x);
             BroadcastExecuteEvents.Execute<IGameControllerRequests>(null,
-                (handler, eventData) => handler.OnLandingPlatform(_passengerPos, distance));
+                (handler, eventData) => handler.OnLandedPlatform(_passengerPos, distance, _landedCount));
 
-            // スコアを加算する
-            BroadcastExecuteEvents.Execute<IGameControllerRequests>(null,
-                (handler, eventData) => handler.AddScore(score));
-
-            spriteRenderer.color = landedColor;
-
-            _scoreAdded = true;
+            // スコア加算済みなら以降はスキップ
+            if (_landedCount == 1)
+            {
+                // スコアを加算する
+                BroadcastExecuteEvents.Execute<IGameControllerRequests>(null,
+                    (handler, eventData) => handler.AddScore(score));
+            }
         }
 
         protected override void OnPassengerExit(Transform passenger)
         {
             _passenger = null;
 
-            Debug.Log($"OnPassengerExit");
+            //Debug.Log($"OnPassengerExit");
+
+            BroadcastExecuteEvents.Execute<IGameControllerRequests>(null,
+                (handler, eventData) => handler.OnLeftPlatform());
 
             BroadcastReceivers.UnregisterBroadcastReceiver<ICustomDragEvent>(gameObject);
         }
