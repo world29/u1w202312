@@ -4583,7 +4583,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceThreshold: 0.2
-  comboTimeWindow: 3
+  comboPhaseTable:
+  - comboCount: 0
+    timeWindow: 10
+  - comboCount: 5
+    timeWindow: 7
+  - comboCount: 15
+    timeWindow: 5
+  - comboCount: 30
+    timeWindow: 3
   OnScoreChanged:
     m_PersistentCalls:
       m_Calls: []

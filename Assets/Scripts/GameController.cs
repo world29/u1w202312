@@ -6,14 +6,22 @@ using UnityEngine.SceneManagement;
 
 namespace Unity1Week
 {
+    [System.Serializable]
+    public struct ComboPhase
+    {
+        // このコンボ数以上なら、以下の設定値が採用される
+        public float comboCount;
+
+        public float timeWindow; // 猶予時間
+    }
+
     public class GameController : MonoBehaviour, IGameControllerRequests
     {
         [SerializeField]
         private float distanceThreshold = 0.2f;
 
-        // コンボの猶予時間
         [SerializeField]
-        private float comboTimeWindow = 2f;
+        private List<ComboPhase> comboPhaseTable = new List<ComboPhase>();
 
         [HideInInspector]
         public UnityEvent<float> OnScoreChanged = new UnityEvent<float>();
@@ -37,7 +45,7 @@ namespace Unity1Week
         public int Combo => _combo;
 
         [HideInInspector]
-        public float ComboTimeWindow => comboTimeWindow;
+        public float ComboTimeWindow => GetComboTimeWindow();
 
         private float _score;
         private int _combo;
@@ -122,7 +130,7 @@ namespace Unity1Week
             {
                 IncrementCombo();
 
-                _comboTimer = comboTimeWindow;
+                _comboTimer = ComboTimeWindow;
             }
 
             _landing = true;
@@ -160,6 +168,20 @@ namespace Unity1Week
         {
             // game over
             Pause();
+        }
+
+        private float GetComboTimeWindow()
+        {
+            int idx = comboPhaseTable.Count - 1;
+            for (; 0 < idx; idx--)
+            {
+                if (Combo > comboPhaseTable[idx].comboCount)
+                {
+                    break;
+                }
+            }
+
+            return comboPhaseTable[idx].timeWindow;
         }
     }
 }
