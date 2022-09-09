@@ -40,6 +40,8 @@ namespace Unity1Week
         private bool _isGroundedPrev;
         private Coroutine _landingCoroutine;
         private Coroutine _damageCoroutine;
+        private GameController _gameController;
+        private bool _isLandedGood;
 
         void Start()
         {
@@ -52,6 +54,12 @@ namespace Unity1Week
             _isLanding = false;
             _isGroundedPrev = false;
             _landingCoroutine = null;
+            _isLandedGood = false;
+
+            GameObject.FindGameObjectWithTag("GameController").TryGetComponent(out _gameController);
+
+            _gameController.OnLandingFar.AddListener((_) => _isLandedGood = false);
+            _gameController.OnLandingNear.AddListener((_) => _isLandedGood = true);
         }
 
         void Update()
@@ -183,7 +191,7 @@ namespace Unity1Week
 
             if (_isLanding)
             {
-                nextState = "landing";
+                nextState = _isLandedGood ? "landing_good" : "landing";
             }
             else if (_isCharging)
             {
