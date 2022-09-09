@@ -27,7 +27,7 @@ namespace Unity1Week
                 SpawnPlatform();
 
                 // 次の位置に移動する
-                MoveNextPosition(platformManager.GetPlatformInterval());
+                MoveNextPosition(nextOffset);
             }
         }
 

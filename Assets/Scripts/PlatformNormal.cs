@@ -146,17 +146,20 @@ namespace Unity1Week
 
             ++_landedCount;
 
-            // プラットフォームの中心と、プレイヤー位置の差分によって、Good か Nice を出す
-            var distance = Mathf.Abs(_startPos.x - _passengerPos.x);
-            BroadcastExecuteEvents.Execute<IGameControllerRequests>(null,
-                (handler, eventData) => handler.OnLandedPlatform(_passengerPos, distance, _landedCount));
-
-            // スコア加算済みなら以降はスキップ
-            if (_landedCount == 1)
+            if (score > 0)
             {
-                // スコアを加算する
+                // プラットフォームの中心と、プレイヤー位置の差分によって、Good か Nice を出す
+                var distance = Mathf.Abs(_startPos.x - _passengerPos.x);
                 BroadcastExecuteEvents.Execute<IGameControllerRequests>(null,
-                    (handler, eventData) => handler.AddScore(score));
+                    (handler, eventData) => handler.OnLandedPlatform(_passengerPos, distance, _landedCount));
+
+                // スコア加算済みなら以降はスキップ
+                if (_landedCount == 1)
+                {
+                    // スコアを加算する
+                    BroadcastExecuteEvents.Execute<IGameControllerRequests>(null,
+                        (handler, eventData) => handler.AddScore(score));
+                }
             }
         }
 
