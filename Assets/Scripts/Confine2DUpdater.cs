@@ -14,7 +14,11 @@ namespace Unity1Week
             var newPos = transform.position;
             newPos.x = playerMovement.Position.x;
 
-            transform.position = newPos;
+            // +x 方向にのみ追従する
+            if (newPos.x > transform.position.x)
+            {
+                transform.position = newPos;
+            }
         }
     }
 }
