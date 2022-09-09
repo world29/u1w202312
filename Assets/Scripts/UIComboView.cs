@@ -17,6 +17,14 @@ namespace Unity1Week
         [SerializeField]
         private TextMeshProUGUI comboText;
 
+        private RectTransform _rectTransform;
+        private Sequence _seq;
+
+        void Awake()
+        {
+            TryGetComponent(out _rectTransform);
+        }
+
         void Start()
         {
             comboText.enabled = false;
@@ -31,13 +39,27 @@ namespace Unity1Week
             comboText.alpha = 1f;
             comboText.enabled = true;
 
-            comboText
-                .DOFade(0, duration);
+            _seq = DOTween.Sequence();
+            _seq.Append(
+                _rectTransform
+                .DOPunchScale(Vector3.one * 1.05f, 0.3f, 1, 1)
+                .SetEase(Ease.OutBack, 5f));
+
+            _seq.Append(comboText
+                .DOFade(0, duration));
+
+            _seq.Play();
         }
 
         public void StopComboTimer()
         {
-            comboText.DOKill();
+            if (_seq != null)
+            {
+                _seq.Kill();
+                _seq = null;
+            }
+
+            comboText.alpha = 1f;
         }
     }
 }
