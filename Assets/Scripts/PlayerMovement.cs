@@ -114,7 +114,7 @@ namespace Unity1Week
             {
                 // landing アニメーションの再生が終わったら遷移する。
                 var stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
-                if (stateInfo.IsName("landing"))
+                if (stateInfo.IsName("landing") || stateInfo.IsName("landing_good"))
                 {
                     if (stateInfo.normalizedTime >= 1.0f)
                     {
