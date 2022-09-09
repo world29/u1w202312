@@ -24,7 +24,7 @@ namespace Unity1Week
             _gameController.OnScoreChanged.AddListener((score) => scoreView.UpdateScore(score));
             _gameController.OnComboChanged.AddListener((combo) =>
             {
-                if (combo > 0)
+                if (combo > 1)
                 {
                     comboView.ShowCombo(combo, _gameController.ComboTimeWindow);
                 }
