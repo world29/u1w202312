@@ -13,6 +13,10 @@ namespace Unity1Week
         public float comboCount;
 
         public float timeWindow; // 猶予時間
+
+        public AudioClip se;
+
+        public float pitch;
     }
 
     public class GameController : MonoBehaviour, IGameControllerRequests
@@ -105,6 +109,17 @@ namespace Unity1Week
         {
             ++_combo;
 
+            {
+                AudioClip clip;
+                float pitch;
+                GetComboSound(out clip, out pitch);
+                if (clip != null)
+                {
+                    SoundManager.PlaySeWithPitch(clip, pitch);
+                }
+
+            }
+
             OnComboChanged.Invoke(_combo);
         }
 
@@ -182,6 +197,21 @@ namespace Unity1Week
         {
             // game over
             Pause();
+        }
+
+        private void GetComboSound(out AudioClip clip, out float pitch)
+        {
+            int idx = comboPhaseTable.Count - 1;
+            for (; 0 < idx; idx--)
+            {
+                if (Combo > comboPhaseTable[idx].comboCount)
+                {
+                    break;
+                }
+            }
+
+            clip = comboPhaseTable[idx].se;
+            pitch = comboPhaseTable[idx].pitch;
         }
 
         private float GetComboTimeWindow()

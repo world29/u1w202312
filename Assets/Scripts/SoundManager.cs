@@ -11,7 +11,12 @@ namespace Unity1Week
         // static methods
         public static void PlaySe(AudioClip clip)
         {
-            Instance.PlaySeImpl(clip);
+            Instance.PlaySeImpl(clip, 1);
+        }
+
+        public static void PlaySeWithPitch(AudioClip clip, float pitch)
+        {
+            Instance.PlaySeImpl(clip, pitch);
         }
 
         /// <summary>
@@ -93,11 +98,12 @@ namespace Unity1Week
             }
         }
 
-        private void PlaySeImpl(AudioClip clip)
+        private void PlaySeImpl(AudioClip clip, float pitch)
         {
             var audioSource = _seSources.FirstOrDefault(x => !x.isPlaying);
             if (audioSource)
             {
+                audioSource.pitch = pitch;
                 audioSource.PlayOneShot(clip);
             }
             else
