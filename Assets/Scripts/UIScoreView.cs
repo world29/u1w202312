@@ -18,7 +18,7 @@ namespace Unity1Week
 
         void Start()
         {
-            scoreText.text = "0";
+            scoreText.text = "";
         }
 
         public void UpdateScore(float score)

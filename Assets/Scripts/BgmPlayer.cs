@@ -13,9 +13,15 @@ namespace Unity1Week
         [SerializeField]
         private float fadeTime = 0f;
 
+        [SerializeField]
+        private bool playOnAwake = false;
+
         void Start()
         {
-            PlayBgm(bgm);
+            if (playOnAwake)
+            {
+                PlayBgm(bgm);
+            }
         }
 
         public void PlayBgm(AudioClip clip)

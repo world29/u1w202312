@@ -24,6 +24,12 @@ namespace Unity1Week
             Instance.PlayBgmImpl(clip, fadeInTime);
         }
 
+        public static void SetVolume(float volume)
+        {
+            var dB = Mathf.Clamp(Mathf.Log10(volume) * 20f, -80f, 0f);
+            Instance._mixer.SetFloat("Master", dB);
+        }
+
         /// <summary>
         /// 再生されている BGM を停止する
         /// </summary>

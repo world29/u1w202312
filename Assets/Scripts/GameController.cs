@@ -18,6 +18,9 @@ namespace Unity1Week
     public class GameController : MonoBehaviour, IGameControllerRequests
     {
         [SerializeField]
+        private GameEvent firstPlatformLanded;
+
+        [SerializeField]
         private float distanceThreshold = 0.2f;
 
         [SerializeField]
@@ -51,6 +54,7 @@ namespace Unity1Week
         private int _combo;
         private float _comboTimer;
         private bool _landing;
+        private int _platformCount;
 
         void OnEnable()
         {
@@ -67,6 +71,8 @@ namespace Unity1Week
             _score = 0;
 
             _landing = false;
+
+            _platformCount = 0;
 
             Time.timeScale = 1f;
         }
@@ -134,6 +140,14 @@ namespace Unity1Week
             }
 
             _landing = true;
+
+            // 最初のプラットフォームならイベントを発行する
+            if (_platformCount == 0)
+            {
+                firstPlatformLanded.Raise();
+            }
+
+            ++_platformCount;
         }
 
         public void OnLeftPlatform()
@@ -182,6 +196,11 @@ namespace Unity1Week
             }
 
             return comboPhaseTable[idx].timeWindow;
+        }
+
+        public void SetVolume(float volume)
+        {
+            SoundManager.SetVolume(volume);
         }
     }
 }

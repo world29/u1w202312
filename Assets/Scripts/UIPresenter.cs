@@ -21,7 +21,14 @@ namespace Unity1Week
         {
             GameObject.FindGameObjectWithTag("GameController").TryGetComponent(out _gameController);
 
-            _gameController.OnScoreChanged.AddListener((score) => scoreView.UpdateScore(score));
+            _gameController.OnScoreChanged.AddListener((score) =>
+            {
+                if (score > 0)
+                {
+                    scoreView.UpdateScore(score);
+                }
+            });
+
             _gameController.OnComboChanged.AddListener((combo) =>
             {
                 if (combo > 1)
