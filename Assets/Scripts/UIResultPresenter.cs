@@ -52,7 +52,15 @@ namespace Unity1Week
             {
                 scoreValue.text = $"{(int)_gameController.Score}";
                 goodValue.text = $"{_gameController.GoodCount}";
-                maxComboValue.text = $"{_gameController.MaxCombo} x2";
+
+                if (_gameController.MaxCombo > 0)
+                {
+                    maxComboValue.text = _gameController.MaxCombo.ToString() + " x2";
+                }
+                else
+                {
+                    maxComboValue.text = $"{_gameController.MaxCombo}";
+                }
             }
             else
             {
@@ -60,9 +68,6 @@ namespace Unity1Week
                 goodValue.text = $"{13}";
                 maxComboValue.text = $"{7} x2";
             }
-
-            gridLayoutGroup.constraintCount = 3;
-            gridLayoutGroup.constraintCount = 2;
         }
 
         void Animation(UnityEngine.Events.UnityAction completeCallback)
@@ -77,24 +82,24 @@ namespace Unity1Week
 
             // スコア
             sequence
-                .Append(scoreLabel.DOFade(1f, 0.2f))
-                .Append(scoreValue.DOFade(1f, 0.2f))
+                .Append(scoreLabel.DOFade(1f, 0.5f))
+                .Append(scoreValue.DOFade(1f, 0.5f))
                 //.Join(scoreValue.rectTransform.DOAnchorPosY(-30f, 0.2f).SetEase(Ease.OutQuad).From(true))
-                .AppendInterval(0.5f);
+                .AppendInterval(0.2f);
 
             // Good
             sequence
-                .Append(goodLabel.DOFade(1f, 0.2f))
-                .Append(goodValue.DOFade(1f, 0.2f))
+                .Append(goodLabel.DOFade(1f, 0.5f))
+                .Append(goodValue.DOFade(1f, 0.5f))
                 //.Join(goodValue.rectTransform.DOAnchorPosY(-30f, 0.2f).SetEase(Ease.OutQuad).From(true))
-                .AppendInterval(0.5f);
+                .AppendInterval(0.2f);
 
             // Max コンボ
             sequence
-                .Append(maxComboLabel.DOFade(1f, 0.2f))
-                .Append(maxComboValue.DOFade(1f, 0.2f))
+                .Append(maxComboLabel.DOFade(1f, 0.5f))
+                .Append(maxComboValue.DOFade(1f, 0.5f))
                 //.Join(maxComboValue.rectTransform.DOAnchorPosY(-30f, 0.2f).SetEase(Ease.OutQuad).From(true))
-                .AppendInterval(0.5f);
+                .AppendInterval(0.2f);
 
             // 合計スコア
             var totalScore = _gameController ? _gameController.TotalScore : 5;
@@ -132,6 +137,8 @@ namespace Unity1Week
                     {
                         naichilab.RankingLoader.Instance.SendScoreAndShowRanking(_gameController.TotalScore);
                     }
+
+                    retryButtonCanvas.transform.DOScale(Vector3.one * 1.1f, 1).SetLoops(-1, LoopType.Yoyo);
                 });
 
                 //naichilab.RankingLoader.Instance.SendScoreAndShowRanking(_gameController.Score);
@@ -151,8 +158,6 @@ namespace Unity1Week
                     {
                         naichilab.RankingLoader.Instance.SendScoreAndShowRanking(_gameController.TotalScore);
                     }
-
-                    retryButtonCanvas.transform.DOScale(Vector3.one * 1.1f, 1).SetLoops(-1, LoopType.Yoyo);
                 });
             }
         }

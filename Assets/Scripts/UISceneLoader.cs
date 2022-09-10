@@ -26,6 +26,9 @@ namespace Unity1Week
 
         public void LoadResultScene()
         {
+            // スコア表示などの UI を非表示にする
+            SceneManager.UnloadSceneAsync(initialSceneName);
+
             StartCoroutine(LoadSceneAdditive(resultSceneName));
         }
 
