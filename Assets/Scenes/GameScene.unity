@@ -4899,11 +4899,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dccb904447e5b24985056b3a536aff1, type: 3}
---- !u!4 &1579746244 stripped
+--- !u!4 &1579746244
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 6518159953235790838, guid: 0dccb904447e5b24985056b3a536aff1, type: 3}
   m_PrefabInstance: {fileID: 1579746243}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136685194}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 37222529}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1591929039 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4230471532325969212, guid: b4bec145b2b9e458290fcc904f1af90e, type: 3}
@@ -5897,12 +5906,12 @@ MonoBehaviour:
   gameplayConfig: {fileID: 11400000, guid: c2e5e7740571c4a40b1596cc7948e16b, type: 2}
   director: {fileID: 1185788792}
   firstPlatformLanded: {fileID: 11400000, guid: bb051872a1806fe4c935178eb2ce47ee, type: 2}
-  distanceThreshold: 0.2
+  distanceThreshold: 0.4
   comboOnlyGood: 1
   comboPhaseTable:
   - comboCount: 0
     timeWindow: 15
-    se: {fileID: 0}
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 0
   - comboCount: 1
     timeWindow: 10
@@ -6130,6 +6139,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &2136685194
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 6518159953235790833, guid: 0dccb904447e5b24985056b3a536aff1, type: 3}
+  m_PrefabInstance: {fileID: 1579746243}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1579746244}
+  m_Layer: 0
+  m_Name: 'PlatformMove (Missing Prefab with guid: 0dccb904447e5b24985056b3a536aff1)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1001 &2249334381831764318
 PrefabInstance:
   m_ObjectHideFlags: 0
