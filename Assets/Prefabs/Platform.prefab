@@ -99,8 +99,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.15, y: 0}
-  - {x: 0.15, y: 0}
+  - {x: -0.3, y: 0}
+  - {x: 0.3, y: 0}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -329,8 +329,8 @@ MonoBehaviour:
   - {fileID: 7502758824647771522}
   - {fileID: 3868126759147284777}
   m_Bounds:
-    m_Center: {x: 0.00058478117, y: 0.0012900829, z: 0}
-    m_Extent: {x: 0.3694148, y: 1.5582705, z: 0}
+    m_Center: {x: 0.000584811, y: 0.0012903214, z: 0}
+    m_Extent: {x: 0.36941493, y: 1.5582705, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &1962107186467008297
