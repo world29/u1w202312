@@ -35,6 +35,9 @@ namespace Unity1Week
         private float distanceThreshold = 0.2f;
 
         [SerializeField]
+        private bool comboOnlyGood = false;
+
+        [SerializeField]
         private List<ComboPhase> comboPhaseTable = new List<ComboPhase>();
 
         [HideInInspector]
@@ -149,12 +152,14 @@ namespace Unity1Week
                 return;
             }
 
+            var isGood = distance <= distanceThreshold;
+
 #if UNITY_EDITOR
-            string judge = distance <= distanceThreshold ? "Good" : "Nice";
+            string judge = isGood ? "Good" : "Nice";
             Debug.Log($"Landed: dist={distance.ToString("F3")}, {judge}");
 #endif
 
-            if (distance <= distanceThreshold)
+            if (isGood)
             {
                 OnLandingNear.Invoke(landingPosition);
             }
@@ -163,9 +168,14 @@ namespace Unity1Week
                 OnLandingFar.Invoke(landingPosition);
             }
 
-            // コンボタイマーが残っていればコンボ継続。タイマーをリセットする
-            if (_comboTimer > 0 || _combo == 0)
+            if (comboOnlyGood && !isGood)
             {
+                // コンボ終了
+                ResetCombo();
+            }
+            else if (_comboTimer > 0 || _combo == 0)
+            {
+                // コンボタイマーが残っていればコンボ継続。タイマーをリセットする
                 IncrementCombo();
 
                 _comboTimer = ComboTimeWindow;

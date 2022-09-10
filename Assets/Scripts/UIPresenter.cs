@@ -35,6 +35,10 @@ namespace Unity1Week
                 {
                     comboView.ShowCombo(combo, _gameController.ComboTimeWindow);
                 }
+                else
+                {
+                    comboView.HideCombo();
+                }
             });
 
             _gameController.OnComboTimerStoped.AddListener((timeRemained) =>

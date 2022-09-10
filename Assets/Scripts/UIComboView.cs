@@ -30,6 +30,11 @@ namespace Unity1Week
             comboText.enabled = false;
         }
 
+        public void HideCombo()
+        {
+            comboText.enabled = false;
+        }
+
         public void ShowCombo(int combo, float duration)
         {
             comboText.DOKill();
