@@ -62,6 +62,15 @@ namespace Unity1Week
         public int Combo => _combo;
 
         [HideInInspector]
+        public int GoodCount => _goodCount;
+
+        [HideInInspector]
+        public int MaxCombo => _maxCombo;
+
+        [HideInInspector]
+        public int TotalScore => (int)_score + _goodCount + _maxCombo * 2;
+
+        [HideInInspector]
         public float ComboTimeWindow => GetComboTimeWindow();
 
         private float _score;
@@ -69,6 +78,9 @@ namespace Unity1Week
         private float _comboTimer;
         private bool _landing;
         private int _platformCount;
+
+        private int _goodCount;
+        private int _maxCombo;
 
         void OnEnable()
         {
@@ -87,6 +99,9 @@ namespace Unity1Week
             _landing = false;
 
             _platformCount = 0;
+
+            _goodCount = 0;
+            _maxCombo = 0;
 
             Time.timeScale = 1f;
 
@@ -123,6 +138,8 @@ namespace Unity1Week
         private void IncrementCombo()
         {
             ++_combo;
+
+            _maxCombo = Mathf.Max(_maxCombo, _combo);
 
             {
                 AudioClip clip;
@@ -161,6 +178,8 @@ namespace Unity1Week
 
             if (isGood)
             {
+                ++_goodCount;
+
                 OnLandingNear.Invoke(landingPosition);
             }
             else
