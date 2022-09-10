@@ -754,6 +754,7 @@ MonoBehaviour:
   scoreView: {fileID: 845409161}
   evaluationView: {fileID: 224024070}
   comboView: {fileID: 644282609}
+  showComboLimit: 1
 --- !u!4 &1595646925
 Transform:
   m_ObjectHideFlags: 0
