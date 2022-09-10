@@ -5884,6 +5884,90 @@ MonoBehaviour:
     timeWindow: 1.5
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 2
+  - comboCount: 109
+    timeWindow: 1.4
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 2.05
+  - comboCount: 119
+    timeWindow: 1.3
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 2.1
+  - comboCount: 129
+    timeWindow: 1.2
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 2.15
+  - comboCount: 139
+    timeWindow: 1.1
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 2.2
+  - comboCount: 149
+    timeWindow: 1
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 2.25
+  - comboCount: 159
+    timeWindow: 0.95
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 2.3
+  - comboCount: 169
+    timeWindow: 0.9
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 2.35
+  - comboCount: 179
+    timeWindow: 0.85
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 2.4
+  - comboCount: 189
+    timeWindow: 0.8
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 2.45
+  - comboCount: 199
+    timeWindow: 0.75
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 2.5
+  - comboCount: 219
+    timeWindow: 0.75
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 2.5
+  - comboCount: 229
+    timeWindow: 0.7
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 2.55
+  - comboCount: 239
+    timeWindow: 0.65
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 2.6
+  - comboCount: 249
+    timeWindow: 0.6
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 2.65
+  - comboCount: 259
+    timeWindow: 0.55
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 2.7
+  - comboCount: 279
+    timeWindow: 0.5
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 2.75
+  - comboCount: 289
+    timeWindow: 0.45
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 2.8
+  - comboCount: 299
+    timeWindow: 0.4
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 2.85
+  - comboCount: 399
+    timeWindow: 0.3
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 2.9
+  - comboCount: 499
+    timeWindow: 0.25
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 2.95
+  - comboCount: 599
+    timeWindow: 0.2
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 3
   OnScoreChanged:
     m_PersistentCalls:
       m_Calls: []
