@@ -13,9 +13,6 @@ namespace Unity1Week
         private float hitStop = 1f;
 
         [SerializeField]
-        private float knockbackTime = 2f;
-
-        [SerializeField]
         private Vector2 knockbackForce = new Vector2(-3, 6);
 
         [SerializeField]
