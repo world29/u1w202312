@@ -178,7 +178,8 @@ namespace Unity1Week
         {
             var viewportPos = Camera.main.WorldToViewportPoint(transform.position);
 
-            var rect = new Rect(-0.2f, -0.2f, 1.2f, 1.2f);
+            // 画面左と下は少しはみ出すとアウトだが、右と上は余裕を持たせる
+            var rect = new Rect(-0.2f, -0.2f, 2.0f, 2.0f);
             if (!rect.Contains(viewportPos))
             {
                 // 画面外
