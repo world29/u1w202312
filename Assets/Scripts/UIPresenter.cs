@@ -15,6 +15,9 @@ namespace Unity1Week
         [SerializeField]
         private UIComboView comboView;
 
+        [SerializeField]
+        private int showComboLimit = 2;
+
         private GameController _gameController;
 
         void Start()
@@ -31,7 +34,7 @@ namespace Unity1Week
 
             _gameController.OnComboChanged.AddListener((combo) =>
             {
-                if (combo > 1)
+                if (combo >= showComboLimit)
                 {
                     comboView.ShowCombo(combo, _gameController.ComboTimeWindow);
                 }
