@@ -1885,7 +1885,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.8
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3462,7 +3462,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 4b870f6d28933594c8fbd5a6a493620c, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
@@ -5652,7 +5652,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2101225282}
   - component: {fileID: 2101225283}
-  - component: {fileID: 2101225284}
   - component: {fileID: 2101225287}
   - component: {fileID: 2101225285}
   m_Layer: 0
@@ -5688,6 +5687,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 459c0ccc2d4aed048834b0c38c9a6cf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameplayConfig: {fileID: 11400000, guid: c2e5e7740571c4a40b1596cc7948e16b, type: 2}
+  director: {fileID: 1185788792}
   firstPlatformLanded: {fileID: 11400000, guid: bb051872a1806fe4c935178eb2ce47ee, type: 2}
   distanceThreshold: 0.2
   comboPhaseTable:
@@ -5722,34 +5723,6 @@ MonoBehaviour:
   OnLandingFar:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2101225284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2101225281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15779f48529cf844fb52618d074756a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: d1f009263f939aa42b2da2497b22726a, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2101225283}
-        m_TargetAssemblyTypeName: Unity1Week.GameController, Assembly-CSharp
-        m_MethodName: DamageToPlayer
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &2101225285
 MonoBehaviour:
   m_ObjectHideFlags: 0

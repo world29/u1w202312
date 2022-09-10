@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.Playables;
 
 namespace Unity1Week
 {
@@ -21,6 +22,12 @@ namespace Unity1Week
 
     public class GameController : MonoBehaviour, IGameControllerRequests
     {
+        [SerializeField]
+        private GameplayConfig gameplayConfig;
+
+        [SerializeField]
+        private PlayableDirector director;
+
         [SerializeField]
         private GameEvent firstPlatformLanded;
 
@@ -79,6 +86,11 @@ namespace Unity1Week
             _platformCount = 0;
 
             Time.timeScale = 1f;
+
+            if (!gameplayConfig.SkipTimeline)
+            {
+                director.Play();
+            }
         }
 
         void Update()
@@ -174,12 +186,15 @@ namespace Unity1Week
 
         public void Retry()
         {
+            gameplayConfig.SkipTimeline = true;
+
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         public void BackToTitle()
         {
-            //todo: タイトルシーンをロードする
+            gameplayConfig.SkipTimeline = false;
+
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
@@ -191,12 +206,6 @@ namespace Unity1Week
         public void Resume()
         {
             Time.timeScale = 1f;
-        }
-
-        public void DamageToPlayer(int damageAmount)
-        {
-            // game over
-            Pause();
         }
 
         private void GetComboSound(out AudioClip clip, out float pitch)
