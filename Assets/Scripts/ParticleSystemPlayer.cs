@@ -7,9 +7,11 @@ namespace Unity1Week
     public class ParticleSystemPlayer : MonoBehaviour
     {
         [SerializeField]
-        private ParticleSystem particle;
+        private ParticleSystem particle1;
+        [SerializeField]
+        private ParticleSystem particle2;
 
-        public void PlayParticle()
+        private void PlayParticle(ParticleSystem particle)
         {
             if (particle == null)
             {
@@ -20,6 +22,16 @@ namespace Unity1Week
             {
                 particle.Play();
             }
+
+        }
+        public void PlayParticle1()
+        {
+            PlayParticle(particle1);
+
+        }
+        public void PlayParticle2()
+        {
+            PlayParticle(particle2);
 
         }
     }
