@@ -10,23 +10,10 @@ namespace Unity1Week
         void OnPlatformSpawned(PlatformNormal prevPlatform, PlatformNormal platform);
     }
 
-    [System.Serializable]
-    public struct PlatformPhase
-    {
-        // このスコア以上なら、以下の設定値が採用される
-        public float score;
-
-        public float widthMin;
-
-        public float widthMax;
-
-        public float interval;
-    }
-
     public class PlatformManager : MonoBehaviour
     {
         [SerializeField]
-        private List<PlatformPhase> phaseTable = new List<PlatformPhase>();
+        private PlatformSetting setting;
 
         private PlatformNormal _prevPlatform;
 
@@ -37,8 +24,10 @@ namespace Unity1Week
             GameObject.FindGameObjectWithTag("GameController").TryGetComponent(out _gameController);
         }
 
-        public void GetPlatformWidth(out float widthMin, out float widthMax)
+        public void GetPlatformSpawnParams(out float size, out bool isMovingPlatform)
         {
+            var phaseTable = setting.phaseTable;
+
             int idx = phaseTable.Count - 1;
             for (; 0 < idx; idx--)
             {
@@ -48,22 +37,13 @@ namespace Unity1Week
                 }
             }
 
-            widthMin = phaseTable[idx].widthMin;
-            widthMax = phaseTable[idx].widthMax;
-        }
+            var sizeMin = phaseTable[idx].size - phaseTable[idx].sizeRange * 0.5f;
+            var sizeMax = phaseTable[idx].size + phaseTable[idx].sizeRange * 0.5f;
 
-        public float GetPlatformInterval()
-        {
-            int idx = phaseTable.Count - 1;
-            for (; 0 < idx; idx--)
-            {
-                if (_gameController.Score > phaseTable[idx].score)
-                {
-                    break;
-                }
-            }
+            var t = NormDist01();
+            size = Mathf.Lerp(sizeMin, sizeMax, t);
 
-            return phaseTable[idx].interval;
+            isMovingPlatform = (Random.Range(0, 100) < phaseTable[idx].percentMove);
         }
 
         public void NotifyPlatformSpawned(PlatformNormal platform)
@@ -75,6 +55,21 @@ namespace Unity1Week
             }
 
             _prevPlatform = platform;
+        }
+
+        private static float NormDist01()
+        {
+            return Mathf.Clamp01((NormalDistribution() + 3f) / 6f);
+        }
+
+        private static float NormalDistribution()
+        {
+            var ret = 0f;
+            for (int i = 0; i < 12; i++)
+            {
+                ret += Random.value;
+            }
+            return ret - 6f;
         }
     }
 }

@@ -44,10 +44,10 @@ namespace Unity1Week
             {
                 platformNormal.ResetState();
 
-                float min, max;
-                platformManager.GetPlatformWidth(out min, out max);
-                var t = NormDist01();
-                var size = Mathf.Lerp(min, max, t);
+                float size;
+                bool isMovingPlatform;
+                platformManager.GetPlatformSpawnParams(out size, out isMovingPlatform);
+
                 platformNormal.ChangeSize(size);
                 Debug.Log($"Platform spawned. size={size.ToString("F1")}");
 
