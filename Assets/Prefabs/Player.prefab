@@ -4987,9 +4987,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravity: 9.8
-  hitStop: 0.3
+  hitStop: 1
   knockbackTime: 2
   knockbackForce: {x: -1, y: 5}
+  hitSe: {fileID: 8300000, guid: 5dcd5e6e336c66d4aacec0ad3e03f553, type: 3}
   damageSe: {fileID: 8300000, guid: c32a4ec2ae08d449daeb37c1b96ec5b9, type: 3}
   deathEvent: {fileID: 11400000, guid: d1f009263f939aa42b2da2497b22726a, type: 2}
 --- !u!114 &2249334382074262165

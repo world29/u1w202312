@@ -19,6 +19,9 @@ namespace Unity1Week
         private Vector2 knockbackForce = new Vector2(-3, 6);
 
         [SerializeField]
+        private AudioClip hitSe;
+
+        [SerializeField]
         private AudioClip damageSe;
 
         [SerializeField]
@@ -145,14 +148,14 @@ namespace Unity1Week
             // 時間を止めてダメージアニメーションを再生し、落ちていく
             SoundManager.StopBgm(0);
 
-            SoundManager.PlaySe(damageSe);
-
             _animator.Play("damage");
-            _animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+            SoundManager.PlaySe(hitSe);
 
             Time.timeScale = 0f;
             yield return new WaitForSecondsRealtime(hitStop);
             Time.timeScale = 1f;
+
+            SoundManager.PlaySe(damageSe);
 
             // ノックバック
             _velocity = knockbackForce;
