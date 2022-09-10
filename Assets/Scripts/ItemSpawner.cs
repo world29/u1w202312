@@ -51,7 +51,7 @@ namespace Unity1Week
             Debug.Assert(lootTable.Sum((x) => x.weight) == 100);
         }
 
-        public void OnPlatformSpawned(PlatformNormal prevPlatform, PlatformNormal platform)
+        public void OnPlatformSpawned(Transform prevPlatform, Transform platform)
         {
             if (_itemSpawned)
             {
@@ -65,7 +65,7 @@ namespace Unity1Week
                 return;
             }
 
-            var mid = Vector3.Lerp(prevPlatform.transform.position, platform.transform.position, 0.5f);
+            var mid = Vector3.Lerp(prevPlatform.position, platform.position, 0.5f);
 
             // プラットフォームの中点から画面の上端の間のランダムな位置に生成する。
             var distance = _worldTop - mid.y;

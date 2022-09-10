@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace Unity1Week
 {
@@ -11,10 +12,10 @@ namespace Unity1Week
         private Rect spawnRect;
 
         [SerializeField]
-        private float nextOffset = 10;
+        private List<Transform> platformPool = new List<Transform>();
 
         [SerializeField]
-        private Transform platform;
+        private List<Transform> platformMovingPool = new List<Transform>();
 
         [SerializeField]
         private PlatformManager platformManager;
@@ -27,53 +28,79 @@ namespace Unity1Week
                 SpawnPlatform();
 
                 // 次の位置に移動する
-                MoveNextPosition(nextOffset);
+                MoveNextPosition(platformManager.GetPlatformSpawnInterval());
             }
+        }
+
+        private Transform GetPlatformToSpawn()
+        {
+            // プール内のオブジェクトをx座標でソートして、一番左のものを返す
+            platformPool.Sort((lhs, rhs) => lhs.position.x.CompareTo(rhs.position.x));
+
+            return platformPool[0];
+        }
+
+        private Transform GetMovingPlatformToSpawn()
+        {
+            platformMovingPool.Sort((lhs, rhs) => lhs.position.x.CompareTo(rhs.position.x));
+
+            return platformMovingPool[0];
         }
 
         private void SpawnPlatform()
         {
-            var x = Random.Range(spawnRect.xMin, spawnRect.xMax);
-            var y = Random.Range(spawnRect.yMin, spawnRect.yMax);
+            float size;
+            bool isMovingPlatform;
+            platformManager.GetPlatformSpawnParams(out size, out isMovingPlatform);
 
-            platform.position = new Vector3(transform.position.x + x, transform.position.y + y, platform.position.z);
-
-            // プラットフォームの状態をリセット
-            var platformNormal = platform.GetComponentInChildren<PlatformNormal>();
-            if (platformNormal)
+            if (isMovingPlatform)
             {
-                platformNormal.ResetState();
+                var platform = GetMovingPlatformToSpawn();
+                Debug.Assert(platform != null);
 
-                float size;
-                bool isMovingPlatform;
-                platformManager.GetPlatformSpawnParams(out size, out isMovingPlatform);
+                var platformMove = platform.GetComponentInChildren<PlatformMove>();
+                if (platformMove)
+                {
+                    var x = Random.Range(spawnRect.xMin, spawnRect.xMax);
+                    //var y = Mathf.Lerp(spawnRect.yMin, spawnRect.yMax, 0.5f);
+                    var new_y = platform.position.y;
 
-                platformNormal.ChangeSize(size);
-                Debug.Log($"Platform spawned. size={size.ToString("F1")}");
+                    platform.position = new Vector3(transform.position.x + x, new_y, platform.position.z);
 
-                // プラットフォーム生成通知
-                platformManager.NotifyPlatformSpawned(platformNormal);
+                    platformMove.ResetState();
+                    platformMove.ChangeSize(size);
+                    Debug.Log($"PlatformMove spawned. size={size.ToString("F1")}");
+
+                    // プラットフォーム生成通知
+                    platformManager.NotifyPlatformSpawned(platform);
+                }
+            }
+            else
+            {
+                var platform = GetPlatformToSpawn();
+                Debug.Assert(platform != null);
+
+                var platformNormal = platform.GetComponentInChildren<PlatformNormal>();
+                if (platformNormal)
+                {
+                    var x = Random.Range(spawnRect.xMin, spawnRect.xMax);
+                    var y = Random.Range(spawnRect.yMin, spawnRect.yMax);
+
+                    platform.position = new Vector3(transform.position.x + x, transform.position.y + y, platform.position.z);
+
+                    platformNormal.ResetState();
+                    platformNormal.ChangeSize(size);
+                    Debug.Log($"PlatformNormal spawned. size={size.ToString("F1")}");
+
+                    // プラットフォーム生成通知
+                    platformManager.NotifyPlatformSpawned(platform);
+                }
             }
         }
 
         private void MoveNextPosition(float offset)
         {
             transform.Translate(offset, 0, 0);
-        }
-
-        private static float NormDist01()
-        {
-            return Mathf.Clamp01((NormalDistribution() + 3f) / 6f);
-        }
-
-        private static float NormalDistribution()
-        {
-            var ret = 0f;
-            for (int i = 0; i < 12; i++)
-            {
-                ret += Random.value;
-            }
-            return ret - 6f;
         }
 
 #if UNITY_EDITOR

@@ -7,7 +7,7 @@ namespace Unity1Week
 {
     public interface IPlatformEvent : IEventSystemHandler
     {
-        void OnPlatformSpawned(PlatformNormal prevPlatform, PlatformNormal platform);
+        void OnPlatformSpawned(Transform prevPlatform, Transform platform);
     }
 
     public class PlatformManager : MonoBehaviour
@@ -15,7 +15,7 @@ namespace Unity1Week
         [SerializeField]
         private PlatformSetting setting;
 
-        private PlatformNormal _prevPlatform;
+        private Transform _prevPlatform;
 
         private GameController _gameController;
 
@@ -46,7 +46,23 @@ namespace Unity1Week
             isMovingPlatform = (Random.Range(0, 100) < phaseTable[idx].percentMove);
         }
 
-        public void NotifyPlatformSpawned(PlatformNormal platform)
+        public float GetPlatformSpawnInterval()
+        {
+            var phaseTable = setting.phaseTable;
+
+            int idx = phaseTable.Count - 1;
+            for (; 0 < idx; idx--)
+            {
+                if (_gameController.Score > phaseTable[idx].score)
+                {
+                    break;
+                }
+            }
+
+            return phaseTable[idx].interval;
+        }
+
+        public void NotifyPlatformSpawned(Transform platform)
         {
             if (_prevPlatform != null)
             {
