@@ -1885,7 +1885,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4
+  orthographic size: 3.8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3444,6 +3444,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1185788793}
   - component: {fileID: 1185788792}
+  - component: {fileID: 1185788794}
   m_Layer: 0
   m_Name: Cutscene
   m_TagString: Untagged
@@ -3472,8 +3473,6 @@ PlayableDirector:
     value: {fileID: 1943243829}
   - key: {fileID: 3245451165094804625, guid: 4b870f6d28933594c8fbd5a6a493620c, type: 2}
     value: {fileID: 823284590}
-  - key: {fileID: -1225071287953408225, guid: 4b870f6d28933594c8fbd5a6a493620c, type: 2}
-    value: {fileID: 1232840496}
   - key: {fileID: 613791189767920988, guid: 4b870f6d28933594c8fbd5a6a493620c, type: 2}
     value: {fileID: 1989774717}
   - key: {fileID: 26813063079294745, guid: 4b870f6d28933594c8fbd5a6a493620c, type: 2}
@@ -3482,6 +3481,8 @@ PlayableDirector:
     value: {fileID: 1179069134}
   - key: {fileID: 3413734721233144042, guid: 4b870f6d28933594c8fbd5a6a493620c, type: 2}
     value: {fileID: 1591929039}
+  - key: {fileID: 7047606430723274695, guid: 4b870f6d28933594c8fbd5a6a493620c, type: 2}
+    value: {fileID: 1185788791}
   m_ExposedReferences:
     m_References:
     - 4c525c9d8fe391b47836667ead29afea: {fileID: 1989774711}
@@ -3507,6 +3508,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1185788794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185788791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 63eed602041ec73458e04a8f4f2acf6c, type: 2}
+    - {fileID: 11400000, guid: 781c22df52d1834438742cbc247fa2d7, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 382518839}
+          m_TargetAssemblyTypeName: UnityEngine.UI.Graphic, UnityEngine.UI
+          m_MethodName: set_raycastTarget
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 382518839}
+          m_TargetAssemblyTypeName: UnityEngine.UI.Graphic, UnityEngine.UI
+          m_MethodName: set_raycastTarget
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1213677867
 GameObject:
   m_ObjectHideFlags: 0
