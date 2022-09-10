@@ -108,6 +108,9 @@ namespace Unity1Week
 
         private IEnumerator LandingCoroutine()
         {
+            // プラットフォームに乗った際の Good/Nice 判定が次のフレームまでわからないので、１フレーム待つ
+            yield return null;
+
             _isLanding = true;
 
             yield return new WaitUntil(() =>
