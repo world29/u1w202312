@@ -70,8 +70,6 @@ namespace Unity1Week
         {
             if (_prevPlatform != null)
             {
-                Debug.Log("NotifyPlatformSpawned");
-
                 BroadcastExecuteEvents.Execute<IPlatformEvent>(null,
                     (handler, _) => handler.OnPlatformSpawned(_prevPlatform, platform));
             }

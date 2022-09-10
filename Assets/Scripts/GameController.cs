@@ -149,6 +149,11 @@ namespace Unity1Week
                 return;
             }
 
+#if UNITY_EDITOR
+            string judge = distance <= distanceThreshold ? "Good" : "Nice";
+            Debug.Log($"Landed: dist={distance.ToString("F3")}, {judge}");
+#endif
+
             if (distance <= distanceThreshold)
             {
                 OnLandingNear.Invoke(landingPosition);

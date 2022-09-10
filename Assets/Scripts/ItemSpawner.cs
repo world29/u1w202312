@@ -70,8 +70,6 @@ namespace Unity1Week
             // プラットフォームの中点から画面の上端の間のランダムな位置に生成する。
             var distance = _worldTop - mid.y;
 
-            Debug.Log($"{mid.y}, {_worldTop}");
-
             float spawnBottom = mid.y + distance * spawnMerginBottom;
             float spawnTop = _worldTop - distance * spawnMerginTop;
 

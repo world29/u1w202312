@@ -49,7 +49,7 @@ namespace Unity1Week
                 var t = NormDist01();
                 var size = Mathf.Lerp(min, max, t);
                 platformNormal.ChangeSize(size);
-                Debug.Log($"size: {size}, t: {t}");
+                Debug.Log($"Platform spawned. size={size.ToString("F1")}");
 
                 // プラットフォーム生成通知
                 platformManager.NotifyPlatformSpawned(platformNormal);
