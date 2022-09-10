@@ -26,6 +26,11 @@ namespace Unity1Week
 
         public void PlayBgm(AudioClip clip)
         {
+            if (!Application.isPlaying)
+            {
+                return;
+            }
+
             SoundManager.PlayBgm(clip, fadeTime);
         }
     }

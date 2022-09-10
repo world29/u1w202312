@@ -9,6 +9,11 @@ namespace Unity1Week
     {
         public void PlaySe(AudioClip clip)
         {
+            if (!Application.isPlaying)
+            {
+                return;
+            }
+
             SoundManager.PlaySe(clip);
         }
     }
