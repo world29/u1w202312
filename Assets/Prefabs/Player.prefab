@@ -5719,11 +5719,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4892621152155970030, guid: abb3a8dc9e878473b881f93cf7b9df18, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
-      value: 0.6650944
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4892621152155970030, guid: abb3a8dc9e878473b881f93cf7b9df18, type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.6650944
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4892621152155970030, guid: abb3a8dc9e878473b881f93cf7b9df18, type: 3}
       propertyPath: InitialModule.startColor.maxColor.r

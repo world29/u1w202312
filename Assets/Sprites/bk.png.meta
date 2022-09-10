@@ -50,6 +50,18 @@ TextureImporter:
   - first:
       213: -8032417094156268037
     second: bk 1_15
+  - first:
+      213: 7186656541719271990
+    second: bk_0
+  - first:
+      213: -2054234343348385757
+    second: bk_1
+  - first:
+      213: -2651244846662154556
+    second: bk_2
+  - first:
+      213: -1949251984529544508
+    second: bk_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -180,7 +192,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 1852
-        width: 489
+        width: 488
         height: 310
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -7700,6 +7712,90 @@ TextureImporter:
         boneIndex[1]: 4
         boneIndex[2]: 0
         boneIndex[3]: 0
+    - serializedVersion: 2
+      name: bk_0
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 1570
+        width: 488
+        height: 310
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63a1ae35c022cb360800000000000000
+      internalID: 7186656541719271990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bk_1
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 1260
+        width: 488
+        height: 310
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 328cf4f9fb4ed73e0800000000000000
+      internalID: -2054234343348385757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bk_2
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 950
+        width: 488
+        height: 310
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c60e1edbd2e43bd0800000000000000
+      internalID: -2651244846662154556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bk_3
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 640
+        width: 488
+        height: 310
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ca246cc5add2f4e0800000000000000
+      internalID: -1949251984529544508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
