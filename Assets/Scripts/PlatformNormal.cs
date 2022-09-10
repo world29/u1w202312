@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Unity1Week
 {
@@ -51,6 +52,9 @@ namespace Unity1Week
 
         [SerializeField]
         private float threshold = 0.01f;
+
+        [HideInInspector]
+        public UnityEvent OnLanded = new UnityEvent();
 
         private int _landedCount;
 
@@ -157,6 +161,8 @@ namespace Unity1Week
                         (handler, eventData) => handler.AddScore(score));
                 }
             }
+
+            OnLanded.Invoke();
         }
 
         protected override void OnPassengerExit(Transform passenger)

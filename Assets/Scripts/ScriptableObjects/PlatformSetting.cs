@@ -23,6 +23,9 @@ namespace Unity1Week
 
             [Tooltip("動くプラットフォームが出現する確率")]
             public float percentMove;
+
+            [Tooltip("プラットフォームの間隔")]
+            public float interval;
         }
 
         [SerializeField]

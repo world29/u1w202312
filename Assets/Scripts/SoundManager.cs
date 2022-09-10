@@ -71,7 +71,7 @@ namespace Unity1Week
         }
 
         static readonly string k_AudioMixerPath = "AudioMixer";
-        const int SE_CHANNELS = 4;
+        const int SE_CHANNELS = 8;
 
         private AudioMixer _mixer;
         private AudioSource _bgmSource;

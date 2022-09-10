@@ -44,7 +44,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -3, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -109,7 +109,7 @@ MonoBehaviour:
     width: 2
     height: 5
   nextOffset: 20
-  platform: {fileID: 0}
+  platformPool: []
   platformManager: {fileID: 0}
 --- !u!50 &9154097826017700414
 Rigidbody2D:

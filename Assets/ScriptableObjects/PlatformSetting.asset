@@ -16,24 +16,30 @@ MonoBehaviour:
   - score: 0
     size: 1
     sizeRange: 0
-    percentMove: 0
+    percentMove: 100
+    interval: 5
   - score: 20
     size: 0.9
     sizeRange: 0.2
-    percentMove: 0
+    percentMove: 100
+    interval: 5
   - score: 50
     size: 0.8
     sizeRange: 0.2
     percentMove: 0
+    interval: 5
   - score: 100
     size: 0.7
     sizeRange: 0.2
     percentMove: 0
+    interval: 5
   - score: 300
     size: 0.6
     sizeRange: 0.2
     percentMove: 0
+    interval: 6
   - score: 500
     size: 0.5
     sizeRange: 0.2
     percentMove: 0
+    interval: 7
