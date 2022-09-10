@@ -4463,6 +4463,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7984111368635895796, guid: 98b441aaaefcf0949a7a05caed57947d, type: 3}
   m_PrefabInstance: {fileID: 1988481555}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1464987475
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 6518159953235790833, guid: 0dccb904447e5b24985056b3a536aff1, type: 3}
+  m_PrefabInstance: {fileID: 1579746243}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1579746244}
+  m_Layer: 0
+  m_Name: 'PlatformMove (Missing Prefab with guid: 0dccb904447e5b24985056b3a536aff1)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1001 &1508905958
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4740,11 +4756,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dccb904447e5b24985056b3a536aff1, type: 3}
---- !u!4 &1579746244 stripped
+--- !u!4 &1579746244
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 6518159953235790838, guid: 0dccb904447e5b24985056b3a536aff1, type: 3}
   m_PrefabInstance: {fileID: 1579746243}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464987475}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 37222529}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1591929039 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4230471532325969212, guid: b4bec145b2b9e458290fcc904f1af90e, type: 3}
@@ -5772,21 +5797,93 @@ MonoBehaviour:
   distanceThreshold: 0.2
   comboPhaseTable:
   - comboCount: 0
+    timeWindow: 15
+    se: {fileID: 0}
+    pitch: 0
+  - comboCount: 1
     timeWindow: 10
-    se: {fileID: 0}
-    pitch: 0
-  - comboCount: 5
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 1
+  - comboCount: 4
+    timeWindow: 9
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 1.05
+  - comboCount: 9
+    timeWindow: 8
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 1.1
+  - comboCount: 14
     timeWindow: 7
-    se: {fileID: 0}
-    pitch: 0
-  - comboCount: 15
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 1.15
+  - comboCount: 19
+    timeWindow: 6
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 1.2
+  - comboCount: 24
     timeWindow: 5
-    se: {fileID: 0}
-    pitch: 0
-  - comboCount: 30
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 1.25
+  - comboCount: 29
+    timeWindow: 4
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 1.3
+  - comboCount: 34
     timeWindow: 3
-    se: {fileID: 0}
-    pitch: 0
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 1.35
+  - comboCount: 39
+    timeWindow: 2.9
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 1.4
+  - comboCount: 44
+    timeWindow: 2.8
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 1.45
+  - comboCount: 49
+    timeWindow: 2.7
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 1.5
+  - comboCount: 54
+    timeWindow: 2.6
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 1.55
+  - comboCount: 59
+    timeWindow: 2.5
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 1.6
+  - comboCount: 64
+    timeWindow: 2.4
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 1.65
+  - comboCount: 69
+    timeWindow: 2.3
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 1.7
+  - comboCount: 74
+    timeWindow: 2.2
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 1.75
+  - comboCount: 79
+    timeWindow: 2.1
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 1.8
+  - comboCount: 84
+    timeWindow: 2
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 1.85
+  - comboCount: 89
+    timeWindow: 1.9
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 1.9
+  - comboCount: 94
+    timeWindow: 1.8
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 1.95
+  - comboCount: 99
+    timeWindow: 1.5
+    se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
+    pitch: 2
   OnScoreChanged:
     m_PersistentCalls:
       m_Calls: []
