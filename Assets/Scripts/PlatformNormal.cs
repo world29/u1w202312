@@ -32,6 +32,9 @@ namespace Unity1Week
         private float springAttenuation = 0.9f;
 
         [SerializeField]
+        private float springCollisionDisableTime = 0.2f;
+
+        [SerializeField]
         private float landingSpeed = 5f;
 
         [SerializeField]
@@ -55,7 +58,7 @@ namespace Unity1Week
         private Transform _passenger;
         private Vector3 _passengerPos;
 
-        private Coroutine _coroutine;
+        private Coroutine _springCoroutine;
         private bool _dragging;
         private Vector2 _dragPos;
         private Vector2 _dragPosBegin;
@@ -73,15 +76,7 @@ namespace Unity1Week
             _passenger = null;
             _passengerPos = Vector3.zero;
 
-            if (_coroutine != null)
-            {
-                StopCoroutine(_coroutine);
-            }
-
-            if (_landingAnimationCoroutine != null)
-            {
-                StopCoroutine(_landingAnimationCoroutine);
-            }
+            CancelAnimation();
 
             _dragging = false;
             _dragPos = _dragPosBegin = Vector2.zero;
@@ -139,6 +134,7 @@ namespace Unity1Week
             BroadcastReceivers.RegisterBroadcastReceiver<ICustomDragEvent>(gameObject);
 
             //Debug.Log($"OnPassengerEnter");
+            CancelAnimation();
 
             _landingAnimationCoroutine = StartCoroutine(LandingAnimationCoroutine(velocity));
 
@@ -190,16 +186,15 @@ namespace Unity1Week
             _dragPosBegin = beginScreenPos;
             _dragPos = screenPos;
 
-            if (_landingAnimationCoroutine != null)
-            {
-                StopCoroutine(_landingAnimationCoroutine);
-            }
+            CancelAnimation();
         }
 
         public void OnEndDrag(Vector2 screenPos)
         {
             _dragging = false;
-            _coroutine = StartCoroutine(SpringCoroutine());
+            _springCoroutine = StartCoroutine(SpringCoroutine());
+
+            StartCoroutine(DisableCollisionCoroutine(springCollisionDisableTime));
 
             _animator.SetTrigger("flap");
         }
@@ -215,10 +210,30 @@ namespace Unity1Week
             }
         }
 
-        private IEnumerator SpringCoroutine()
+        private void CancelAnimation()
+        {
+            if (_landingAnimationCoroutine != null)
+            {
+                StopCoroutine(_landingAnimationCoroutine);
+            }
+
+            if (_springCoroutine != null)
+            {
+                StopCoroutine(_springCoroutine);
+            }
+        }
+
+        private IEnumerator DisableCollisionCoroutine(float duration)
         {
             anyCollider.enabled = false;
 
+            yield return new WaitForSeconds(duration);
+
+            anyCollider.enabled = true;
+        }
+
+        private IEnumerator SpringCoroutine()
+        {
             Vector3 velocity = Vector3.zero;
 
             float timer = 0;
@@ -239,8 +254,6 @@ namespace Unity1Week
             }
 
             transform.position = _startPos;
-
-            anyCollider.enabled = true;
         }
 
         private IEnumerator LandingAnimationCoroutine(Vector2 _velocity)
