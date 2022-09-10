@@ -40,7 +40,7 @@ Material:
     - Vector1_4fc8aed37fb149b7a8b0e9f1d306bc49: 1
     - Vector1_533e502693bb44768e98e01c55e277d6: 1
     - Vector1_b28e44d42bb84e75afe95b23520e5965: 0
-    - _Hue: 0
+    - _Hue: 228
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
