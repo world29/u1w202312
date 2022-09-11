@@ -6623,6 +6623,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameplayConfig: {fileID: 11400000, guid: c2e5e7740571c4a40b1596cc7948e16b, type: 2}
+  phaseSetting: {fileID: 11400000, guid: 4ba5a356f9102c54d9319c5135ab0978, type: 2}
   director: {fileID: 1185788792}
   firstPlatformLanded: {fileID: 11400000, guid: bb051872a1806fe4c935178eb2ce47ee, type: 2}
   distanceThreshold: 0.3
@@ -6813,6 +6814,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnLandingFar:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPhaseChanged:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &2101225285

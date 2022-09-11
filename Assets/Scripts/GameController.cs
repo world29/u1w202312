@@ -26,6 +26,9 @@ namespace Unity1Week
         private GameplayConfig gameplayConfig;
 
         [SerializeField]
+        private PhaseSetting phaseSetting;
+
+        [SerializeField]
         private PlayableDirector director;
 
         [SerializeField]
@@ -56,6 +59,9 @@ namespace Unity1Week
         public UnityEvent<Vector3> OnLandingFar = new UnityEvent<Vector3>();
 
         [HideInInspector]
+        public UnityEvent<int> OnPhaseChanged = new UnityEvent<int>();
+
+        [HideInInspector]
         public float Score => _score;
 
         [HideInInspector]
@@ -81,6 +87,8 @@ namespace Unity1Week
 
         private int _goodCount;
         private int _maxCombo;
+
+        private int _phase = 0;
 
         void OnEnable()
         {
@@ -133,6 +141,40 @@ namespace Unity1Week
             _score += scoreToAdd;
 
             OnScoreChanged.Invoke(_score);
+
+            UpdatePhase((int)_score);
+        }
+
+        private void UpdatePhase(int newScore)
+        {
+            var phaseTable = phaseSetting.phaseTable;
+
+            int idx = phaseTable.Count - 1;
+            for (; 0 < idx; idx--)
+            {
+                if (newScore >= phaseTable[idx].score)
+                {
+                    Debug.Log($"Phase update. {idx}");
+
+                    break;
+                }
+            }
+
+            ChangePhase(idx);
+        }
+
+        public void ChangePhase(int newPhase)
+        {
+            var prevPhase = _phase;
+
+            _phase = newPhase;
+
+            if (prevPhase != _phase)
+            {
+                OnPhaseChanged.Invoke(_phase);
+
+                Debug.Log($"Phase changed. {prevPhase} -> {newPhase}");
+            }
         }
 
         private void IncrementCombo()
