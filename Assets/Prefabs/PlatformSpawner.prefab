@@ -55,7 +55,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5, y: 10}
+  m_Size: {x: 5, y: 100}
   m_EdgeRadius: 0
 --- !u!1 &9154097826017700415
 GameObject:
@@ -108,8 +108,8 @@ MonoBehaviour:
     y: -2
     width: 2
     height: 5
-  nextOffset: 20
   platformPool: []
+  platformMovingPool: []
   platformManager: {fileID: 0}
 --- !u!50 &9154097826017700414
 Rigidbody2D:
