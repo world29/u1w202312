@@ -62,6 +62,9 @@ TextureImporter:
   - first:
       213: -1949251984529544508
     second: bk_3
+  - first:
+      213: 7141927876931560761
+    second: bk_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -7721,7 +7724,7 @@ TextureImporter:
         width: 488
         height: 310
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -7742,7 +7745,7 @@ TextureImporter:
         width: 488
         height: 310
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -7763,7 +7766,7 @@ TextureImporter:
         width: 488
         height: 310
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -7784,7 +7787,7 @@ TextureImporter:
         width: 488
         height: 310
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -7792,6 +7795,27 @@ TextureImporter:
       bones: []
       spriteID: 4ca246cc5add2f4e0800000000000000
       internalID: -1949251984529544508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bk_4
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 330
+        width: 488
+        height: 310
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93527f380993d1360800000000000000
+      internalID: 7141927876931560761
       vertices: []
       indices: 
       edges: []
