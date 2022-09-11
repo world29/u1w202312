@@ -111,8 +111,6 @@ namespace Unity1Week
                 Debug.Log($"Enemy spawned. {phase.enemyLootTable[idx].prefab.name} ({spawnPosition.ToString("F1")})");
 
                 _isSpawned = true;
-
-                return;
             }
 
             // 敵を生成しない場合、アイテムについて再度抽選
