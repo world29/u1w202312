@@ -10,5 +10,14 @@ namespace Unity1Week
     {
         [SerializeField]
         public bool SkipTimeline = false;
+
+        [SerializeField]
+        public float initScore = 0;
+
+        [SerializeField]
+        public int initCombo = 0;
+
+        [SerializeField]
+        public int initGoodCount = 0;
     }
 }

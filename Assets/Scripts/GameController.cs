@@ -102,13 +102,18 @@ namespace Unity1Week
 
         void Start()
         {
-            _score = 0;
+            _score = gameplayConfig.initScore;
+            _combo = gameplayConfig.initCombo;
+            if (_combo > 0)
+            {
+                _comboTimer = ComboTimeWindow;
+            }
+            _goodCount = gameplayConfig.initGoodCount;
 
             _landing = false;
 
             _platformCount = 0;
 
-            _goodCount = 0;
             _maxCombo = 0;
 
             Time.timeScale = 1f;

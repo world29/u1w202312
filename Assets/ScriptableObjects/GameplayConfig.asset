@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: GameplayConfig
   m_EditorClassIdentifier: 
   SkipTimeline: 0
+  initScore: 100
+  initCombo: 20
+  initGoodCount: 0
