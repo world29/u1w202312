@@ -80,7 +80,7 @@ namespace Unity1Week
         {
             var viewportPos = Camera.main.WorldToViewportPoint(transform.position);
 
-            var rect = new Rect(-0.2f, 0, 1.4f, 1);
+            var rect = new Rect(-0.2f, -1, 1.4f, 3);
             return rect.Contains(viewportPos);
         }
 
