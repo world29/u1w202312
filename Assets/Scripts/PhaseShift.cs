@@ -12,6 +12,8 @@ namespace Unity1Week
 
         [SerializeField] private float duration;
 
+        [SerializeField] private bool crossFade = false;
+
         private int _prevPhase;
         private GameController _gameController;
 
@@ -49,9 +51,13 @@ namespace Unity1Week
 
             // アルファを 0 から初期値へ
             var col = spriteRenderers[newPhase].color;
-            var targetAlpha = col.a;
-            spriteRenderers[newPhase].color = new Color(col.r, col.g, col.b, 0);
-            spriteRenderers[newPhase].DOFade(targetAlpha, duration);
+
+            if (crossFade)
+            {
+                float targetAlpha = col.a;
+                spriteRenderers[newPhase].color = new Color(col.r, col.g, col.b, 0);
+                spriteRenderers[newPhase].DOFade(targetAlpha, duration);
+            }
 
             _prevPhase = newPhase;
         }

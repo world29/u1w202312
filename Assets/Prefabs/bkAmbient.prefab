@@ -219,6 +219,7 @@ MonoBehaviour:
   - {fileID: 400781402097471970}
   - {fileID: 2232680313558837686}
   duration: 1
+  crossFade: 1
 --- !u!1 &4869915277941065105
 GameObject:
   m_ObjectHideFlags: 0
