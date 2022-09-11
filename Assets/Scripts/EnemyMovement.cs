@@ -30,6 +30,23 @@ namespace Unity1Week
                 .SetEase(Ease.InOutQuart);
         }
 
+        void LateUpdate()
+        {
+            if (!CheckAlive())
+            {
+                Destroy(gameObject);
+            }
+        }
+
+        private bool CheckAlive()
+        {
+            var viewportPos = Camera.main.WorldToViewportPoint(transform.position);
+
+            var rect = new Rect(-1f, -1f, 3f, 3f);
+
+            return rect.Contains(viewportPos);
+        }
+
 #if UNITY_EDITOR
         private void OnDrawGizmos()
         {
