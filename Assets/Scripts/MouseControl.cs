@@ -16,6 +16,18 @@ namespace Unity1Week
         private float speed = 5f;
 
         [SerializeField]
+        private float speedMin = 5f;
+
+        [SerializeField]
+        private float speedMax = 15f;
+
+        [SerializeField]
+        private float angleMin = 0f;
+
+        [SerializeField]
+        private float angleMax = 180f;
+
+        [SerializeField]
         private float timeMax = 3f;
 
         [SerializeField]
@@ -76,11 +88,12 @@ namespace Unity1Week
             }
 
             float speedMultiplier = diff.magnitude;
-            _launchSpeed = speed * speedMultiplier;
+            _launchSpeed = Mathf.Clamp(speed * speedMultiplier, speedMin, speedMax);
 
             // マウスの移動と逆方向に飛ぶ
             diff *= -1.0f;
             _launchAngle = Mathf.Atan2(diff.y, diff.x);
+            _launchAngle = Mathf.Clamp(_launchAngle, Mathf.Deg2Rad * angleMin, Mathf.Deg2Rad * angleMax);
 
             // 予測の表示
             var points = ProjectileArcPoints(_launchSpeed, _launchAngle, gravity, timeMax, timeStep);
@@ -103,6 +116,7 @@ namespace Unity1Week
         {
             if (_landing)
             {
+                Debug.Log($"Launch speed: {_launchSpeed.ToString("F1")}");
                 LaunchPlayer(_launchSpeed, _launchAngle);
 
                 projectileLine.enabled = false;

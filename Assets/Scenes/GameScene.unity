@@ -2850,6 +2850,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: 9.8
   speed: 2
+  speedMin: 3
+  speedMax: 15
+  angleMin: 30
+  angleMax: 180
   timeMax: 1
   timeStep: 0.1
   projectileLine: {fileID: 824925935}
