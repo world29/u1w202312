@@ -43,6 +43,9 @@ namespace Unity1Week
         [SerializeField]
         private List<ComboPhase> comboPhaseTable = new List<ComboPhase>();
 
+        [SerializeField]
+        private AudioClip bgm;
+
         [HideInInspector]
         public UnityEvent<float> OnScoreChanged = new UnityEvent<float>();
 
@@ -119,11 +122,15 @@ namespace Unity1Week
             _platformCount = 0;
 
             Time.timeScale = 1f;
-            SoundManager.StopBgm(1);
 
             if (!gameplayConfig.SkipTimeline)
             {
+                SoundManager.StopBgm(1);
                 director.Play();
+            }
+            else
+            {
+                SoundManager.PlayBgm(bgm, 0);
             }
         }
 
@@ -260,7 +267,11 @@ namespace Unity1Week
             // 最初のプラットフォームならイベントを発行する
             if (_platformCount == 0)
             {
-                firstPlatformLanded.Raise();
+                //hack: 現状 BGM 再生のトリガーなのでむりやり
+                if (!gameplayConfig.SkipTimeline)
+                {
+                    firstPlatformLanded.Raise();
+                }
             }
 
             ++_platformCount;

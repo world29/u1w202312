@@ -6695,6 +6695,7 @@ MonoBehaviour:
     timeWindow: 0.2
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 3
+  bgm: {fileID: 8300000, guid: 8d4b600577665e54ab949df977d69273, type: 3}
   OnScoreChanged:
     m_PersistentCalls:
       m_Calls: []
