@@ -108,13 +108,12 @@ namespace Unity1Week
             {
                 _comboTimer = ComboTimeWindow;
             }
+            _maxCombo = _combo;
             _goodCount = gameplayConfig.initGoodCount;
 
             _landing = false;
 
             _platformCount = 0;
-
-            _maxCombo = 0;
 
             Time.timeScale = 1f;
             SoundManager.StopBgm(1);
