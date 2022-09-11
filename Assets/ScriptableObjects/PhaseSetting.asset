@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phaseTable:
   - score: 0
-  - score: 1
-  - score: 2
-  - score: 3
-  - score: 4
+  - score: 20
+  - score: 50
+  - score: 70
+  - score: 100

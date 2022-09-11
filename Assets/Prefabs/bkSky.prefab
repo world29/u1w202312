@@ -218,7 +218,8 @@ MonoBehaviour:
   - {fileID: 5885495841033164367}
   - {fileID: 400781402097471970}
   - {fileID: 2232680313558837686}
-  duration: 1
+  duration: 5
+  crossFade: 0
 --- !u!1 &4869915277941065105
 GameObject:
   m_ObjectHideFlags: 0

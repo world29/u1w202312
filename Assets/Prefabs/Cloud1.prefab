@@ -533,4 +533,5 @@ MonoBehaviour:
   - {fileID: 2962733948553540634}
   - {fileID: 5476562671773156464}
   - {fileID: 289038986258810767}
-  duration: 1
+  duration: 5
+  crossFade: 0

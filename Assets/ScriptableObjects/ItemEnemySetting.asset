@@ -14,30 +14,55 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phaseTable:
   - score: 0
-    itemDropPercent: 25
+    itemDropPercent: 70
     itemLootTable:
     - prefab: {fileID: 1874934063139121174, guid: 5bd53b297a41f5c4aa99b14a863955f8, type: 3}
       weight: 100
-    enmeySpawnPercent: 0
-    enemyLootTable: []
+    enmeySpawnPercent: 20
+    enemyLootTable:
+    - prefab: {fileID: 6272043558258021582, guid: 2a90f3c69d37440d99e8e0fd3596bcb8, type: 3}
+      weight: 100
   - score: 10
-    itemDropPercent: 25
+    itemDropPercent: 70
     itemLootTable:
     - prefab: {fileID: 1874934063139121174, guid: 5bd53b297a41f5c4aa99b14a863955f8, type: 3}
       weight: 70
     - prefab: {fileID: 255153907354494374, guid: ff26661466a7a9e4ea2884906a49e69c, type: 3}
       weight: 30
-    enmeySpawnPercent: 0
-    enemyLootTable: []
-  - score: 30
+    enmeySpawnPercent: 30
+    enemyLootTable:
+    - prefab: {fileID: 6272043558258021582, guid: 2a90f3c69d37440d99e8e0fd3596bcb8, type: 3}
+      weight: 70
+    - prefab: {fileID: 8774213144928207684, guid: 03bce3261700a40f7b31903d01dcb96d, type: 3}
+      weight: 30
+  - score: 20
     itemDropPercent: 30
     itemLootTable:
     - prefab: {fileID: 1874934063139121174, guid: 5bd53b297a41f5c4aa99b14a863955f8, type: 3}
       weight: 50
     - prefab: {fileID: 255153907354494374, guid: ff26661466a7a9e4ea2884906a49e69c, type: 3}
       weight: 50
-    enmeySpawnPercent: 0
-    enemyLootTable: []
+    enmeySpawnPercent: 50
+    enemyLootTable:
+    - prefab: {fileID: 6272043558258021582, guid: 2a90f3c69d37440d99e8e0fd3596bcb8, type: 3}
+      weight: 50
+    - prefab: {fileID: 8774213144928207684, guid: 03bce3261700a40f7b31903d01dcb96d, type: 3}
+      weight: 50
+  - score: 35
+    itemDropPercent: 40
+    itemLootTable:
+    - prefab: {fileID: 1874934063139121174, guid: 5bd53b297a41f5c4aa99b14a863955f8, type: 3}
+      weight: 30
+    - prefab: {fileID: 255153907354494374, guid: ff26661466a7a9e4ea2884906a49e69c, type: 3}
+      weight: 50
+    - prefab: {fileID: 830826331379782566, guid: cc461fb565567aa498a55dca8b44f6ad, type: 3}
+      weight: 20
+    enmeySpawnPercent: 100
+    enemyLootTable:
+    - prefab: {fileID: 8774213144928207684, guid: 03bce3261700a40f7b31903d01dcb96d, type: 3}
+      weight: 70
+    - prefab: {fileID: 6272043558258021582, guid: 25b3d4fbbba2e4e9a8fe97a96340c66f, type: 3}
+      weight: 30
   - score: 50
     itemDropPercent: 30
     itemLootTable:
@@ -47,7 +72,20 @@ MonoBehaviour:
       weight: 50
     - prefab: {fileID: 830826331379782566, guid: cc461fb565567aa498a55dca8b44f6ad, type: 3}
       weight: 20
-    enmeySpawnPercent: 20
+    enmeySpawnPercent: 100
+    enemyLootTable:
+    - prefab: {fileID: 8774213144928207684, guid: 03bce3261700a40f7b31903d01dcb96d, type: 3}
+      weight: 100
+  - score: 70
+    itemDropPercent: 100
+    itemLootTable:
+    - prefab: {fileID: 1874934063139121174, guid: 5bd53b297a41f5c4aa99b14a863955f8, type: 3}
+      weight: 20
+    - prefab: {fileID: 255153907354494374, guid: ff26661466a7a9e4ea2884906a49e69c, type: 3}
+      weight: 50
+    - prefab: {fileID: 830826331379782566, guid: cc461fb565567aa498a55dca8b44f6ad, type: 3}
+      weight: 30
+    enmeySpawnPercent: 0
     enemyLootTable:
     - prefab: {fileID: 8774213144928207684, guid: 90138343f201d0d4e8d6a2c4f808625c, type: 3}
       weight: 100
@@ -63,4 +101,76 @@ MonoBehaviour:
     enmeySpawnPercent: 30
     enemyLootTable:
     - prefab: {fileID: 8774213144928207684, guid: 90138343f201d0d4e8d6a2c4f808625c, type: 3}
+      weight: 40
+    - prefab: {fileID: 6272043558258021582, guid: 25b3d4fbbba2e4e9a8fe97a96340c66f, type: 3}
+      weight: 30
+    - prefab: {fileID: 8774213144928207684, guid: 03bce3261700a40f7b31903d01dcb96d, type: 3}
+      weight: 30
+  - score: 100
+    itemDropPercent: 50
+    itemLootTable:
+    - prefab: {fileID: 1874934063139121174, guid: 5bd53b297a41f5c4aa99b14a863955f8, type: 3}
+      weight: 0
+    - prefab: {fileID: 255153907354494374, guid: ff26661466a7a9e4ea2884906a49e69c, type: 3}
+      weight: 70
+    - prefab: {fileID: 830826331379782566, guid: cc461fb565567aa498a55dca8b44f6ad, type: 3}
+      weight: 30
+    enmeySpawnPercent: 40
+    enemyLootTable:
+    - prefab: {fileID: 8774213144928207684, guid: 90138343f201d0d4e8d6a2c4f808625c, type: 3}
+      weight: 40
+    - prefab: {fileID: 6272043558258021582, guid: 25b3d4fbbba2e4e9a8fe97a96340c66f, type: 3}
+      weight: 30
+    - prefab: {fileID: 8774213144928207684, guid: 03bce3261700a40f7b31903d01dcb96d, type: 3}
+      weight: 30
+  - score: 125
+    itemDropPercent: 75
+    itemLootTable:
+    - prefab: {fileID: 1874934063139121174, guid: 5bd53b297a41f5c4aa99b14a863955f8, type: 3}
+      weight: 0
+    - prefab: {fileID: 255153907354494374, guid: ff26661466a7a9e4ea2884906a49e69c, type: 3}
+      weight: 50
+    - prefab: {fileID: 830826331379782566, guid: cc461fb565567aa498a55dca8b44f6ad, type: 3}
+      weight: 50
+    enmeySpawnPercent: 90
+    enemyLootTable:
+    - prefab: {fileID: 8774213144928207684, guid: 90138343f201d0d4e8d6a2c4f808625c, type: 3}
+      weight: 0
+    - prefab: {fileID: 6272043558258021582, guid: 25b3d4fbbba2e4e9a8fe97a96340c66f, type: 3}
+      weight: 0
+    - prefab: {fileID: 8774213144928207684, guid: 03bce3261700a40f7b31903d01dcb96d, type: 3}
       weight: 100
+  - score: 150
+    itemDropPercent: 75
+    itemLootTable:
+    - prefab: {fileID: 1874934063139121174, guid: 5bd53b297a41f5c4aa99b14a863955f8, type: 3}
+      weight: 0
+    - prefab: {fileID: 255153907354494374, guid: ff26661466a7a9e4ea2884906a49e69c, type: 3}
+      weight: 50
+    - prefab: {fileID: 830826331379782566, guid: cc461fb565567aa498a55dca8b44f6ad, type: 3}
+      weight: 50
+    enmeySpawnPercent: 60
+    enemyLootTable:
+    - prefab: {fileID: 8774213144928207684, guid: 90138343f201d0d4e8d6a2c4f808625c, type: 3}
+      weight: 0
+    - prefab: {fileID: 6272043558258021582, guid: 25b3d4fbbba2e4e9a8fe97a96340c66f, type: 3}
+      weight: 100
+    - prefab: {fileID: 8774213144928207684, guid: 03bce3261700a40f7b31903d01dcb96d, type: 3}
+      weight: 0
+  - score: 200
+    itemDropPercent: 100
+    itemLootTable:
+    - prefab: {fileID: 1874934063139121174, guid: 5bd53b297a41f5c4aa99b14a863955f8, type: 3}
+      weight: 0
+    - prefab: {fileID: 255153907354494374, guid: ff26661466a7a9e4ea2884906a49e69c, type: 3}
+      weight: 0
+    - prefab: {fileID: 830826331379782566, guid: cc461fb565567aa498a55dca8b44f6ad, type: 3}
+      weight: 100
+    enmeySpawnPercent: 100
+    enemyLootTable:
+    - prefab: {fileID: 8774213144928207684, guid: 90138343f201d0d4e8d6a2c4f808625c, type: 3}
+      weight: 40
+    - prefab: {fileID: 6272043558258021582, guid: 25b3d4fbbba2e4e9a8fe97a96340c66f, type: 3}
+      weight: 30
+    - prefab: {fileID: 8774213144928207684, guid: 03bce3261700a40f7b31903d01dcb96d, type: 3}
+      weight: 30
