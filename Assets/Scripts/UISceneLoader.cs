@@ -38,18 +38,29 @@ namespace Unity1Week
 
             yield return op;
 
-            // UI シーンのカメラを削除し、Canvas のカメラを差し替える
             var scene = SceneManager.GetSceneByName(sceneName);
             var rootObjects = scene.GetRootGameObjects();
 
-            var canvasObj = rootObjects
-                .FirstOrDefault(obj => obj.TryGetComponent(out Canvas canvas));
+            // UI シーンのカメラを削除し、Canvas のカメラを差し替える
+            {
+                HashSet<Camera> camerasToDestory = new HashSet<Camera>();
 
-            var uiCanvas = canvasObj.GetComponent<Canvas>();
-            var cameraToDestroy = uiCanvas.worldCamera;
-            uiCanvas.worldCamera = mainCamera;
+                var canvasObjects = rootObjects.Where(obj => obj.TryGetComponent(out Canvas canvas));
+                foreach (var canvasObj in canvasObjects)
+                {
+                    var uiCanvas = canvasObj.GetComponent<Canvas>();
+                    if (uiCanvas.worldCamera != null)
+                    {
+                        camerasToDestory.Add(uiCanvas.worldCamera);
+                        uiCanvas.worldCamera = mainCamera;
+                    }
+                }
 
-            Destroy(cameraToDestroy.gameObject);
+                foreach (var cam in camerasToDestory)
+                {
+                    Destroy(cam.gameObject);
+                }
+            }
 
             // UI シーンの EventSystem を削除する
             var eventSystemObj = rootObjects

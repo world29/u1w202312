@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1874934063139121172}
   - component: {fileID: 1874934063139121175}
   - component: {fileID: 1874934063139121174}
+  - component: {fileID: 6477612780787532492}
   m_Layer: 0
   m_Name: CrystalSmall
   m_TagString: Untagged
@@ -150,4 +151,28 @@ MonoBehaviour:
   particlePrefab: {fileID: 0}
   onPickup:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6477612780787532492}
+        m_TargetAssemblyTypeName: Unity1Week.SePlayer, Assembly-CSharp
+        m_MethodName: PlaySe
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: ff2c4d92abeed4fd18bb51d922fddb52, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6477612780787532492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874934063139121163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6de358acb0ee2a7419d7f4523afe345f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

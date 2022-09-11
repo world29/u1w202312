@@ -53,6 +53,9 @@ namespace Unity1Week
         public UnityEvent<float> OnComboTimerStoped = new UnityEvent<float>();
 
         [HideInInspector]
+        public UnityEvent<Vector3, float> OnPickupItem = new UnityEvent<Vector3, float>();
+
+        [HideInInspector]
         public UnityEvent<Vector3> OnLandingNear = new UnityEvent<Vector3>();
 
         [HideInInspector]
@@ -148,6 +151,11 @@ namespace Unity1Week
             OnScoreChanged.Invoke(_score);
 
             UpdatePhase((int)_score);
+        }
+
+        public void OnItemPickup(Vector3 itemPosition, float score)
+        {
+            OnPickupItem.Invoke(itemPosition, score);
         }
 
         private void UpdatePhase(int newScore)

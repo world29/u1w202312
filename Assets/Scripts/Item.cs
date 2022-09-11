@@ -40,6 +40,9 @@ namespace Unity1Week
                     BroadcastExecuteEvents.Execute<IGameControllerRequests>(null,
                         (handler, eventData) => handler.AddScore(score));
 
+                    BroadcastExecuteEvents.Execute<IGameControllerRequests>(null,
+                        (handler, eventData) => handler.OnItemPickup(transform.position, score));
+
                     _scoreAdded = true;
                 }
 

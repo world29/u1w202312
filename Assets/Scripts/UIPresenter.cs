@@ -18,6 +18,9 @@ namespace Unity1Week
         [SerializeField]
         private int showComboLimit = 2;
 
+        [SerializeField]
+        private UIBonusView bonusView;
+
         private GameController _gameController;
 
         void Start()
@@ -51,6 +54,8 @@ namespace Unity1Week
 
             _gameController.OnLandingNear.AddListener((landingPosition) => evaluationView.ShowGood(landingPosition));
             _gameController.OnLandingFar.AddListener((landingPosition) => evaluationView.ShowNice(landingPosition));
+
+            _gameController.OnPickupItem.AddListener((worldPos, score) => bonusView.ShowBonus(worldPos, score));
         }
 
     }
