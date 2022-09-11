@@ -48,8 +48,9 @@ namespace Unity1Week
             spriteRenderers[newPhase].enabled = true;
 
             // アルファを 0 から初期値へ
-            var targetAlpha = spriteRenderers[newPhase].color.a;
-            spriteRenderers[newPhase].color = new Color(1, 1, 1, 0);
+            var col = spriteRenderers[newPhase].color;
+            var targetAlpha = col.a;
+            spriteRenderers[newPhase].color = new Color(col.r, col.g, col.b, 0);
             spriteRenderers[newPhase].DOFade(targetAlpha, duration);
 
             _prevPhase = newPhase;
