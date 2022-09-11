@@ -3022,7 +3022,7 @@ MonoBehaviour:
   speed: 2
   speedMin: 3
   speedMax: 15
-  angleMin: 30
+  angleMin: 15
   angleMax: 180
   timeMax: 1
   timeStep: 0.1

@@ -88,7 +88,9 @@ namespace Unity1Week
             }
 
             float speedMultiplier = diff.magnitude;
-            _launchSpeed = Mathf.Clamp(speed * speedMultiplier, speedMin, speedMax);
+            var baseSpeed = Mathf.Clamp(speed * speedMultiplier, 0, speedMax);
+            _launchSpeed = Mathf.Lerp(speedMin, speedMax, baseSpeed / speedMax);
+            //_launchSpeed = Mathf.Clamp(speed * speedMultiplier, speedMin, speedMax);
 
             // マウスの移動と逆方向に飛ぶ
             diff *= -1.0f;
