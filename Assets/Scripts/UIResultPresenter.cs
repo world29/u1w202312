@@ -36,6 +36,15 @@ namespace Unity1Week
         [SerializeField] private GridLayoutGroup gridLayoutGroup;
 
         private GameController _gameController;
+        private Sequence _sequence;
+
+        public void SkipAnimation()
+        {
+            if (_sequence != null)
+            {
+                _sequence.Complete(true);
+            }
+        }
 
         void Initialize()
         {
@@ -73,29 +82,29 @@ namespace Unity1Week
         void Animation(UnityEngine.Events.UnityAction completeCallback)
         {
             // ウィンドウ
-            var sequence = DOTween.Sequence()
+            _sequence = DOTween.Sequence()
                 .Append(windowRect.DOAnchorPosY(-3000, 1).SetEase(Ease.OutQuad).From(true));
 
             // リザルト
-            sequence
+            _sequence
                 .Append(resultTitle.DOFade(1f, 1));
 
             // スコア
-            sequence
+            _sequence
                 .Append(scoreLabel.DOFade(1f, 0.5f))
                 .Append(scoreValue.DOFade(1f, 0.5f))
                 //.Join(scoreValue.rectTransform.DOAnchorPosY(-30f, 0.2f).SetEase(Ease.OutQuad).From(true))
                 .AppendInterval(0.2f);
 
             // Good
-            sequence
+            _sequence
                 .Append(goodLabel.DOFade(1f, 0.5f))
                 .Append(goodValue.DOFade(1f, 0.5f))
                 //.Join(goodValue.rectTransform.DOAnchorPosY(-30f, 0.2f).SetEase(Ease.OutQuad).From(true))
                 .AppendInterval(0.2f);
 
             // Max コンボ
-            sequence
+            _sequence
                 .Append(maxComboLabel.DOFade(1f, 0.5f))
                 .Append(maxComboValue.DOFade(1f, 0.5f))
                 //.Join(maxComboValue.rectTransform.DOAnchorPosY(-30f, 0.2f).SetEase(Ease.OutQuad).From(true))
@@ -104,7 +113,7 @@ namespace Unity1Week
             // 合計スコア
             var totalScore = _gameController ? _gameController.TotalScore : 5;
 
-            sequence
+            _sequence
                 .Append(totalScoreLabel.DOFade(1f, 0.5f))
                 .Append(totalScoreValue.DOFade(1, 1f))
                 //.Join(DOVirtual.Float(0, totalScore, 1f, (value) => { totalScoreValue.text = $"{(int)value}"; }))
@@ -115,11 +124,11 @@ namespace Unity1Week
             // ハイスコア演出
 
             // リトライボタンとランキングを表示する
-            sequence
+            _sequence
                 .Append(retryButtonCanvas.DOFade(1, 0.2f))
                 .AppendCallback(() => completeCallback.Invoke());
 
-            sequence.Play();
+            _sequence.Play();
         }
 
         void Start()
