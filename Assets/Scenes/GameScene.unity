@@ -6581,11 +6581,11 @@ MonoBehaviour:
   comboOnlyGood: 1
   comboPhaseTable:
   - comboCount: 0
-    timeWindow: 15
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 1
   - comboCount: 1
-    timeWindow: 10
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 1
   - comboCount: 4
@@ -6593,163 +6593,163 @@ MonoBehaviour:
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 1.05
   - comboCount: 9
-    timeWindow: 8
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 1.1
   - comboCount: 14
-    timeWindow: 7
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 1.15
   - comboCount: 19
-    timeWindow: 6
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 1.2
   - comboCount: 24
-    timeWindow: 5
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 1.25
   - comboCount: 29
-    timeWindow: 4
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 1.3
   - comboCount: 34
-    timeWindow: 3
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 1.35
   - comboCount: 39
-    timeWindow: 2.9
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 1.4
   - comboCount: 44
-    timeWindow: 2.8
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 1.45
   - comboCount: 49
-    timeWindow: 2.7
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 1.5
   - comboCount: 54
-    timeWindow: 2.6
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 1.55
   - comboCount: 59
-    timeWindow: 2.5
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 1.6
   - comboCount: 64
-    timeWindow: 2.4
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 1.65
   - comboCount: 69
-    timeWindow: 2.3
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 1.7
   - comboCount: 74
-    timeWindow: 2.2
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 1.75
   - comboCount: 79
-    timeWindow: 2.1
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 1.8
   - comboCount: 84
-    timeWindow: 2
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 1.85
   - comboCount: 89
-    timeWindow: 1.9
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 1.9
   - comboCount: 94
-    timeWindow: 1.8
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 1.95
   - comboCount: 99
-    timeWindow: 1.5
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 2
   - comboCount: 109
-    timeWindow: 1.4
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 2.05
   - comboCount: 119
-    timeWindow: 1.3
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 2.1
   - comboCount: 129
-    timeWindow: 1.2
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 2.15
   - comboCount: 139
-    timeWindow: 1.1
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 2.2
   - comboCount: 149
-    timeWindow: 1
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 2.25
   - comboCount: 159
-    timeWindow: 0.95
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 2.3
   - comboCount: 169
-    timeWindow: 0.9
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 2.35
   - comboCount: 179
-    timeWindow: 0.85
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 2.4
   - comboCount: 189
-    timeWindow: 0.8
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 2.45
   - comboCount: 199
-    timeWindow: 0.75
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 2.5
   - comboCount: 219
-    timeWindow: 0.75
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 2.5
   - comboCount: 229
-    timeWindow: 0.7
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 2.55
   - comboCount: 239
-    timeWindow: 0.65
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 2.6
   - comboCount: 249
-    timeWindow: 0.6
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 2.65
   - comboCount: 259
-    timeWindow: 0.55
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 2.7
   - comboCount: 279
-    timeWindow: 0.5
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 2.75
   - comboCount: 289
-    timeWindow: 0.45
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 2.8
   - comboCount: 299
-    timeWindow: 0.4
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 2.85
   - comboCount: 399
-    timeWindow: 0.3
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 2.9
   - comboCount: 499
-    timeWindow: 0.25
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 2.95
   - comboCount: 599
-    timeWindow: 0.2
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 3
   bgm: {fileID: 8300000, guid: 8d4b600577665e54ab949df977d69273, type: 3}
