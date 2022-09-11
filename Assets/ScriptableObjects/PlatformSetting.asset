@@ -21,12 +21,12 @@ MonoBehaviour:
   - score: 20
     size: 0.9
     sizeRange: 0.2
-    percentMove: 10
+    percentMove: 5
     interval: 5
   - score: 50
     size: 0.8
     sizeRange: 0.2
-    percentMove: 20
+    percentMove: 10
     interval: 5
   - score: 70
     size: 1
