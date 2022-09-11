@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1874934063139121163}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.26, y: 0.76, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -145,3 +145,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 1
+  se: {fileID: 0}
+  pitch: 1
+  particlePrefab: {fileID: 0}
+  onPickup:
+    m_PersistentCalls:
+      m_Calls: []

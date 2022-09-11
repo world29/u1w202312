@@ -25,7 +25,7 @@ MonoBehaviour:
     itemLootTable:
     - prefab: {fileID: 1874934063139121174, guid: 5bd53b297a41f5c4aa99b14a863955f8, type: 3}
       weight: 70
-    - prefab: {fileID: 1874934063139121174, guid: dd7e26df131f036429c370acf78b3585, type: 3}
+    - prefab: {fileID: 255153907354494374, guid: ff26661466a7a9e4ea2884906a49e69c, type: 3}
       weight: 30
     enmeySpawnPercent: 0
     enemyLootTable: []
@@ -34,7 +34,7 @@ MonoBehaviour:
     itemLootTable:
     - prefab: {fileID: 1874934063139121174, guid: 5bd53b297a41f5c4aa99b14a863955f8, type: 3}
       weight: 50
-    - prefab: {fileID: 1874934063139121174, guid: dd7e26df131f036429c370acf78b3585, type: 3}
+    - prefab: {fileID: 255153907354494374, guid: ff26661466a7a9e4ea2884906a49e69c, type: 3}
       weight: 50
     enmeySpawnPercent: 0
     enemyLootTable: []
@@ -43,8 +43,10 @@ MonoBehaviour:
     itemLootTable:
     - prefab: {fileID: 1874934063139121174, guid: 5bd53b297a41f5c4aa99b14a863955f8, type: 3}
       weight: 30
-    - prefab: {fileID: 1874934063139121174, guid: dd7e26df131f036429c370acf78b3585, type: 3}
-      weight: 70
+    - prefab: {fileID: 255153907354494374, guid: ff26661466a7a9e4ea2884906a49e69c, type: 3}
+      weight: 50
+    - prefab: {fileID: 830826331379782566, guid: cc461fb565567aa498a55dca8b44f6ad, type: 3}
+      weight: 20
     enmeySpawnPercent: 20
     enemyLootTable:
     - prefab: {fileID: 8774213144928207684, guid: 90138343f201d0d4e8d6a2c4f808625c, type: 3}
@@ -54,9 +56,9 @@ MonoBehaviour:
     itemLootTable:
     - prefab: {fileID: 1874934063139121174, guid: 5bd53b297a41f5c4aa99b14a863955f8, type: 3}
       weight: 0
-    - prefab: {fileID: 1874934063139121174, guid: dd7e26df131f036429c370acf78b3585, type: 3}
+    - prefab: {fileID: 255153907354494374, guid: ff26661466a7a9e4ea2884906a49e69c, type: 3}
       weight: 70
-    - prefab: {fileID: 1874934063139121174, guid: cc461fb565567aa498a55dca8b44f6ad, type: 3}
+    - prefab: {fileID: 830826331379782566, guid: cc461fb565567aa498a55dca8b44f6ad, type: 3}
       weight: 30
     enmeySpawnPercent: 30
     enemyLootTable:

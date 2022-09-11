@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Unity1Week
 {
@@ -9,6 +10,18 @@ namespace Unity1Week
     {
         [SerializeField]
         private float score = 1f;
+
+        [SerializeField]
+        private AudioClip se;
+
+        [SerializeField]
+        private float pitch = 1;
+
+        [SerializeField]
+        private ParticleSystem particlePrefab;
+
+        [SerializeField]
+        private UnityEvent onPickup;
 
         private bool _scoreAdded;
 
@@ -29,6 +42,18 @@ namespace Unity1Week
 
                     _scoreAdded = true;
                 }
+
+                if (se != null)
+                {
+                    SoundManager.PlaySeWithPitch(se, pitch);
+                }
+
+                if (particlePrefab != null)
+                {
+                    Instantiate<ParticleSystem>(particlePrefab, transform.position, Quaternion.identity);
+                }
+
+                onPickup?.Invoke();
 
                 Destroy(gameObject);
             }
