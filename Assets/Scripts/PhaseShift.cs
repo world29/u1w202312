@@ -31,18 +31,26 @@ namespace Unity1Week
 
         private void ResetState()
         {
-            // 全部のスプライトのアルファ1に
             foreach (var spriteRenderer in spriteRenderers)
             {
                 spriteRenderer.gameObject.SetActive(true);
-                spriteRenderer.color = Color.white;
+                spriteRenderer.enabled = false;
             }
+
+            spriteRenderers[0].enabled = true;
         }
 
         private void ChangePhase(int newPhase)
         {
             // 現在のフェーズに対応するスプライトをフェードアウト
             spriteRenderers[_prevPhase].DOFade(0, duration);
+
+            spriteRenderers[newPhase].enabled = true;
+
+            // アルファを 0 から初期値へ
+            var targetAlpha = spriteRenderers[newPhase].color.a;
+            spriteRenderers[newPhase].color = new Color(1, 1, 1, 0);
+            spriteRenderers[newPhase].DOFade(targetAlpha, duration);
 
             _prevPhase = newPhase;
         }

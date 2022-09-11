@@ -173,6 +173,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2702586352931528968}
+  - component: {fileID: 4049859641783253519}
   m_Layer: 0
   m_Name: bkAmbient
   m_TagString: Untagged
@@ -199,6 +200,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4049859641783253519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2702586352931528971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2deb00f8c6b3cd49812b48528243f55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderers:
+  - {fileID: 6801012878457122928}
+  - {fileID: 4621812776604392697}
+  - {fileID: 5885495841033164367}
+  - {fileID: 400781402097471970}
+  - {fileID: 2232680313558837686}
+  duration: 1
 --- !u!1 &4869915277941065105
 GameObject:
   m_ObjectHideFlags: 0
