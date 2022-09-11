@@ -2009,6 +2009,7 @@ MonoBehaviour:
   rankText: {fileID: 324150117}
   retryButtonCanvas: {fileID: 532616599}
   gridLayoutGroup: {fileID: 428161248}
+  bgm: {fileID: 8300000, guid: a7357dc756a295a48b0f8921eb4ec442, type: 3}
 --- !u!4 &1595646925
 Transform:
   m_ObjectHideFlags: 0

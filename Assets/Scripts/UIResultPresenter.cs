@@ -35,6 +35,8 @@ namespace Unity1Week
 
         [SerializeField] private GridLayoutGroup gridLayoutGroup;
 
+        [SerializeField] private AudioClip bgm;
+
         private GameController _gameController;
         private Sequence _sequence;
 
@@ -81,6 +83,8 @@ namespace Unity1Week
 
         void Animation(UnityEngine.Events.UnityAction completeCallback)
         {
+            SoundManager.PlayBgm(bgm, 0);
+
             // ウィンドウ
             _sequence = DOTween.Sequence()
                 .Append(windowRect.DOAnchorPosY(-3000, 1).SetEase(Ease.OutQuad).From(true));

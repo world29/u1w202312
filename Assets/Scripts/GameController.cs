@@ -112,6 +112,7 @@ namespace Unity1Week
             _maxCombo = 0;
 
             Time.timeScale = 1f;
+            SoundManager.StopBgm(1);
 
             if (!gameplayConfig.SkipTimeline)
             {
