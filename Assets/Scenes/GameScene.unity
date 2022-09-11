@@ -763,7 +763,7 @@ Transform:
   - {fileID: 815865264}
   - {fileID: 2080601412}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &299290742
 PrefabInstance:
@@ -3328,54 +3328,6 @@ Transform:
   m_Father: {fileID: 1185788793}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &957964012
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 957964014}
-  - component: {fileID: 957964013}
-  m_Layer: 0
-  m_Name: EnemySpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &957964013
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 957964012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: baf4e69eca1192e4a906fd1550562162, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lootTable:
-  - {prefab: {fileID: 8774213144928207684, guid: 90138343f201d0d4e8d6a2c4f808625c, type: 3}, weight: 100}
-  dropPercent: 5
-  spawnMerginTop: 0.2
-  spawnMerginBottom: 0.4
---- !u!4 &957964014
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 957964012}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 16
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &974980984
 GameObject:
   m_ObjectHideFlags: 0
@@ -4090,7 +4042,7 @@ Transform:
   - {fileID: 1179069135}
   - {fileID: 2045754716}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1185788794
 MonoBehaviour:
@@ -4511,7 +4463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 314cdea186e21a34e9e82d2a7599bca8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setting: {fileID: 0}
+  setting: {fileID: 11400000, guid: fef5d7a5a7f7641479530818e7ec6c6a, type: 2}
   itemSpawnMerginTop: 0.1
   itemSpawnMerginBottom: 0.3
   enemySpawnMerginTop: 0.1
@@ -6750,6 +6702,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnComboTimerStoped:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPickupItem:
     m_PersistentCalls:
       m_Calls: []
   OnLandingNear:
