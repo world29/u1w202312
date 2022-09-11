@@ -59,6 +59,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CrystalMiddle
       objectReference: {fileID: 0}
+    - target: {fileID: 1874934063139121174, guid: 5bd53b297a41f5c4aa99b14a863955f8, type: 3}
+      propertyPath: score
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1874934063139121175, guid: 5bd53b297a41f5c4aa99b14a863955f8, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 0.65625
