@@ -193,7 +193,7 @@ namespace naichilab
             MaskOffOn();
 
             var so = new YieldableNcmbQuery<NCMBObject>(_board.ClassName);
-            so.Limit = 30;
+            so.Limit = 1000;
             if (_board.Order == ScoreOrder.OrderByAscending)
             {
                 so.OrderByAscending(COLUMN_SCORE);
