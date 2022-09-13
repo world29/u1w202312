@@ -137,7 +137,7 @@ namespace Unity1Week
 
             BroadcastReceivers.RegisterBroadcastReceiver<ICustomDragEvent>(gameObject);
 
-            //Debug.Log($"OnPassengerEnter");
+            Debug.Log($"OnPassengerEnter");
             CancelAnimation();
 
             _landingAnimationCoroutine = StartCoroutine(LandingAnimationCoroutine(velocity));
@@ -169,7 +169,7 @@ namespace Unity1Week
         {
             _passenger = null;
 
-            //Debug.Log($"OnPassengerExit");
+            Debug.Log($"OnPassengerExit");
 
             BroadcastExecuteEvents.Execute<IGameControllerRequests>(null,
                 (handler, eventData) => handler.OnLeftPlatform());
@@ -184,25 +184,45 @@ namespace Unity1Week
 
         public void OnBeginDrag(Vector2 screenPos)
         {
+            _dragging = true;
         }
 
         public void OnDrag(Vector2 screenPos, Vector2 beginScreenPos)
         {
-            _dragging = true;
-            _dragPosBegin = beginScreenPos;
-            _dragPos = screenPos;
+            if (_dragging)
+            {
+                _dragPosBegin = beginScreenPos;
+                _dragPos = screenPos;
 
-            CancelAnimation();
+                CancelAnimation();
+            }
         }
 
         public void OnEndDrag(Vector2 screenPos)
         {
-            _dragging = false;
-            _springCoroutine = StartCoroutine(SpringCoroutine());
+            if (_dragging)
+            {
+                _springCoroutine = StartCoroutine(SpringCoroutine(false));
 
-            StartCoroutine(DisableCollisionCoroutine(springCollisionDisableTime));
+                StartCoroutine(DisableCollisionCoroutine(springCollisionDisableTime));
 
-            _animator.SetTrigger("flap");
+                _animator.SetTrigger("flap");
+
+                _dragging = false;
+            }
+        }
+
+        public void OnDragCancel()
+        {
+            if (_dragging)
+            {
+                _dragging = false;
+                _springCoroutine = StartCoroutine(SpringCoroutine(true));
+
+                // 発射しないのでコリジョンは無効化しない
+
+                _animator.SetTrigger("flap");
+            }
         }
 
         void OnAnimatorMove()
@@ -238,7 +258,7 @@ namespace Unity1Week
             anyCollider.enabled = true;
         }
 
-        private IEnumerator SpringCoroutine()
+        private IEnumerator SpringCoroutine(bool isPassengerMove)
         {
             Vector3 velocity = Vector3.zero;
 
@@ -252,7 +272,13 @@ namespace Unity1Week
                 // 減衰
                 velocity *= springAttenuation;
 
-                transform.position += velocity * Time.deltaTime;
+                var offset = velocity * Time.deltaTime;
+                transform.position += offset;
+
+                if (isPassengerMove && _passenger)
+                {
+                    _passenger.position += offset;
+                }
 
                 yield return null;
 
@@ -260,6 +286,10 @@ namespace Unity1Week
             }
 
             transform.position = _startPos;
+            if (isPassengerMove && _passenger)
+            {
+                _passenger.position = _passengerPos;
+            }
         }
 
         private IEnumerator LandingAnimationCoroutine(Vector2 _velocity)

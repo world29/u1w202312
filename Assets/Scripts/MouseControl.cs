@@ -41,7 +41,7 @@ namespace Unity1Week
 
         private float _launchSpeed;
         private float _launchAngle;
-        private bool _landing;
+        private bool _dragging;
 
         void OnEnable()
         {
@@ -58,11 +58,12 @@ namespace Unity1Week
             //projectileLine.material = new Material(Shader.Find("Sprites/Default"));
             projectileLine.widthMultiplier = 0.1f;
             projectileLine.enabled = false;
-            _landing = false;
+            _dragging = false;
         }
 
         public void OnBeginDrag(Vector2 screenPos)
         {
+            _dragging = true;
         }
 
         public void OnDrag(Vector2 screenPos, Vector2 beginScreenPos)
@@ -72,9 +73,12 @@ namespace Unity1Week
                 return;
             }
 
-            playerMovement.SetCharging(true);
+            if (!_dragging)
+            {
+                return;
+            }
 
-            _landing = true;
+            playerMovement.SetCharging(true);
 
             var z = -Camera.main.transform.position.z;
 
@@ -116,14 +120,32 @@ namespace Unity1Week
 
         public void OnEndDrag(Vector2 screenPos)
         {
-            if (_landing)
+            // 地上にいて、ドラッグしていれば発射する
+            if (!playerMovement.IsGrounded)
+            {
+                return;
+            }
+
+            if (_dragging)
             {
                 Debug.Log($"Launch speed: {_launchSpeed.ToString("F1")}");
                 LaunchPlayer(_launchSpeed, _launchAngle);
 
                 projectileLine.enabled = false;
 
-                _landing = false;
+                _dragging = false;
+            }
+        }
+
+        public void OnDragCancel()
+        {
+            if (_dragging)
+            {
+                playerMovement.SetCharging(false);
+
+                projectileLine.enabled = false;
+
+                _dragging = false;
             }
         }
 

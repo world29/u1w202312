@@ -41,5 +41,9 @@ namespace Unity1Week
         public void OnEndDrag(Vector2 screenPos)
         {
         }
+
+        public void OnDragCancel()
+        {
+        }
     }
 }
