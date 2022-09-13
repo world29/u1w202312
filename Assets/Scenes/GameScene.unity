@@ -6589,7 +6589,7 @@ MonoBehaviour:
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 1
   - comboCount: 4
-    timeWindow: 9
+    timeWindow: 9999
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 1.05
   - comboCount: 9
