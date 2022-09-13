@@ -36,6 +36,15 @@ namespace Unity1Week
         private float springCollisionDisableTime = 0.2f;
 
         [SerializeField]
+        private float cancelSpringDuration = 1f;
+
+        [SerializeField]
+        private float cancelSpringFactor = 0.5f;
+
+        [SerializeField]
+        private float cancelSpringAttenuation = 0.8f;
+
+        [SerializeField]
         private float landingSpeed = 5f;
 
         [SerializeField]
@@ -202,7 +211,7 @@ namespace Unity1Week
         {
             if (_dragging)
             {
-                _springCoroutine = StartCoroutine(SpringCoroutine(false));
+                _springCoroutine = StartCoroutine(SpringCoroutine(springDuration, springFactor, springAttenuation, false));
 
                 StartCoroutine(DisableCollisionCoroutine(springCollisionDisableTime));
 
@@ -217,11 +226,10 @@ namespace Unity1Week
             if (_dragging)
             {
                 _dragging = false;
-                _springCoroutine = StartCoroutine(SpringCoroutine(true));
+                _springCoroutine = StartCoroutine(SpringCoroutine(cancelSpringDuration, cancelSpringFactor, cancelSpringAttenuation, true));
 
                 // 発射しないのでコリジョンは無効化しない
-
-                _animator.SetTrigger("flap");
+                // flap アニメーションもなし
             }
         }
 
@@ -258,19 +266,19 @@ namespace Unity1Week
             anyCollider.enabled = true;
         }
 
-        private IEnumerator SpringCoroutine(bool isPassengerMove)
+        private IEnumerator SpringCoroutine(float duration, float factor, float attenuation, bool isPassengerMove)
         {
             Vector3 velocity = Vector3.zero;
 
             float timer = 0;
-            while (timer < springDuration)
+            while (timer < duration)
             {
                 var diff = _startPos - transform.position;
-                var acc = diff * springFactor;
+                var acc = diff * factor;
                 velocity += acc;
 
                 // 減衰
-                velocity *= springAttenuation;
+                velocity *= attenuation;
 
                 var offset = velocity * Time.deltaTime;
                 transform.position += offset;

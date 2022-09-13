@@ -77,12 +77,19 @@ MonoBehaviour:
   springDuration: 2
   springFactor: 10
   springAttenuation: 0.9
+  springCollisionDisableTime: 0.2
+  cancelSpringDuration: 1
+  cancelSpringFactor: 5
+  cancelSpringAttenuation: 0.7
   landingSpeed: 10
   landingDuration: 2
   landingFactor: 2
   landingAttenuation: 0.9
   gravityFactor: 2
   threshold: 1
+  OnLanded:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!68 &8665636564805889694
 EdgeCollider2D:
   m_ObjectHideFlags: 0
