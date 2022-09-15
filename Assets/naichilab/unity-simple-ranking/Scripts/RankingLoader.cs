@@ -36,7 +36,7 @@ namespace naichilab
             {
                 if (instance == null)
                 {
-                    instance = (RankingLoader) FindObjectOfType(typeof(RankingLoader));
+                    instance = (RankingLoader)FindObjectOfType(typeof(RankingLoader));
 
                     if (instance == null)
                     {
@@ -90,7 +90,9 @@ namespace naichilab
 
             CurrentRanking = board;
             LastScore = score;
-            SceneManager.LoadScene("Ranking", LoadSceneMode.Additive);
+            // 改変： シーンをロードした後に Canvas のカメラを差し替えるため
+            //SceneManager.LoadScene("Ranking", LoadSceneMode.Additive);
+            Unity1Week.UISceneLoader.LoadUIScene("Ranking");
         }
     }
 }

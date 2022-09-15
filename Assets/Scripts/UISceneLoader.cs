@@ -19,9 +19,21 @@ namespace Unity1Week
         [SerializeField]
         private Camera mainCamera;
 
+        static UISceneLoader _instance;
+
         void Start()
         {
             StartCoroutine(LoadSceneAdditive(initialSceneName));
+        }
+
+        void Awake()
+        {
+            _instance = this;
+        }
+
+        void OnDestroy()
+        {
+            _instance = null;
         }
 
         public void LoadResultScene()
@@ -30,6 +42,14 @@ namespace Unity1Week
             SceneManager.UnloadSceneAsync(initialSceneName);
 
             StartCoroutine(LoadSceneAdditive(resultSceneName));
+        }
+
+        public static void LoadUIScene(string sceneNameToLoad)
+        {
+            if (_instance != null)
+            {
+                _instance.StartCoroutine(_instance.LoadSceneAdditive(sceneNameToLoad));
+            }
         }
 
         private IEnumerator LoadSceneAdditive(string sceneName)
