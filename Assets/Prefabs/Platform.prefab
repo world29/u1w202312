@@ -71,6 +71,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 1
   landedColor: {r: 1, g: 1, b: 1, a: 1}
+  goodRadius: 0.35
+  goodRadiusOffset: 0.05
   spriteRenderer: {fileID: 8503868190763535629}
   anyCollider: {fileID: 8665636564805889694}
   offsetFactor: 0.1
@@ -336,8 +338,8 @@ MonoBehaviour:
   - {fileID: 7502758824647771522}
   - {fileID: 3868126759147284777}
   m_Bounds:
-    m_Center: {x: 0.000584811, y: 0.0012903214, z: 0}
-    m_Extent: {x: 0.36941493, y: 1.5582705, z: 0}
+    m_Center: {x: 0.000584811, y: 0.0012902021, z: 0}
+    m_Extent: {x: 0.3694148, y: 1.5582705, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &1962107186467008297

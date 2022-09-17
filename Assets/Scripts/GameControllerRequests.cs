@@ -11,7 +11,7 @@ namespace Unity1Week
 
         void OnItemPickup(Vector3 itemPosition, float score);
 
-        void OnLandedPlatform(Vector3 landingPosition, float distance, int landedCount);
+        void OnLandedPlatform(Vector3 landingPosition, bool isGood, int landedCount);
 
         void OnLeftPlatform();
 

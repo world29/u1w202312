@@ -35,9 +35,6 @@ namespace Unity1Week
         private GameEvent firstPlatformLanded;
 
         [SerializeField]
-        private float distanceThreshold = 0.2f;
-
-        [SerializeField]
         private bool comboOnlyGood = false;
 
         [SerializeField]
@@ -224,19 +221,12 @@ namespace Unity1Week
             OnComboChanged.Invoke(_combo);
         }
 
-        public void OnLandedPlatform(Vector3 landingPosition, float distance, int landedCount)
+        public void OnLandedPlatform(Vector3 landingPosition, bool isGood, int landedCount)
         {
             if (landedCount != 1)
             {
                 return;
             }
-
-            var isGood = distance <= distanceThreshold;
-
-#if UNITY_EDITOR
-            string judge = isGood ? "Good" : "Nice";
-            Debug.Log($"Landed: dist={distance.ToString("F3")}, {judge}");
-#endif
 
             if (isGood)
             {

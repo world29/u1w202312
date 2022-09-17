@@ -14,6 +14,13 @@ namespace Unity1Week
         [SerializeField]
         private Color landedColor = Color.white;
 
+        // 中心からの距離がこの値以下なら Good 判定となる
+        [SerializeField]
+        private float goodRadius = 0.2f;
+
+        [SerializeField]
+        private float goodRadiusOffset = 0.1f;
+
         [SerializeField]
         private SpriteRenderer spriteRenderer;
 
@@ -158,9 +165,17 @@ namespace Unity1Week
             if (score > 0)
             {
                 // プラットフォームの中心と、プレイヤー位置の差分によって、Good か Nice を出す
-                var distance = Mathf.Abs(_startPos.x - _passengerPos.x);
+                var distance = Mathf.Abs((_startPos.x + goodRadiusOffset) - _passengerPos.x);
+
+                bool isGood = distance <= goodRadius;
+
+#if UNITY_EDITOR
+                string judge = isGood ? "Good" : "Nice";
+                Debug.Log($"Landed: dist={distance.ToString("F3")}, {judge}");
+#endif
+
                 BroadcastExecuteEvents.Execute<IGameControllerRequests>(null,
-                    (handler, eventData) => handler.OnLandedPlatform(_passengerPos, distance, _landedCount));
+                    (handler, eventData) => handler.OnLandedPlatform(_passengerPos, isGood, _landedCount));
 
                 // スコア加算済みなら以降はスキップ
                 if (_landedCount == 1)
@@ -344,5 +359,16 @@ namespace Unity1Week
             }
         }
 
+#if UNITY_EDITOR
+        private void OnDrawGizmos()
+        {
+            var gizmoColor = Gizmos.color;
+
+            Gizmos.color = new Color(1, 0, 0, .4f);
+            Gizmos.DrawCube(transform.position + Vector3.right * goodRadiusOffset, Vector3.one * goodRadius * 2);
+
+            Gizmos.color = gizmoColor;
+        }
+#endif
     }
 }
