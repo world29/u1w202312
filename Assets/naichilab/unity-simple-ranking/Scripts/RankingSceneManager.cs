@@ -108,7 +108,7 @@ namespace naichilab
             }
 
             //ランキング取得
-            yield return StartCoroutine(LoadRankingBoard());
+            yield return StartCoroutine(LoadRankingBoard(ObjectID));
 
             //スコア更新している場合、ボタン有効化
             if (_ncmbRecord == null)
@@ -171,7 +171,7 @@ namespace naichilab
 
             highScoreLabel.text = _lastScore.TextForDisplay;
 
-            yield return StartCoroutine(LoadRankingBoard());
+            yield return StartCoroutine(LoadRankingBoard(ObjectID));
         }
 
 
@@ -179,7 +179,7 @@ namespace naichilab
         /// ランキング取得＆表示
         /// </summary>
         /// <returns>The ranking board.</returns>
-        private IEnumerator LoadRankingBoard()
+        private IEnumerator LoadRankingBoard(string objectId)
         {
             int nodeCount = scrollViewContent.childCount;
             for (int i = nodeCount - 1; i >= 0; i--)
@@ -225,7 +225,14 @@ namespace naichilab
                     var s = _board.BuildScore(r[COLUMN_SCORE].ToString());
                     rankNode.ScoreText.text = s != null ? s.TextForDisplay : "エラー";
 
-//                    Debug.Log(r[COLUMN_SCORE].ToString());
+                    // 自分のスコアを強調表示する
+                    if (r.ObjectId == objectId)
+                    {
+                        rankNode.NoText.color = Color.red;
+                        rankNode.NameText.color = Color.red;
+                        rankNode.ScoreText.color = Color.red;
+                    }
+                    //                    Debug.Log(r[COLUMN_SCORE].ToString());
                 }
             }
             else
