@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/ResultScene.unity
     guid: 4f594ad081474324a81a5ac750862f73
   - enabled: 1
+    path: Assets/Scenes/OptionScene.unity
+    guid: 379fc8f03f76b4aff890ae7276c8b7a2
+  - enabled: 1
     path: Assets/naichilab/unity-simple-ranking/Scenes/Ranking.unity
     guid: 152244f5855414ac4a3874f14efa583c
   m_configObjects:

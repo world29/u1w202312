@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Unity1Week
 {
@@ -20,6 +21,9 @@ namespace Unity1Week
 
         [SerializeField]
         private UIBonusView bonusView;
+
+        [SerializeField]
+        private Button optionButton;
 
         private GameController _gameController;
 
@@ -56,6 +60,8 @@ namespace Unity1Week
             _gameController.OnLandingFar.AddListener((landingPosition) => evaluationView.ShowNice(landingPosition));
 
             _gameController.OnPickupItem.AddListener((worldPos, score) => bonusView.ShowBonus(worldPos, score));
+
+            optionButton.onClick.AddListener(() => _gameController.OpenDialogOption());
         }
 
     }

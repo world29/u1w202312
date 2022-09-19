@@ -331,5 +331,10 @@ namespace Unity1Week
         {
             SoundManager.SetVolume(volume);
         }
+
+        public void OpenDialogOption()
+        {
+            UISceneLoader.LoadUIScene("OptionScene");
+        }
     }
 }

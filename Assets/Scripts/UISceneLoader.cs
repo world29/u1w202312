@@ -52,6 +52,11 @@ namespace Unity1Week
             }
         }
 
+        public static void UnloadUIScene(string sceneNameToUnload)
+        {
+            SceneManager.UnloadSceneAsync(sceneNameToUnload);
+        }
+
         private IEnumerator LoadSceneAdditive(string sceneName)
         {
             var op = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);

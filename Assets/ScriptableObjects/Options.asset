@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1359300548f1364697d8d9712598477, type: 3}
-  m_Name: GameplayConfig
+  m_Script: {fileID: 11500000, guid: d82c43633fca74565ba7f44550da8cc8, type: 3}
+  m_Name: Options
   m_EditorClassIdentifier: 
-  SkipTimeline: 1
-  initScore: 0
-  initCombo: 0
-  initGoodCount: 0
+  bgmVolume: 1
+  seVolume: 1
+  defaultFrameRate: 60
