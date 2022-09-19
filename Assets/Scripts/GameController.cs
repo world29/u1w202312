@@ -43,6 +43,9 @@ namespace Unity1Week
         [SerializeField]
         private AudioClip bgm;
 
+        [SerializeField]
+        private FORMAT saveFormat = FORMAT.BINARY;
+
         [HideInInspector]
         public UnityEvent<float> OnScoreChanged = new UnityEvent<float>();
 
@@ -82,6 +85,40 @@ namespace Unity1Week
         [HideInInspector]
         public float ComboTimeWindow => GetComboTimeWindow();
 
+        [HideInInspector]
+        public int FrameRate
+        {
+            get { return _userSettings.frameRate; }
+            set
+            {
+                _userSettings.frameRate = value;
+                Application.targetFrameRate = value;
+                Debug.Log($"Application.targetFrameRate = {value}");
+            }
+        }
+
+        [HideInInspector]
+        public float BgmVolume
+        {
+            get { return _userSettings.bgmVolume; }
+            set
+            {
+                _userSettings.bgmVolume = value;
+                SoundManager.SetVolume(value, "BGM");
+            }
+        }
+
+        [HideInInspector]
+        public float SeVolume
+        {
+            get { return _userSettings.seVolume; }
+            set
+            {
+                _userSettings.seVolume = value;
+                SoundManager.SetVolume(value, "SE");
+            }
+        }
+
         private float _score;
         private int _combo;
         private float _comboTimer;
@@ -93,6 +130,9 @@ namespace Unity1Week
 
         private int _phase = 0;
 
+        private StorageManager _storageManager = null;
+        private UserSettings _userSettings = null;
+
         void OnEnable()
         {
             BroadcastReceivers.RegisterBroadcastReceiver<IGameControllerRequests>(gameObject);
@@ -103,8 +143,16 @@ namespace Unity1Week
             BroadcastReceivers.UnregisterBroadcastReceiver<IGameControllerRequests>(gameObject);
         }
 
+        void Awake()
+        {
+            _storageManager = new StorageManager();
+            _userSettings = new UserSettings();
+        }
+
         void Start()
         {
+            Load();
+
             _score = gameplayConfig.initScore;
             _combo = gameplayConfig.initCombo;
             if (_combo > 0)
@@ -296,6 +344,49 @@ namespace Unity1Week
         public void Resume()
         {
             Time.timeScale = 1f;
+        }
+
+        public void Save()
+        {
+            Debug.Assert(_userSettings != null);
+
+            _userSettings.format = saveFormat;
+            _storageManager.Save(_userSettings, IOHandler, false);
+        }
+
+        public void Load()
+        {
+            Debug.Assert(_userSettings != null);
+
+            _storageManager.Load(_userSettings, IOHandler, false);
+        }
+
+        private void IOHandler(IO_RESULT ret, ref DataInfo dataInfo)
+        {
+            if (ret == IO_RESULT.LOAD_SUCCESS)
+            {
+                _userSettings = dataInfo.serializer as UserSettings;
+
+                OnUserSettingsLoaded(_userSettings);
+            }
+
+            if (ret == IO_RESULT.LOAD_FAILED)
+            {
+                Debug.Log($"load failed.");
+            }
+
+            if (ret == IO_RESULT.SAVE_FAILED)
+            {
+                Debug.Log($"save failed.");
+            }
+        }
+
+        private void OnUserSettingsLoaded(UserSettings userSettings)
+        {
+            Application.targetFrameRate = userSettings.frameRate;
+
+            SoundManager.SetVolume(userSettings.bgmVolume, "BGM");
+            SoundManager.SetVolume(userSettings.seVolume, "SE");
         }
 
         private void GetComboSound(out AudioClip clip, out float pitch)

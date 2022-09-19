@@ -10,9 +10,6 @@ namespace Unity1Week
     public class UIOptionPresenter : MonoBehaviour
     {
         [SerializeField]
-        private Options options;
-
-        [SerializeField]
         private Slider bgmSlider;
 
         [SerializeField]
@@ -21,36 +18,43 @@ namespace Unity1Week
         [SerializeField]
         private TMP_Dropdown frameRateDropdown;
 
-        public void UnloadUIScene(string sceneName)
+        private GameController _gameController;
+
+        public void CloseOptionDialog()
         {
-            UISceneLoader.UnloadUIScene(sceneName);
+            // 設定を保存してシーン終了
+            _gameController.Save();
+
+            UISceneLoader.UnloadUIScene("OptionScene");
         }
 
         void Start()
         {
-            bgmSlider.value = options.BgmVolume;
-            seSlider.value = options.SeVolume;
+            GameObject.FindGameObjectWithTag("GameController").TryGetComponent(out _gameController);
 
-            var index = frameRateDropdown.options.FindIndex((opt) => opt.text == options.FrameRate.ToString());
+            bgmSlider.value = _gameController.BgmVolume;
+            seSlider.value = _gameController.SeVolume;
+
+            var index = frameRateDropdown.options.FindIndex((opt) => opt.text == _gameController.FrameRate.ToString());
             frameRateDropdown.value = index;
 
             bgmSlider.onValueChanged.AddListener((volume) =>
             {
+                _gameController.BgmVolume = volume;
                 Debug.Log($"bgm volume changed. {volume}");
-                options.BgmVolume = volume;
             });
 
             seSlider.onValueChanged.AddListener((volume) =>
             {
+                _gameController.SeVolume = volume;
                 Debug.Log($"se volume changed. {volume}");
-                options.SeVolume = volume;
             });
 
             frameRateDropdown.onValueChanged.AddListener((index) =>
             {
-                int framerate = int.Parse(frameRateDropdown.options[index].text);
+                int framerate = System.Int32.Parse(frameRateDropdown.options[index].text);
+                _gameController.FrameRate = framerate;
                 Debug.Log($"frameRate changed. {framerate}");
-                options.FrameRate = framerate;
             });
         }
     }

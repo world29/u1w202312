@@ -22,5 +22,9 @@ namespace Unity1Week
         void Pause();
 
         void Resume();
+
+        void Save();
+
+        void Load();
     }
 }

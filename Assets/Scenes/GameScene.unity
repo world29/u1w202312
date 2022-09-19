@@ -6955,7 +6955,6 @@ GameObject:
   - component: {fileID: 2101225283}
   - component: {fileID: 2101225287}
   - component: {fileID: 2101225285}
-  - component: {fileID: 2101225284}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -7168,6 +7167,7 @@ MonoBehaviour:
     se: {fileID: 8300000, guid: d4d321c72bac449838ff6ff24e61694e, type: 3}
     pitch: 3
   bgm: {fileID: 8300000, guid: 8d4b600577665e54ab949df977d69273, type: 3}
+  saveFormat: 1
   OnScoreChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -7189,19 +7189,6 @@ MonoBehaviour:
   OnPhaseChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2101225284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2101225281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70853ef2b3d0b4b10b26cf87a0edbe12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  frameRate: 60
 --- !u!114 &2101225285
 MonoBehaviour:
   m_ObjectHideFlags: 0

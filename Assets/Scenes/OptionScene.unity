@@ -1763,7 +1763,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1238299725380523915, guid: dbe35d7d0cc794d66a4137e2bd262652, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1238299725380523915, guid: dbe35d7d0cc794d66a4137e2bd262652, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1775,7 +1775,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1238299725380523915, guid: dbe35d7d0cc794d66a4137e2bd262652, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UnloadUIScene
+      value: CloseOptionDialog
       objectReference: {fileID: 0}
     - target: {fileID: 1238299725380523915, guid: dbe35d7d0cc794d66a4137e2bd262652, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -2318,7 +2318,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a89ded18074d46b7b6d428ea2b668d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  options: {fileID: 11400000, guid: c77f6a866bd50439880789dba9d909ff, type: 2}
   bgmSlider: {fileID: 1476382856}
   seSlider: {fileID: 1708513231}
   frameRateDropdown: {fileID: 39232306}
