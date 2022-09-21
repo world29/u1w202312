@@ -67,6 +67,14 @@ namespace Unity1Week
         [HideInInspector]
         public UnityEvent<int> OnPhaseChanged = new UnityEvent<int>();
 
+        // UI を有効化するタイミングを知らせる。
+        // タイトルデモを再生する場合とスキップする場合で異なる。
+        [HideInInspector]
+        public UnityEvent OnPlayerBegin = new UnityEvent();
+
+        [HideInInspector]
+        public bool IsPlayerBegin { get; private set; }
+
         [HideInInspector]
         public float Score => _score;
 
@@ -147,6 +155,8 @@ namespace Unity1Week
         {
             _storageManager = new StorageManager();
             _userSettings = new UserSettings();
+
+            IsPlayerBegin = false;
         }
 
         void Start()
@@ -176,6 +186,7 @@ namespace Unity1Week
             else
             {
                 SoundManager.PlayBgm(bgm, 0);
+                NotifyPlayerBegin();
             }
         }
 
@@ -309,6 +320,7 @@ namespace Unity1Week
                 if (!gameplayConfig.SkipTimeline)
                 {
                     firstPlatformLanded.Raise();
+                    NotifyPlayerBegin();
                 }
             }
 
@@ -359,6 +371,12 @@ namespace Unity1Week
             Debug.Assert(_userSettings != null);
 
             _storageManager.Load(_userSettings, IOHandler, false);
+        }
+
+        private void NotifyPlayerBegin()
+        {
+            IsPlayerBegin = true;
+            OnPlayerBegin.Invoke();
         }
 
         private void IOHandler(IO_RESULT ret, ref DataInfo dataInfo)

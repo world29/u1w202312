@@ -4375,8 +4375,6 @@ PlayableDirector:
     value: {fileID: 1943243829}
   - key: {fileID: 3245451165094804625, guid: 4b870f6d28933594c8fbd5a6a493620c, type: 2}
     value: {fileID: 823284590}
-  - key: {fileID: 613791189767920988, guid: 4b870f6d28933594c8fbd5a6a493620c, type: 2}
-    value: {fileID: 0}
   - key: {fileID: 26813063079294745, guid: 4b870f6d28933594c8fbd5a6a493620c, type: 2}
     value: {fileID: 1943243823}
   - key: {fileID: 6114075843852522328, guid: 4b870f6d28933594c8fbd5a6a493620c, type: 2}
@@ -4844,6 +4842,7 @@ MonoBehaviour:
   setting: {fileID: 11400000, guid: fef5d7a5a7f7641479530818e7ec6c6a, type: 2}
   itemSpawnMerginTop: 0.1
   itemSpawnMerginBottom: 0.3
+  enemySpawnPlatformDistance: 4
   enemySpawnMerginTop: 0.1
   enemySpawnMerginBottom: 0.3
 --- !u!4 &1290981006
@@ -7199,6 +7198,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnPhaseChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPlayerBegin:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &2101225285

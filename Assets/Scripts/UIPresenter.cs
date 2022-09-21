@@ -61,7 +61,10 @@ namespace Unity1Week
 
             _gameController.OnPickupItem.AddListener((worldPos, score) => bonusView.ShowBonus(worldPos, score));
 
+            // オプションボタンはプレイヤーが操作可能になるまで無効化しておく
             optionButton.onClick.AddListener(() => _gameController.OpenDialogOption());
+            _gameController.OnPlayerBegin.AddListener(() => optionButton.gameObject.SetActive(true));
+            optionButton.gameObject.SetActive(_gameController.IsPlayerBegin);
         }
 
     }
