@@ -22,7 +22,11 @@ namespace Unity1Week
 
         private void Awake()
         {
+#if DEBUG
             Debug.Assert(bufferSize > 0);
+#else
+            Destroy(gameObject);
+#endif
         }
 
         private void Update()
