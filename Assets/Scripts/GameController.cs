@@ -384,6 +384,10 @@ namespace Unity1Week
             if (ret == IO_RESULT.LOAD_SUCCESS)
             {
                 _userSettings = dataInfo.serializer as UserSettings;
+#if DEBUG
+                _userSettings.Clear();
+                Debug.Log($"OnUserSerttingsLoaded");
+#endif
 
                 OnUserSettingsLoaded(_userSettings);
             }

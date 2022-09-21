@@ -36,6 +36,10 @@ namespace Unity1Week
         public void Clear()
         {
             _format = FORMAT.BINARY;
+
+            frameRate = 60;
+            bgmVolume = 1.0f;
+            seVolume = 1.0f;
         }
     }
 }
