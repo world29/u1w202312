@@ -17,6 +17,10 @@ namespace Unity1Week
         [SerializeField]
         private float itemSpawnMerginBottom = 0.3f;
 
+        // プラットフォームの間隔が一定以上のときだけ敵を生成する
+        [SerializeField]
+        private float enemySpawnPlatformDistance = 4f;
+
         // 敵を生成する範囲のマージン (画面端に生成されて見切れるのを防ぐ)
         [SerializeField]
         private float enemySpawnMerginTop = 0.1f;
@@ -25,7 +29,8 @@ namespace Unity1Week
         private float enemySpawnMerginBottom = 0.3f;
 
         private float _worldTop;
-        private bool _isSpawned; // 連続でアイテムが出ないようにするためのフラグ
+        private bool _isItemSpawned;
+        private bool _isEnemySpawned; // 連続でアイテムが出ないようにするためのフラグ
 
         private GameController _gameController;
 
@@ -46,7 +51,8 @@ namespace Unity1Week
             // 画面の上端
             _worldTop = Camera.main.ViewportToWorldPoint(Vector2.one).y;
 
-            _isSpawned = false;
+            _isItemSpawned = false;
+            _isEnemySpawned = false;
         }
 
         public ItemEnemySetting.Phase GetPhaseParam()
@@ -67,16 +73,17 @@ namespace Unity1Week
 
         public void OnPlatformSpawned(Transform prevPlatform, Transform platform)
         {
-            if (_isSpawned)
-            {
-                _isSpawned = false;
-                return;
-            }
-
             var phase = GetPhaseParam();
 
-            // まず、敵をスポーンするか
-            if (Random.Range(0, 100) < phase.enmeySpawnPercent)
+            // 敵を生成するための十分な空間があるか
+            bool isEnoughSpace = (Mathf.Abs(platform.position.x - prevPlatform.position.x) >= enemySpawnPlatformDistance);
+
+            if (_isEnemySpawned)
+            {
+                // 敵を連続で生成しないためのフラグ
+                _isEnemySpawned = false;
+            }
+            else if ((Random.Range(0, 100) < phase.enmeySpawnPercent) && isEnoughSpace)
             {
                 var mid = Vector3.Lerp(prevPlatform.position, platform.position, 0.5f);
 
@@ -110,13 +117,20 @@ namespace Unity1Week
 
                 Debug.Log($"Enemy spawned. {phase.enemyLootTable[idx].prefab.name} ({spawnPosition.ToString("F1")})");
 
-                _isSpawned = true;
+                _isEnemySpawned = true;
             }
 
-            // 敵を生成しない場合、アイテムについて再度抽選
-            if (Random.Range(0, 100) < phase.itemDropPercent)
+            // アイテムについて抽選
+            if (_isItemSpawned)
+            {
+                // アイテムを連続で生成しないためのフラグ
+                _isItemSpawned = false;
+            }
+            else if (Random.Range(0, 100) < phase.itemDropPercent)
             {
                 var mid = Vector3.Lerp(prevPlatform.position, platform.position, 0.5f);
+                Debug.DrawLine(prevPlatform.position, platform.position, Color.red, 5f);
+                Debug.DrawLine(prevPlatform.position, mid, Color.cyan, 5f);
 
                 // プラットフォームの中点から画面の上端の間のランダムな位置に生成する。
                 var distance = _worldTop - mid.y;
@@ -148,7 +162,7 @@ namespace Unity1Week
 
                 Debug.Log($"Item spawned. {phase.itemLootTable[idx].prefab.name} ({spawnPosition.ToString("F1")})");
 
-                _isSpawned = true;
+                _isItemSpawned = true;
             }
         }
     }

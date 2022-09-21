@@ -20,6 +20,13 @@ namespace Unity1Week
         [SerializeField]
         private PlatformManager platformManager;
 
+        private float platformMovingPositionY;
+
+        void Start()
+        {
+            platformMovingPositionY = platformPool[0].position.y;
+        }
+
         void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Player"))
@@ -63,7 +70,7 @@ namespace Unity1Week
                 {
                     var x = Random.Range(spawnRect.xMin, spawnRect.xMax);
                     //var y = Mathf.Lerp(spawnRect.yMin, spawnRect.yMax, 0.5f);
-                    var new_y = platform.position.y;
+                    var new_y = platformMovingPositionY;
 
                     platform.position = new Vector3(transform.position.x + x, new_y, platform.position.z);
 
