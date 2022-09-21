@@ -20,6 +20,9 @@ namespace Unity1Week
         [SerializeField, Range(0, 2)]
         private float m_easeAmount;
 
+        [SerializeField, Range(0f, 1f)]
+        private float offset = 0f;
+
         private Vector3[] m_globalWaypoints;
         private int m_fromWaypointIndex;
         private float m_percentBetweenWaypoints;
@@ -38,6 +41,8 @@ namespace Unity1Week
                     m_globalWaypoints[i] = m_localWaypoints[i].position;
                 }
             }
+
+            m_percentBetweenWaypoints = offset;
 
             m_platform.ResetState();
         }
