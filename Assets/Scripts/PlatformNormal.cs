@@ -327,7 +327,7 @@ namespace Unity1Week
                 var diff = _startPos - transform.position;
                 var acc = diff * landingFactor;
                 Debug.DrawRay(transform.position, acc, Color.red);
-                velocity += acc;
+                velocity += acc * Time.deltaTime;
 
                 // 原点から離れるとき、鉛直方向に近づくような力が働く。
                 if (velocity.magnitude > threshold)
@@ -338,12 +338,16 @@ namespace Unity1Week
                         var dotproduct = Vector3.Dot(velocity.y > 0 ? Vector3.up : Vector3.down, velocity.normalized);
                         var acc2 = new Vector3(-acc.y, acc.x, 0).normalized * (1.0f - dotproduct) * gravityFactor;
                         Debug.DrawRay(transform.position + velocity * Time.deltaTime, acc2, Color.blue);
-                        velocity += acc2;
+                        velocity += acc2 * Time.deltaTime;
                     }
                 }
 
                 // 減衰
-                velocity *= landingAttenuation;
+                if (velocity.magnitude > Mathf.Epsilon)
+                {
+                    var atten = -1f * velocity * landingAttenuation;
+                    velocity += atten * Time.deltaTime;
+                }
 
                 // プラットフォームと上に乗ったプレイヤーを移動する
                 Vector3 offset = velocity * Time.deltaTime;
