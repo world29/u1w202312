@@ -288,6 +288,8 @@ namespace Unity1Week
             float timer = 0;
             while (timer < duration)
             {
+                // ここで行っている加速度と減衰の計算は、フレームレートに依存して動きが変わる。
+                // 本来は良くないが、ゲーム性には影響がないためよしとする。
                 var diff = _startPos - transform.position;
                 var acc = diff * factor;
                 velocity += acc;
