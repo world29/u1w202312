@@ -1249,6 +1249,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 314330058}
+  demoEnabled: 0
+  scrollSpeed: 0.1
 --- !u!114 &347618002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4565,6 +4567,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 314330058}
+  demoEnabled: 0
+  scrollSpeed: 0.1
 --- !u!1001 &1225440365
 PrefabInstance:
   m_ObjectHideFlags: 0
