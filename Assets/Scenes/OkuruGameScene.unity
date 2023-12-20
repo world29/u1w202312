@@ -250,6 +250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathCreator: {fileID: 0}
+  pathCreatorNext: {fileID: 0}
   endOfPathInstruction: 0
   speed: 5
   offset: 1.2
@@ -370,6 +371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathCreator: {fileID: 0}
+  pathCreatorNext: {fileID: 0}
   endOfPathInstruction: 0
   speed: 5
   offset: 0
@@ -696,6 +698,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathCreator: {fileID: 0}
+  pathCreatorNext: {fileID: 0}
   endOfPathInstruction: 0
   speed: 5
   offset: 0
@@ -839,7 +842,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathCreator: {fileID: 2093341951}
-  endOfPathInstruction: 0
+  pathCreatorNext: {fileID: 1038593194}
+  endOfPathInstruction: 2
   speed: 5
   offset: 4.8
 --- !u!4 &1098350640
@@ -1067,6 +1071,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathCreator: {fileID: 0}
+  pathCreatorNext: {fileID: 0}
   endOfPathInstruction: 0
   speed: 5
   offset: 3.6
@@ -1299,6 +1304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathCreator: {fileID: 0}
+  pathCreatorNext: {fileID: 0}
   endOfPathInstruction: 0
   speed: 5
   offset: 2.4
@@ -2011,7 +2017,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2054565314}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.77, z: 0}
+  m_LocalPosition: {x: 0, y: 0.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1098350640}

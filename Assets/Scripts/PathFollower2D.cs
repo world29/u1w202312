@@ -9,6 +9,7 @@ namespace u1w202312
     public class PathFollower2D : MonoBehaviour
     {
         public PathCreator pathCreator;
+        public PathCreator pathCreatorNext;
         public EndOfPathInstruction endOfPathInstruction;
         public float speed = 5;
         public float offset = 0f;
@@ -30,10 +31,22 @@ namespace u1w202312
             if (pathCreator != null)
             {
                 distanceTravelled += speed * Time.deltaTime;
+
+                // パスの終端に達したら次パスに乗り移る
+                var t = distanceTravelled / pathCreator.path.length;
+                if (t > 1)
+                {
+                    distanceTravelled -= pathCreator.path.length;
+
+                    var temp = pathCreator;
+                    pathCreator = pathCreatorNext;
+                    pathCreatorNext = temp;
+                }
+
                 transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
-                var quat3D = pathCreator.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
-                var euler3D = quat3D.eulerAngles;
-                transform.rotation = Quaternion.Euler(0, 0, -euler3D.x);
+                // パスの法線は手前向きなので、オブジェクトのｚ軸が法線の逆方向を向くようにする
+                var nml = pathCreator.path.GetNormalAtDistance(distanceTravelled, endOfPathInstruction);
+                transform.rotation = Quaternion.LookRotation(-nml);
             }
         }
 
