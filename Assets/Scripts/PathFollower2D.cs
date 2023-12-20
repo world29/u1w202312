@@ -10,14 +10,18 @@ namespace u1w202312
     {
         public RailroadSwitch railoadSwitch;
 
-        public PathCreator pathCreator;
-        public EndOfPathInstruction endOfPathInstruction;
         public float speed = 5;
-        public float offset = 0f;
-        float distanceTravelled;
+
+        private EndOfPathInstruction endOfPathInstruction = EndOfPathInstruction.Stop;
+        private float offset = 0f;
+
+        [HideInInspector]
+        public PathCreator pathCreator;
 
         [HideInInspector]
         public System.Action<PathCreator> onEnterPath;
+
+        private float distanceTravelled;
 
         void Start()
         {
