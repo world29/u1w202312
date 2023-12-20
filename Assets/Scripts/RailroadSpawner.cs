@@ -51,7 +51,6 @@ namespace u1w202312
                 {
                     meshCreator.TriggerUpdate();
                 }
-                Debug.Log(item.name);
 
                 _pathCreators.Add(item.path);
             }
