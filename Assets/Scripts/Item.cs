@@ -30,7 +30,7 @@ namespace Unity1Week
             _scoreAdded = false;
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
             {

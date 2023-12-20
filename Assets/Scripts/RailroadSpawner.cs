@@ -17,6 +17,8 @@ namespace u1w202312
 
         [SerializeField] float spawnIntervalX = 30;
 
+        [SerializeField] GameObject pickupPrefab;
+
         private List<PathCreator> _pathCreators = new List<PathCreator>();
         private Vector3 _spawnPosition;
 
@@ -24,7 +26,7 @@ namespace u1w202312
         {
             _spawnPosition = Vector3.zero;
 
-            SpawnRailroads();
+            SpawnRailroads(false);
             pathFollower2D.onEnterPath += OnTrainEnterPath;
             pathFollower2D.pathCreator = _pathCreators[0];
             pathFollower2D.enabled = true;
@@ -34,11 +36,13 @@ namespace u1w202312
         {
         }
 
-        private Railroad SpawnRailroads()
+        private Railroad SpawnRailroads(bool spawnObjects)
         {
             var go = GameObject.Instantiate(railroadPrefab, _spawnPosition, Quaternion.identity);
 
             var roads = go.GetComponentsInChildren<Railroad>();
+            var holder = go.transform.Find("ObjectsHolder");
+            Debug.Assert(holder != null);
 
             foreach (var item in roads)
             {
@@ -50,6 +54,22 @@ namespace u1w202312
                 Debug.Log(item.name);
 
                 _pathCreators.Add(item.path);
+            }
+
+            // アイテムなどの生成
+            if (spawnObjects)
+            {
+                // ランダムで左右いずれかの線路上に生成する
+                var road = (Random.Range(0f, 1f) > 0.5f) ? roads[1] : roads[2];
+
+                var placer = road.gameObject.AddComponent<PathPlacerPickups>();
+
+                placer.holder = holder.gameObject;
+                placer.offset = new Vector3(5f, 0.3f, 0);
+                placer.prefab = pickupPrefab;
+                placer.pathCreator = road.path;
+
+                placer.TriggerUpdate();
             }
 
             return roads[0];
@@ -66,7 +86,7 @@ namespace u1w202312
             {
                 _spawnPosition = new Vector3(_spawnPosition.x + spawnIntervalX, 0, _spawnPosition.z + railroad.offsetZ);
 
-                var nextRailroad = SpawnRailroads();
+                var nextRailroad = SpawnRailroads(true);
                 railroad.next1 = nextRailroad;
             }
         }
