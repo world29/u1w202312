@@ -105,7 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathCreator: {fileID: 1175366417599841982}
   autoUpdate: 1
-  roadWidth: 0.4
+  roadWidth: 1
   thickness: 0
   flattenSurface: 0
   roadMaterial: {fileID: 2100000, guid: 8580f32b13812e6459d0b6f580931c8a, type: 2}
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathCreator: {fileID: 1175366417863834270}
   autoUpdate: 1
-  roadWidth: 0.4
+  roadWidth: 1
   thickness: 0
   flattenSurface: 0
   roadMaterial: {fileID: 2100000, guid: 8580f32b13812e6459d0b6f580931c8a, type: 2}
@@ -357,7 +357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathCreator: {fileID: 1175366418654574315}
   autoUpdate: 1
-  roadWidth: 0.4
+  roadWidth: 1
   thickness: 0
   flattenSurface: 0
   roadMaterial: {fileID: 2100000, guid: 8580f32b13812e6459d0b6f580931c8a, type: 2}
