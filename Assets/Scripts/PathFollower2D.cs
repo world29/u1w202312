@@ -8,12 +8,16 @@ namespace u1w202312
     // Depending on the end of path instruction, will either loop, reverse, or stop at the end of the path.
     public class PathFollower2D : MonoBehaviour
     {
+        public RailroadSwitch railoadSwitch;
+
         public PathCreator pathCreator;
-        public PathCreator pathCreatorNext;
         public EndOfPathInstruction endOfPathInstruction;
         public float speed = 5;
         public float offset = 0f;
         float distanceTravelled;
+
+        [HideInInspector]
+        public System.Action<PathCreator> onEnterPath;
 
         void Start()
         {
@@ -38,9 +42,9 @@ namespace u1w202312
                 {
                     distanceTravelled -= pathCreator.path.length;
 
-                    var temp = pathCreator;
-                    pathCreator = pathCreatorNext;
-                    pathCreatorNext = temp;
+                    // 次のパスに切り替える
+                    pathCreator = railoadSwitch.GetNextPath(pathCreator);
+                    onEnterPath(pathCreator);
                 }
 
                 transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);

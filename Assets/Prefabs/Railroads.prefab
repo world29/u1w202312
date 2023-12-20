@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1175366417599841980}
   - component: {fileID: 1175366417599841982}
   - component: {fileID: 1175366417599841981}
+  - component: {fileID: 8865299367115902009}
   m_Layer: 0
   m_Name: Path (1)
   m_TagString: Untagged
@@ -111,6 +112,22 @@ MonoBehaviour:
   undersideMaterial: {fileID: 2100000, guid: c1d8d882244c5344fa86a8fd23246f81, type: 2}
   textureTiling: 42.78
   meshHolder: {fileID: 1175366418680860929}
+--- !u!114 &8865299367115902009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175366417599841971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66b1f4c83d3c1cb46b07295081f2620f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: {fileID: 1175366417599841982}
+  offsetZ: 2
+  next1: {fileID: 0}
+  next2: {fileID: 0}
 --- !u!1 &1175366417863834259
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,6 +139,7 @@ GameObject:
   - component: {fileID: 1175366417863834268}
   - component: {fileID: 1175366417863834270}
   - component: {fileID: 1175366417863834269}
+  - component: {fileID: 6122667353769114240}
   m_Layer: 0
   m_Name: Path (2)
   m_TagString: Untagged
@@ -222,6 +240,22 @@ MonoBehaviour:
   undersideMaterial: {fileID: 2100000, guid: c1d8d882244c5344fa86a8fd23246f81, type: 2}
   textureTiling: 42.78
   meshHolder: {fileID: 1175366419409071081}
+--- !u!114 &6122667353769114240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175366417863834259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66b1f4c83d3c1cb46b07295081f2620f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: {fileID: 1175366417863834270}
+  offsetZ: -2
+  next1: {fileID: 0}
+  next2: {fileID: 0}
 --- !u!1 &1175366418654574313
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,6 +267,7 @@ GameObject:
   - component: {fileID: 1175366418654574314}
   - component: {fileID: 1175366418654574315}
   - component: {fileID: 1175366418654574356}
+  - component: {fileID: 2041128406491650880}
   m_Layer: 0
   m_Name: Path
   m_TagString: Untagged
@@ -271,7 +306,7 @@ MonoBehaviour:
     _bezierPath:
       points:
       - {x: 0, y: 0, z: 0}
-      - {x: 1, y: 0, z: 0.01}
+      - {x: 1, y: 0, z: 0}
       - {x: 14, y: 0, z: -0.01}
       - {x: 15, y: 0, z: 0}
       isClosed: 0
@@ -329,6 +364,22 @@ MonoBehaviour:
   undersideMaterial: {fileID: 2100000, guid: c1d8d882244c5344fa86a8fd23246f81, type: 2}
   textureTiling: 42.78
   meshHolder: {fileID: 1175366418855905622}
+--- !u!114 &2041128406491650880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175366418654574313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66b1f4c83d3c1cb46b07295081f2620f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: {fileID: 1175366418654574315}
+  offsetZ: 0
+  next1: {fileID: 8865299367115902009}
+  next2: {fileID: 6122667353769114240}
 --- !u!1 &1175366418680860929
 GameObject:
   m_ObjectHideFlags: 0
