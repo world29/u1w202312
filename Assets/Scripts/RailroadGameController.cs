@@ -7,6 +7,18 @@ namespace u1w202312
 {
     public class RailroadGameController : MonoBehaviour, IRailroadGameControllerRequests
     {
+        [SerializeField]
+        public PathFollower2D pathFollower;
+
+        [SerializeField]
+        public float initialSpeed = 3f;
+
+        [SerializeField]
+        public float speedUpFactor = 0.1f;
+
+        [SerializeField]
+        public float maxSpeed = 8f;
+
         [HideInInspector]
         public float DistanceTravelled { get { return _distanceTravelled; } }
 
@@ -14,6 +26,10 @@ namespace u1w202312
 
         private void Start()
         {
+            Debug.Assert(pathFollower != null);
+
+            pathFollower.speed = initialSpeed;
+
             _distanceTravelled = 0;
         }
 
@@ -38,7 +54,15 @@ namespace u1w202312
         // アイテムを拾った
         public void OnItemPickup(Vector3 itemPosition, ItemType itemType)
         {
-            Debug.Log("On Item Pickup");
+            if (itemType == ItemType.SpeedUp)
+            {
+                var newSpeed = pathFollower.speed * (1f + speedUpFactor);
+                pathFollower.speed = Mathf.Min(newSpeed, maxSpeed);
+            }
+            else
+            {
+                //todo:
+            }
         }
 
         // リトライ
