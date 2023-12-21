@@ -17,7 +17,9 @@ namespace u1w202312
 
         [SerializeField] float spawnIntervalX = 30;
 
-        [SerializeField] GameObject pickupPrefab;
+        [SerializeField] GameObject pickupPrefabSpeedUp;
+        [SerializeField] GameObject pickupPrefabFuelUp;
+        [SerializeField] GameObject obstaclePrefab;
 
         private List<PathCreator> _pathCreators = new List<PathCreator>();
         private Vector3 _spawnPosition;
@@ -61,12 +63,27 @@ namespace u1w202312
                 // ランダムで左右いずれかの線路上に生成する
                 var road = (Random.Range(0f, 1f) > 0.5f) ? roads[1] : roads[2];
 
+                // ランダムで燃料かスピードアップを配置する
+                var prefab = (Random.Range(0f, 1f) > 0.8f) ? pickupPrefabFuelUp : pickupPrefabSpeedUp;
+
                 var placer = road.gameObject.AddComponent<PathPlacerPickups>();
 
                 placer.holder = holder.gameObject;
-                placer.offset = new Vector3(5f, 0.3f, 0);
-                placer.prefab = pickupPrefab;
+                placer.offset = new Vector3(10f, 0.3f, 0);
+                placer.prefab = prefab;
                 placer.pathCreator = road.path;
+
+                // 燃料なら１つだけ
+                if (prefab == pickupPrefabFuelUp)
+                {
+                    placer.maxCount = 1;
+                }
+
+                // スピードアップなら 2-3 個
+                if (prefab == pickupPrefabSpeedUp)
+                {
+                    placer.maxCount = Random.Range(2, 4);
+                }
 
                 placer.TriggerUpdate();
             }

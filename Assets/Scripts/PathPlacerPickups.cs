@@ -28,12 +28,19 @@ namespace u1w202312
                 spacing = Mathf.Max(minSpacing, spacing);
                 float dst = offset.x;
 
+                int count = 0;
                 while (dst < path.length)
                 {
                     Vector3 point = path.GetPointAtDistance(dst);
                     Quaternion rot = path.GetRotationAtDistance(dst);
                     Instantiate(prefab, point + new Vector3(0, offset.y, offset.z), rot, holder.transform);
                     dst += spacing;
+
+                    ++count;
+                    if (maxCount <= count)
+                    {
+                        break;
+                    }
                 }
             }
         }

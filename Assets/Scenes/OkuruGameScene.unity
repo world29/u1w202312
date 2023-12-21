@@ -2068,7 +2068,7 @@ MonoBehaviour:
   pathFollower: {fileID: 1098350639}
   initialFuel: 30
   fuelIncreasing: 5
-  initialSpeed: 3
+  initialSpeed: 5
   speedUpFactor: 0.1
   maxSpeed: 25
   OnPlayerDied:
@@ -2254,7 +2254,9 @@ MonoBehaviour:
   railroadPrefab: {fileID: 1175366418805215257, guid: ee12653ca5f59da458d520449ffbfd9a, type: 3}
   pathFollower2D: {fileID: 1098350639}
   spawnIntervalX: 30
-  pickupPrefab: {fileID: 1874934063139121163, guid: f0ba2749b593ffc41901ed81cee9ef32, type: 3}
+  pickupPrefabSpeedUp: {fileID: 1874934063139121163, guid: f0ba2749b593ffc41901ed81cee9ef32, type: 3}
+  pickupPrefabFuelUp: {fileID: 3020600211069398573, guid: 532cf95994b3f5e41b167b1736a17746, type: 3}
+  obstaclePrefab: {fileID: 0}
 --- !u!4 &1844195795
 Transform:
   m_ObjectHideFlags: 0
