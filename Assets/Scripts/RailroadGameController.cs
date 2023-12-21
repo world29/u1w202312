@@ -11,6 +11,13 @@ namespace u1w202312
         public PathFollower2D pathFollower;
 
         [SerializeField]
+        public float initialFuel = 30f;
+
+        // 残り時間の増加量
+        [SerializeField]
+        public float fuelIncreasing = 5f;
+
+        [SerializeField]
         public float initialSpeed = 3f;
 
         [SerializeField]
@@ -22,7 +29,12 @@ namespace u1w202312
         [HideInInspector]
         public float DistanceTravelled { get { return _distanceTravelled; } }
 
+        [HideInInspector]
+        public float Fuel { get { return _currentFuel; } }
+
         private float _distanceTravelled;
+
+        private float _currentFuel;
 
         private void Start()
         {
@@ -31,6 +43,26 @@ namespace u1w202312
             pathFollower.speed = initialSpeed;
 
             _distanceTravelled = 0;
+            _currentFuel = initialFuel;
+        }
+
+        private void Update()
+        {
+            if (_currentFuel > 0f)
+            {
+                _currentFuel -= Time.deltaTime;
+
+                if (_currentFuel < 0f)
+                {
+                    _currentFuel = 0f;
+                }
+            }
+
+            // ゲームオーバー
+            if (_currentFuel <= 0f)
+            {
+                pathFollower.enabled = false;
+            }
         }
 
         void OnEnable()
@@ -61,7 +93,12 @@ namespace u1w202312
             }
             else
             {
-                //todo:
+                _currentFuel += fuelIncreasing;
+
+                if (_currentFuel > initialFuel)
+                {
+                    _currentFuel = initialFuel;
+                }
             }
         }
 

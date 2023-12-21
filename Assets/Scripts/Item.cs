@@ -9,6 +9,9 @@ namespace Unity1Week
     public class Item : MonoBehaviour
     {
         [SerializeField]
+        private u1w202312.ItemType itemType;
+
+        [SerializeField]
         private float score = 1f;
 
         [SerializeField]
@@ -44,7 +47,7 @@ namespace Unity1Week
                         (handler, eventData) => handler.OnItemPickup(transform.position, score));
 
                     BroadcastExecuteEvents.Execute<u1w202312.IRailroadGameControllerRequests>(null,
-                        (handler, eventData) => handler.OnItemPickup(transform.position, u1w202312.ItemType.SpeedUp));
+                        (handler, eventData) => handler.OnItemPickup(transform.position, itemType));
 
                     _scoreAdded = true;
                 }
