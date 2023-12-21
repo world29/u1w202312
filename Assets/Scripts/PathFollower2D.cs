@@ -23,6 +23,8 @@ namespace u1w202312
 
         private float distanceTravelled;
 
+        private float _totalDistance;
+
         void Start()
         {
             if (pathCreator != null)
@@ -31,6 +33,8 @@ namespace u1w202312
                 pathCreator.pathUpdated += OnPathChanged;
 
                 distanceTravelled = offset;
+
+                _totalDistance = 0;
             }
         }
 
@@ -38,7 +42,11 @@ namespace u1w202312
         {
             if (pathCreator != null)
             {
-                distanceTravelled += speed * Time.deltaTime;
+                var distanceThisFrame = speed * Time.deltaTime;
+
+                AddDistanceToTotal(distanceThisFrame);
+
+                distanceTravelled += distanceThisFrame;
 
                 // パスの終端に達したら次パスに乗り移る
                 var t = distanceTravelled / pathCreator.path.length;
@@ -56,6 +64,14 @@ namespace u1w202312
                 var nml = pathCreator.path.GetNormalAtDistance(distanceTravelled, endOfPathInstruction);
                 transform.rotation = Quaternion.LookRotation(-nml);
             }
+        }
+
+        void AddDistanceToTotal(float distance)
+        {
+            _totalDistance += distance;
+
+            Unity1Week.BroadcastExecuteEvents.Execute<IRailroadGameControllerRequests>(null,
+                (handler, eventData) => handler.OnUpdateDistanceTravelled(_totalDistance));
         }
 
         // If the path changes during the game, update the distance travelled so that the follower's position on the new path

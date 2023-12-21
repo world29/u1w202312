@@ -43,6 +43,9 @@ namespace Unity1Week
                     BroadcastExecuteEvents.Execute<IGameControllerRequests>(null,
                         (handler, eventData) => handler.OnItemPickup(transform.position, score));
 
+                    BroadcastExecuteEvents.Execute<u1w202312.IRailroadGameControllerRequests>(null,
+                        (handler, eventData) => handler.OnItemPickup(transform.position, u1w202312.ItemType.SpeedUp));
+
                     _scoreAdded = true;
                 }
 
