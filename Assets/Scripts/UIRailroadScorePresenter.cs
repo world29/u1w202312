@@ -25,7 +25,7 @@ namespace u1w202312
         {
             if (_controller != null)
             {
-                scoreText.text = _controller.DistanceTravelled.ToString("F3");
+                scoreText.text = _controller.DistanceTravelled.ToString("F1");
             }
         }
     }

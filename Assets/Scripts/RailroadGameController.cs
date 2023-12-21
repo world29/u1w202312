@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 namespace u1w202312
 {
@@ -32,6 +33,9 @@ namespace u1w202312
         [HideInInspector]
         public float Fuel { get { return _currentFuel; } }
 
+        [HideInInspector]
+        public UnityEvent OnPlayerDied;
+
         private float _distanceTravelled;
 
         private float _currentFuel;
@@ -56,12 +60,14 @@ namespace u1w202312
                 {
                     _currentFuel = 0f;
                 }
-            }
 
-            // ゲームオーバー
-            if (_currentFuel <= 0f)
-            {
-                pathFollower.enabled = false;
+                // ゲームオーバー
+                if (_currentFuel <= 0f)
+                {
+                    pathFollower.enabled = false;
+
+                    OnPlayerDied.Invoke();
+                }
             }
         }
 
@@ -105,7 +111,7 @@ namespace u1w202312
         // リトライ
         public void Retry()
         {
-            Debug.Log("Retry");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         // タイトルへ戻る
