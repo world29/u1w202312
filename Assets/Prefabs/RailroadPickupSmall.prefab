@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2210479945037474284}
   - component: {fileID: 7421655584263401425}
   m_Layer: 0
-  m_Name: RailroadPickupSpeedUp
+  m_Name: RailroadPickupSmall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809b77ea0b83f994e93be4feb2f57104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemType: 1
+  itemType: 0
   score: 1
   se: {fileID: 0}
   pitch: 1

@@ -57,11 +57,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1874934063139121163, guid: f0ba2749b593ffc41901ed81cee9ef32, type: 3}
       propertyPath: m_Name
-      value: RailroadPickupFuelUp
+      value: RailroadPickupLarge
       objectReference: {fileID: 0}
     - target: {fileID: 1874934063139121174, guid: f0ba2749b593ffc41901ed81cee9ef32, type: 3}
       propertyPath: itemType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1874934063139121174, guid: f0ba2749b593ffc41901ed81cee9ef32, type: 3}
       propertyPath: onPickup.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument

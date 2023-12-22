@@ -2067,7 +2067,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathFollower: {fileID: 1098350639}
   initialFuel: 30
-  fuelIncreasing: 5
+  fuelIncreasingSmall: 5
+  fuelIncreasingLarge: 10
+  fuelDecreasing: 5
   initialSpeed: 5
   speedUpFactor: 0.1
   maxSpeed: 25
@@ -2254,9 +2256,10 @@ MonoBehaviour:
   railroadPrefab: {fileID: 1175366418805215257, guid: ee12653ca5f59da458d520449ffbfd9a, type: 3}
   pathFollower2D: {fileID: 1098350639}
   spawnIntervalX: 30
-  pickupPrefabSpeedUp: {fileID: 1874934063139121163, guid: f0ba2749b593ffc41901ed81cee9ef32, type: 3}
-  pickupPrefabFuelUp: {fileID: 3020600211069398573, guid: 532cf95994b3f5e41b167b1736a17746, type: 3}
-  obstaclePrefab: {fileID: 0}
+  pickupPrefabSmall: {fileID: 1874934063139121163, guid: f0ba2749b593ffc41901ed81cee9ef32, type: 3}
+  pickupPrefabLarge: {fileID: 3020600211069398573, guid: 532cf95994b3f5e41b167b1736a17746, type: 3}
+  pickupPrefabLargePercent: 0.2
+  obstaclePrefab: {fileID: 1874934063139121163, guid: 2fb04177fe8be4f3d8502e69991c5304, type: 3}
 --- !u!4 &1844195795
 Transform:
   m_ObjectHideFlags: 0

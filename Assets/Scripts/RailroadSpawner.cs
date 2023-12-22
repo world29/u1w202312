@@ -17,8 +17,12 @@ namespace u1w202312
 
         [SerializeField] float spawnIntervalX = 30;
 
-        [SerializeField] GameObject pickupPrefabSpeedUp;
-        [SerializeField] GameObject pickupPrefabFuelUp;
+        [SerializeField] GameObject pickupPrefabSmall; // Small
+        [SerializeField] GameObject pickupPrefabLarge; // Large
+
+        // 大きなクリスタルがスポーンする確率 [0f, 1f]
+        [SerializeField] float pickupPrefabLargePercent;
+
         [SerializeField] GameObject obstaclePrefab;
 
         private List<PathCreator> _pathCreators = new List<PathCreator>();
@@ -44,6 +48,7 @@ namespace u1w202312
 
             var roads = go.GetComponentsInChildren<Railroad>();
             var holder = go.transform.Find("ObjectsHolder");
+            var holder2 = go.transform.Find("ObjectsHolder2");
             Debug.Assert(holder != null);
 
             foreach (var item in roads)
@@ -61,31 +66,46 @@ namespace u1w202312
             if (spawnObjects)
             {
                 // ランダムで左右いずれかの線路上に生成する
-                var road = (Random.Range(0f, 1f) > 0.5f) ? roads[1] : roads[2];
-
-                // ランダムで燃料かスピードアップを配置する
-                var prefab = (Random.Range(0f, 1f) > 0.8f) ? pickupPrefabFuelUp : pickupPrefabSpeedUp;
-
-                var placer = road.gameObject.AddComponent<PathPlacerPickups>();
-
-                placer.holder = holder.gameObject;
-                placer.offset = new Vector3(10f, 1f, 0);
-                placer.prefab = prefab;
-                placer.pathCreator = road.path;
-
-                // 燃料なら１つだけ
-                if (prefab == pickupPrefabFuelUp)
+                Railroad itemRoad, obstacleRoad;
+                if (Random.Range(0f, 1f) > 0.5f)
                 {
+                    itemRoad = roads[1];
+                    obstacleRoad = roads[2];
+                }
+                else
+                {
+                    itemRoad = roads[2];
+                    obstacleRoad = roads[1];
+                }
+
+                // アイテム生成
+                {
+                    // ランダムで小さいクリスタルか大きいクリスタルを配置する
+                    var prefab = (Random.Range(0f, 1f) < pickupPrefabLargePercent) ? pickupPrefabLarge : pickupPrefabSmall;
+
+                    var placer = itemRoad.gameObject.AddComponent<PathPlacerPickups>();
+
+                    placer.holder = holder.gameObject;
+                    placer.offset = new Vector3(10f, 1f, 0);
+                    placer.prefab = prefab;
+                    placer.pathCreator = itemRoad.path;
                     placer.maxCount = 1;
+
+                    placer.TriggerUpdate();
                 }
 
-                // スピードアップなら 2-3 個
-                if (prefab == pickupPrefabSpeedUp)
+                // 障害物を生成
                 {
-                    placer.maxCount = Random.Range(2, 4);
-                }
+                    var placer = obstacleRoad.gameObject.AddComponent<PathPlacerPickups>();
 
-                placer.TriggerUpdate();
+                    placer.holder = holder2.gameObject;
+                    placer.offset = new Vector3(10f, 1f, 0);
+                    placer.prefab = obstaclePrefab;
+                    placer.pathCreator = obstacleRoad.path;
+                    placer.maxCount = 1;
+
+                    placer.TriggerUpdate();
+                }
             }
 
             return roads[0];

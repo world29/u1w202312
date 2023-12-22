@@ -5,9 +5,7 @@ using UnityEngine.EventSystems;
 
 namespace u1w202312
 {
-    // 走行時間延長
-    // 走行速度アップ
-    public enum ItemType { FuelUp, SpeedUp }
+    public enum ItemType { Small, Large }
 
     public interface IRailroadGameControllerRequests : IEventSystemHandler
     {
@@ -17,6 +15,9 @@ namespace u1w202312
 
         // アイテムを拾った
         void OnItemPickup(Vector3 itemPosition, ItemType itemType);
+
+        // 障害物に当たった
+        void OnObstacleHit(Vector3 obstaclePosition);
 
         // リトライ
         void Retry();

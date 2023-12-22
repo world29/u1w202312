@@ -16,7 +16,15 @@ namespace u1w202312
 
         // 残り時間の増加量
         [SerializeField]
-        public float fuelIncreasing = 5f;
+        public float fuelIncreasingSmall = 5f;
+
+        // 残り時間の増加量
+        [SerializeField]
+        public float fuelIncreasingLarge = 10f;
+
+        // 障害物にあたったときの燃料の減る量
+        [SerializeField]
+        public float fuelDecreasing = 5f;
 
         [SerializeField]
         public float initialSpeed = 3f;
@@ -92,20 +100,33 @@ namespace u1w202312
         // アイテムを拾った
         public void OnItemPickup(Vector3 itemPosition, ItemType itemType)
         {
-            if (itemType == ItemType.SpeedUp)
+            // 速度アップはクリスタルの大きさに関わらず一定とする
+            var newSpeed = pathFollower.speed * (1f + speedUpFactor);
+            pathFollower.speed = Mathf.Min(newSpeed, maxSpeed);
+
+            // 燃料の増える量は大きさで変わる
+            if (itemType == ItemType.Small)
             {
-                var newSpeed = pathFollower.speed * (1f + speedUpFactor);
-                pathFollower.speed = Mathf.Min(newSpeed, maxSpeed);
+                _currentFuel += fuelIncreasingSmall;
             }
             else
             {
-                _currentFuel += fuelIncreasing;
-
-                if (_currentFuel > initialFuel)
-                {
-                    _currentFuel = initialFuel;
-                }
+                _currentFuel += fuelIncreasingLarge;
             }
+
+            if (_currentFuel > initialFuel)
+            {
+                _currentFuel = initialFuel;
+            }
+        }
+
+        public void OnObstacleHit(Vector3 obstaclePosition)
+        {
+            // 燃料を減らす
+            // 列車の速度を落とす？
+            _currentFuel -= fuelDecreasing;
+
+            pathFollower.speed = initialSpeed;
         }
 
         // リトライ
