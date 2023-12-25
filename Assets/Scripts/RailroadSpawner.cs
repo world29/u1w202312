@@ -99,7 +99,7 @@ namespace u1w202312
                     var placer = obstacleRoad.gameObject.AddComponent<PathPlacerPickups>();
 
                     placer.holder = holder2.gameObject;
-                    placer.offset = new Vector3(10f, 1f, 0);
+                    placer.offset = new Vector3(10f, 0, 0);
                     placer.prefab = obstaclePrefab;
                     placer.pathCreator = obstacleRoad.path;
                     placer.maxCount = 1;

@@ -32,7 +32,7 @@ namespace u1w202312
                 while (dst < path.length)
                 {
                     Vector3 point = path.GetPointAtDistance(dst);
-                    Quaternion rot = path.GetRotationAtDistance(dst);
+                    Quaternion rot = Quaternion.identity;//path.GetRotationAtDistance(dst);
                     Instantiate(prefab, point + new Vector3(0, offset.y, offset.z), rot, holder.transform);
                     dst += spacing;
 
