@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 namespace u1w202312
 {
-    public enum GameState { Title, Gameplay, Result }
+    public enum GameState { Title, Gameplay, Result, None }
 
     public class RailroadGameController : MonoBehaviour, IRailroadGameControllerRequests
     {
@@ -61,6 +61,7 @@ namespace u1w202312
         private float _currentFuel;
 
         private GameState _gameState;
+        private GameState _nextGameState;
 
         private void Start()
         {
@@ -76,6 +77,12 @@ namespace u1w202312
 
         private void Update()
         {
+            if (_nextGameState != GameState.None)
+            {
+                _gameState = _nextGameState;
+                _nextGameState = GameState.None;
+            }
+
             if (_gameState == GameState.Gameplay)
             {
                 // ゲームオーバー
@@ -99,6 +106,16 @@ namespace u1w202312
         void OnDisable()
         {
             Unity1Week.BroadcastReceivers.UnregisterBroadcastReceiver<IRailroadGameControllerRequests>(gameObject);
+        }
+
+        public void SetNextGameState(GameState nextState)
+        {
+            _nextGameState = nextState;
+        }
+
+        public void SetNextGameStateToGameplay()
+        {
+            SetNextGameState(GameState.Gameplay);
         }
 
         // 走行距離更新

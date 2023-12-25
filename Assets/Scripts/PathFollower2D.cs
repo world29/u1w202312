@@ -11,6 +11,8 @@ namespace u1w202312
         public RailroadSwitch railoadSwitch;
 
         private EndOfPathInstruction endOfPathInstruction = EndOfPathInstruction.Stop;
+
+        [SerializeField]
         private float offset = 0f;
 
         [HideInInspector]
