@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 using PathCreation;
 
@@ -8,7 +9,8 @@ namespace u1w202312
     // Depending on the end of path instruction, will either loop, reverse, or stop at the end of the path.
     public class PathFollower2D : MonoBehaviour
     {
-        public RailroadSwitch railoadSwitch;
+        [SerializeField]
+        public RailroadSwitch railroadSwitch;
 
         private EndOfPathInstruction endOfPathInstruction = EndOfPathInstruction.Stop;
 
@@ -22,11 +24,12 @@ namespace u1w202312
         public PathCreator pathCreator;
 
         [HideInInspector]
-        public System.Action<PathCreator> onEnterPath;
+        public UnityAction<PathCreator> onEnterPath;
 
-        private float distanceTravelled;
+        [HideInInspector]
+        public Railroad CurrentRailroad { get { return pathCreator?.GetComponent<Railroad>(); } }
 
-        private float _totalDistance;
+        private float _distanceTravelled;
 
         void Start()
         {
@@ -35,9 +38,8 @@ namespace u1w202312
                 // Subscribed to the pathUpdated event so that we're notified if the path changes during the game
                 pathCreator.pathUpdated += OnPathChanged;
 
-                distanceTravelled = offset;
+                _distanceTravelled = offset;
 
-                _totalDistance = 0;
             }
         }
 
@@ -47,41 +49,48 @@ namespace u1w202312
             {
                 var distanceThisFrame = speed * Time.deltaTime;
 
-                AddDistanceToTotal(distanceThisFrame);
+                NotifyDistanceTravelled(distanceThisFrame);
 
-                distanceTravelled += distanceThisFrame;
+                _distanceTravelled += distanceThisFrame;
 
                 // パスの終端に達したら次パスに乗り移る
-                var t = distanceTravelled / pathCreator.path.length;
+                var t = _distanceTravelled / pathCreator.path.length;
                 if (t > 1)
                 {
-                    distanceTravelled -= pathCreator.path.length;
+                    _distanceTravelled -= pathCreator.path.length;
 
                     // 次のパスに切り替える
-                    pathCreator = railoadSwitch.GetNextPath(pathCreator);
-                    onEnterPath(pathCreator);
+                    // 分岐がある場合は、RailroadSwitch に問い合わせる
+                    if (CurrentRailroad.next2 != null)
+                    {
+                        pathCreator = railroadSwitch.GetNextPath(pathCreator);
+                    }
+                    else
+                    {
+                        pathCreator = CurrentRailroad.next1.path;
+                    }
+
+                    onEnterPath?.Invoke(pathCreator);
                 }
 
-                transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
+                transform.position = pathCreator.path.GetPointAtDistance(_distanceTravelled, endOfPathInstruction);
                 // パスの法線は手前向きなので、オブジェクトのｚ軸が法線の逆方向を向くようにする
-                var nml = pathCreator.path.GetNormalAtDistance(distanceTravelled, endOfPathInstruction);
+                var nml = pathCreator.path.GetNormalAtDistance(_distanceTravelled, endOfPathInstruction);
                 transform.rotation = Quaternion.LookRotation(-nml);
             }
         }
 
-        void AddDistanceToTotal(float distance)
+        void NotifyDistanceTravelled(float distanceThisFrame)
         {
-            _totalDistance += distance;
-
             Unity1Week.BroadcastExecuteEvents.Execute<IRailroadGameControllerRequests>(null,
-                (handler, eventData) => handler.OnUpdateDistanceTravelled(_totalDistance));
+                (handler, eventData) => handler.OnTravelled(distanceThisFrame));
         }
 
         // If the path changes during the game, update the distance travelled so that the follower's position on the new path
         // is as close as possible to its position on the old path
         void OnPathChanged()
         {
-            distanceTravelled = pathCreator.path.GetClosestDistanceAlongPath(transform.position);
+            _distanceTravelled = pathCreator.path.GetClosestDistanceAlongPath(transform.position);
         }
     }
 }

@@ -41,8 +41,14 @@ namespace u1w202312
         [SerializeField]
         public float maxSpeed = 8f;
 
+        [SerializeField]
+        private RailroadSpawnerTitle railroadSpawnerTitle;
+
+        [SerializeField]
+        private RailroadSpawner railroadSpawnerGameplay;
+
         [HideInInspector]
-        public float DistanceTravelled { get { return _distanceTravelled; } }
+        public float DistanceTravelled { get { return _totalDistanceTravelled; } }
 
         [HideInInspector]
         public float Fuel { get { return _currentFuel; } }
@@ -56,7 +62,7 @@ namespace u1w202312
             get { return _gameState; }
         }
 
-        private float _distanceTravelled;
+        private float _totalDistanceTravelled;
 
         private float _currentFuel;
 
@@ -71,7 +77,7 @@ namespace u1w202312
 
             pathFollower.speed = initialSpeed;
 
-            _distanceTravelled = 0;
+            _totalDistanceTravelled = 0;
             _currentFuel = initialFuel;
         }
 
@@ -111,6 +117,16 @@ namespace u1w202312
         public void SetNextGameState(GameState nextState)
         {
             _nextGameState = nextState;
+
+            // タイトルからゲームに遷移するときに、線路のスポーナーを切り替える
+            if (_nextGameState == GameState.Gameplay)
+            {
+                railroadSpawnerTitle.enabled = false;
+                railroadSpawnerGameplay.enabled = true;
+
+                // 次の線路生成位置を引き継ぐ
+                railroadSpawnerGameplay._spawnPosition = railroadSpawnerTitle._spawnPosition;
+            }
         }
 
         public void SetNextGameStateToGameplay()
@@ -118,24 +134,23 @@ namespace u1w202312
             SetNextGameState(GameState.Gameplay);
         }
 
-        // 走行距離更新
-        // PathFollower2D から呼び出される
-        public void OnUpdateDistanceTravelled(float distanceTravelled)
+        // 走行距離
+        // フレームごとに PathFollower2D から呼び出される
+        public void OnTravelled(float distanceThisFrame)
         {
-            if (_gameState == GameState.Gameplay)
+            if (_gameState != GameState.Gameplay)
             {
-                var diff = distanceTravelled - _distanceTravelled;
-                Debug.Assert(diff >= 0f);
-                if (diff == 0)
-                {
-                    return;
-                }
-                _distanceTravelled = distanceTravelled;
+                return;
+            }
+
+            if (distanceThisFrame > 0f)
+            {
+                _totalDistanceTravelled += distanceThisFrame;
 
                 // 走った分だけ燃料を消費する
                 if (_currentFuel > 0f)
                 {
-                    var fuelConsumed = diff * fuelConsumptionPerMeter;
+                    var fuelConsumed = distanceThisFrame * fuelConsumptionPerMeter;
                     _currentFuel -= fuelConsumed;
 
                     if (_currentFuel < 0f)

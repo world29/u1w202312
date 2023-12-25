@@ -23,15 +23,12 @@ namespace u1w202312
             Debug.Assert(railroad != null);
 
             Debug.Assert(railroad.next1 != null);
+            Debug.Assert(railroad.next2 != null);
 
-            if (railroad.next2 != null)
+            if (_nextBranch == RailroadBranchs.Right)
             {
-                if (_nextBranch == RailroadBranchs.Right)
-                {
-                    return railroad.next2.path;
-                }
+                return railroad.next2.path;
             }
-
             return railroad.next1.path;
         }
 

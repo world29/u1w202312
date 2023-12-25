@@ -13,10 +13,7 @@ namespace u1w202312
     {
         [SerializeField] GameObject railroadPrefabBranch;
 
-        [SerializeField] GameObject railroadPrefabStrait;
-
         [SerializeField] PathFollower2D pathFollower2D;
-        [SerializeField] RailroadTrigger railroadTrigger;
 
         [SerializeField] float spawnIntervalX = 30;
 
@@ -28,11 +25,32 @@ namespace u1w202312
 
         [SerializeField] GameObject obstaclePrefab;
 
+        [HideInInspector]
+        public Vector3 _spawnPosition; // GameController からアクセスする
+
         private List<PathCreator> _pathCreators = new List<PathCreator>();
-        private Vector3 _spawnPosition;
-        private Railroad _railroadTail;
 
         private RailroadGameController _controller;
+
+        private void OnEnable()
+        {
+            Debug.Log("RailroadSpawnerTitle.OnEnable");
+
+            if (pathFollower2D)
+            {
+                pathFollower2D.onEnterPath += OnTrainEnterPath;
+            }
+        }
+
+        private void OnDisable()
+        {
+            Debug.Log("RailroadSpawnerTitle.OnDisable");
+
+            if (pathFollower2D)
+            {
+                pathFollower2D.onEnterPath += OnTrainEnterPath;
+            }
+        }
 
         private void Start()
         {
@@ -41,47 +59,25 @@ namespace u1w202312
             go.TryGetComponent<RailroadGameController>(out _controller);
             Debug.Assert(_controller != null);
 
-            _spawnPosition = Vector3.zero;
+            // GameController から設定される
+            //_spawnPosition = Vector3.zero;
 
-            SpawnRailroads(null, false);
-            //SpawnRailroadsBranch(false);
-            pathFollower2D.onEnterPath += OnTrainEnterPath;
-            pathFollower2D.pathCreator = _pathCreators[0];
+            // 現在列車が乗っている線路の先に、次の線路を生成する
+            SpawnRailroads(pathFollower2D.pathCreator.GetComponent<Railroad>(), true);
             pathFollower2D.enabled = true;
-
-            Debug.Assert(railroadTrigger != null);
-            railroadTrigger.onMove += OnTriggerMove;
-        }
-
-        private void Update()
-        {
         }
 
         private Railroad SpawnRailroads(Railroad currentRailroad, bool spawnObjects)
         {
-            var offsetZ = currentRailroad != null ? currentRailroad.offsetZ : 0;
+            Debug.Assert(currentRailroad != null);
 
-            if (_controller.CurrentGameState == GameState.Gameplay)
-            {
-                _spawnPosition = new Vector3(_spawnPosition.x + spawnIntervalX, 0, _spawnPosition.z + offsetZ);
+            // 線路生成位置を、現在の線路の先に設定する
+            _spawnPosition = new Vector3(_spawnPosition.x, 0, _spawnPosition.z + currentRailroad.offsetZ);
 
-                var nextRailroad = SpawnRailroadsBranch(spawnObjects);
-                return nextRailroad;
-            }
-            else if (_controller.CurrentGameState == GameState.Title)
-            {
-                _spawnPosition = new Vector3(_spawnPosition.x + spawnIntervalX, 0, _spawnPosition.z + offsetZ);
-
-                var nextRailroad = SpawnRailroadsStrait();
-                UpdateRailroadTail(nextRailroad);
-                return nextRailroad;
-            }
-            return null;
-        }
-
-        private Railroad SpawnRailroadsBranch(bool spawnObjects)
-        {
             var go = GameObject.Instantiate(railroadPrefabBranch, _spawnPosition, Quaternion.identity);
+
+            // 次の線路生成位置を更新する
+            _spawnPosition = new Vector3(_spawnPosition.x + spawnIntervalX, 0, _spawnPosition.z);
 
             var roads = go.GetComponentsInChildren<Railroad>();
             var holder = go.transform.Find("ObjectsHolder");
@@ -145,38 +141,15 @@ namespace u1w202312
                 }
             }
 
-            return roads[0];
-        }
-
-        private Railroad SpawnRailroadsStrait()
-        {
-            var go = GameObject.Instantiate(railroadPrefabStrait, _spawnPosition, Quaternion.identity);
-
-            var roads = go.GetComponentsInChildren<Railroad>();
-
-            foreach (var item in roads)
+            // 現在の線路の末尾に接続する
+            var tail = currentRailroad;
+            while (tail.next1 != null)
             {
-                PathCreation.Examples.RoadMeshCreator meshCreator;
-                if (item.TryGetComponent<PathCreation.Examples.RoadMeshCreator>(out meshCreator))
-                {
-                    meshCreator.TriggerUpdate();
-                }
-
-                _pathCreators.Add(item.path);
+                tail = tail.next1;
             }
+            tail.next1 = roads[0];
 
             return roads[0];
-        }
-
-        private void UpdateRailroadTail(Railroad railroad)
-        {
-            var temp = railroad;
-
-            while (temp.next1 != null)
-            {
-                temp = temp.next1;
-            }
-            _railroadTail = temp;
         }
 
         private void OnTrainEnterPath(PathCreator path)
@@ -188,27 +161,7 @@ namespace u1w202312
 
             if (railroad.next1 == null)
             {
-                railroad.next1 = SpawnRailroads(railroad, true);
-            }
-        }
-
-        private void OnTriggerMove(Vector3 triggerPos)
-        {
-            if (_controller.CurrentGameState != GameState.Title)
-            {
-                return;
-            }
-
-            if (_railroadTail == null)
-            {
-                return;
-            }
-
-            if (triggerPos.x > _spawnPosition.x)
-            {
-                var tail = _railroadTail;
-
-                tail.next1 = SpawnRailroads(tail, false);
+                SpawnRailroads(railroad, true);
             }
         }
     }

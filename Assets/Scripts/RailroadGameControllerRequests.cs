@@ -9,9 +9,8 @@ namespace u1w202312
 
     public interface IRailroadGameControllerRequests : IEventSystemHandler
     {
-        // 走行距離更新
-        // PathFollower2D から呼び出される
-        void OnUpdateDistanceTravelled(float distanceTravelled);
+        // このフレームで走行した距離
+        void OnTravelled(float distanceTravelled);
 
         // アイテムを拾った
         void OnItemPickup(Vector3 itemPosition, ItemType itemType);
