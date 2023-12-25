@@ -79,11 +79,11 @@ MonoBehaviour:
   editorData:
     _bezierPath:
       points:
-      - {x: 15, y: 0, z: 0}
-      - {x: 18, y: 0, z: 0}
-      - {x: 19, y: 0, z: 2}
-      - {x: 22, y: 0, z: 2}
-      - {x: 25, y: 0, z: 2}
+      - {x: 5, y: 0, z: 0}
+      - {x: 8, y: 0, z: 0}
+      - {x: 9, y: 0, z: 2}
+      - {x: 12, y: 0, z: 2}
+      - {x: 15, y: 0, z: 2}
       - {x: 29.050827, y: 0, z: 1.962033}
       - {x: 30, y: 0, z: 2}
       isClosed: 0
@@ -138,9 +138,9 @@ MonoBehaviour:
   roadWidth: 1
   thickness: 0
   flattenSurface: 0
-  roadMaterial: {fileID: 2100000, guid: 8580f32b13812e6459d0b6f580931c8a, type: 2}
+  roadMaterial: {fileID: 2100000, guid: 1e8eb81f74038494b9bace99502afef1, type: 2}
   undersideMaterial: {fileID: 2100000, guid: c1d8d882244c5344fa86a8fd23246f81, type: 2}
-  textureTiling: 42.78
+  textureTiling: 50
   meshHolder: {fileID: 1175366418680860929}
 --- !u!114 &8865299367115902009
 MonoBehaviour:
@@ -207,11 +207,11 @@ MonoBehaviour:
   editorData:
     _bezierPath:
       points:
-      - {x: 15, y: 0, z: 0}
-      - {x: 18, y: 0, z: 0}
-      - {x: 19, y: 0, z: -2}
-      - {x: 22, y: 0, z: -2}
-      - {x: 25, y: 0, z: -2}
+      - {x: 5, y: 0, z: 0}
+      - {x: 8, y: 0, z: 0}
+      - {x: 9, y: 0, z: -2}
+      - {x: 12, y: 0, z: -2}
+      - {x: 15, y: 0, z: -2}
       - {x: 28.860992, y: 0, z: -1.9240661}
       - {x: 30, y: 0, z: -2}
       isClosed: 0
@@ -266,9 +266,9 @@ MonoBehaviour:
   roadWidth: 1
   thickness: 0
   flattenSurface: 0
-  roadMaterial: {fileID: 2100000, guid: 8580f32b13812e6459d0b6f580931c8a, type: 2}
+  roadMaterial: {fileID: 2100000, guid: 1e8eb81f74038494b9bace99502afef1, type: 2}
   undersideMaterial: {fileID: 2100000, guid: c1d8d882244c5344fa86a8fd23246f81, type: 2}
-  textureTiling: 42.78
+  textureTiling: 50
   meshHolder: {fileID: 1175366419409071081}
 --- !u!114 &6122667353769114240
 MonoBehaviour:
@@ -337,8 +337,8 @@ MonoBehaviour:
       points:
       - {x: 0, y: 0, z: 0}
       - {x: 1, y: 0, z: 0}
-      - {x: 14, y: 0, z: -0.01}
-      - {x: 15, y: 0, z: 0}
+      - {x: 4, y: 0, z: -0.01}
+      - {x: 5, y: 0, z: 0}
       isClosed: 0
       space: 2
       controlMode: 0
@@ -390,9 +390,9 @@ MonoBehaviour:
   roadWidth: 1
   thickness: 0
   flattenSurface: 0
-  roadMaterial: {fileID: 2100000, guid: 8580f32b13812e6459d0b6f580931c8a, type: 2}
+  roadMaterial: {fileID: 2100000, guid: 50f3ecf12addd694ba33571d48b83098, type: 2}
   undersideMaterial: {fileID: 2100000, guid: c1d8d882244c5344fa86a8fd23246f81, type: 2}
-  textureTiling: 42.78
+  textureTiling: 10
   meshHolder: {fileID: 1175366418855905622}
 --- !u!114 &2041128406491650880
 MonoBehaviour:
@@ -469,7 +469,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8580f32b13812e6459d0b6f580931c8a, type: 2}
+  - {fileID: 2100000, guid: 1e8eb81f74038494b9bace99502afef1, type: 2}
   - {fileID: 2100000, guid: c1d8d882244c5344fa86a8fd23246f81, type: 2}
   - {fileID: 2100000, guid: c1d8d882244c5344fa86a8fd23246f81, type: 2}
   m_StaticBatchInfo:
@@ -587,7 +587,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8580f32b13812e6459d0b6f580931c8a, type: 2}
+  - {fileID: 2100000, guid: 50f3ecf12addd694ba33571d48b83098, type: 2}
   - {fileID: 2100000, guid: c1d8d882244c5344fa86a8fd23246f81, type: 2}
   - {fileID: 2100000, guid: c1d8d882244c5344fa86a8fd23246f81, type: 2}
   m_StaticBatchInfo:
@@ -670,7 +670,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8580f32b13812e6459d0b6f580931c8a, type: 2}
+  - {fileID: 2100000, guid: 1e8eb81f74038494b9bace99502afef1, type: 2}
   - {fileID: 2100000, guid: c1d8d882244c5344fa86a8fd23246f81, type: 2}
   - {fileID: 2100000, guid: c1d8d882244c5344fa86a8fd23246f81, type: 2}
   m_StaticBatchInfo:
