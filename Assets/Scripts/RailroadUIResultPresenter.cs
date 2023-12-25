@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using unityroom.Api;
 
 namespace u1w202312
 {
@@ -91,7 +92,7 @@ namespace u1w202312
                 {
                     if (_gameController)
                     {
-                        //naichilab.RankingLoader.Instance.SendScoreAndShowRanking(_gameController.TotalScore);
+                        UnityroomApiClient.Instance.SendScore(1, _gameController.DistanceTravelled, ScoreboardWriteMode.Always);
                     }
 
                     retryButtonCanvas.transform.DOScale(Vector3.one * 1.1f, 1).SetLoops(-1, LoopType.Yoyo);
