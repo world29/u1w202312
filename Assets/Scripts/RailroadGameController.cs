@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 namespace u1w202312
 {
+    public enum GameState { Title, Gameplay, Result }
+
     public class RailroadGameController : MonoBehaviour, IRailroadGameControllerRequests
     {
         [SerializeField]
@@ -13,6 +15,10 @@ namespace u1w202312
 
         [SerializeField]
         public float initialFuel = 30f;
+
+        // １メートルあたりの燃料消費量
+        [SerializeField]
+        public float fuelConsumptionPerMeter = 0.2f;
 
         // 残り時間の増加量
         [SerializeField]
@@ -48,9 +54,13 @@ namespace u1w202312
 
         private float _currentFuel;
 
+        private GameState _gameState;
+
         private void Start()
         {
             Debug.Assert(pathFollower != null);
+
+            _gameState = GameState.Gameplay;
 
             pathFollower.speed = initialSpeed;
 
@@ -60,18 +70,13 @@ namespace u1w202312
 
         private void Update()
         {
-            if (_currentFuel > 0f)
+            if (_gameState == GameState.Gameplay)
             {
-                _currentFuel -= Time.deltaTime;
-
-                if (_currentFuel < 0f)
-                {
-                    _currentFuel = 0f;
-                }
-
                 // ゲームオーバー
                 if (_currentFuel <= 0f)
                 {
+                    _gameState = GameState.Result;
+
                     pathFollower.enabled = false;
 
                     OnPlayerDied.Invoke();
@@ -94,7 +99,25 @@ namespace u1w202312
         // PathFollower2D から呼び出される
         public void OnUpdateDistanceTravelled(float distanceTravelled)
         {
+            var diff = distanceTravelled - _distanceTravelled;
+            Debug.Assert(diff >= 0f);
+            if (diff == 0)
+            {
+                return;
+            }
             _distanceTravelled = distanceTravelled;
+
+            // 走った分だけ燃料を消費する
+            if (_currentFuel > 0f)
+            {
+                var fuelConsumed = diff * fuelConsumptionPerMeter;
+                _currentFuel -= fuelConsumed;
+
+                if (_currentFuel < 0f)
+                {
+                    _currentFuel = 0f;
+                }
+            }
         }
 
         // アイテムを拾った

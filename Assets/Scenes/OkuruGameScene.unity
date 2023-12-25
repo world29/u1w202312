@@ -6933,8 +6933,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathFollower: {fileID: 1098350639}
   initialFuel: 30
-  fuelIncreasingSmall: 5
-  fuelIncreasingLarge: 10
+  fuelConsumptionPerMeter: 0.3
+  fuelIncreasingSmall: 8
+  fuelIncreasingLarge: 15
   fuelDecreasing: 5
   initialSpeed: 5
   speedUpFactor: 0.1
