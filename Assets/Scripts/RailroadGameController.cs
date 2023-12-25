@@ -50,6 +50,12 @@ namespace u1w202312
         [HideInInspector]
         public UnityEvent OnPlayerDied;
 
+        [HideInInspector]
+        public GameState CurrentGameState
+        {
+            get { return _gameState; }
+        }
+
         private float _distanceTravelled;
 
         private float _currentFuel;
@@ -60,7 +66,7 @@ namespace u1w202312
         {
             Debug.Assert(pathFollower != null);
 
-            _gameState = GameState.Gameplay;
+            _gameState = GameState.Title;
 
             pathFollower.speed = initialSpeed;
 
@@ -99,23 +105,26 @@ namespace u1w202312
         // PathFollower2D から呼び出される
         public void OnUpdateDistanceTravelled(float distanceTravelled)
         {
-            var diff = distanceTravelled - _distanceTravelled;
-            Debug.Assert(diff >= 0f);
-            if (diff == 0)
+            if (_gameState == GameState.Gameplay)
             {
-                return;
-            }
-            _distanceTravelled = distanceTravelled;
-
-            // 走った分だけ燃料を消費する
-            if (_currentFuel > 0f)
-            {
-                var fuelConsumed = diff * fuelConsumptionPerMeter;
-                _currentFuel -= fuelConsumed;
-
-                if (_currentFuel < 0f)
+                var diff = distanceTravelled - _distanceTravelled;
+                Debug.Assert(diff >= 0f);
+                if (diff == 0)
                 {
-                    _currentFuel = 0f;
+                    return;
+                }
+                _distanceTravelled = distanceTravelled;
+
+                // 走った分だけ燃料を消費する
+                if (_currentFuel > 0f)
+                {
+                    var fuelConsumed = diff * fuelConsumptionPerMeter;
+                    _currentFuel -= fuelConsumed;
+
+                    if (_currentFuel < 0f)
+                    {
+                        _currentFuel = 0f;
+                    }
                 }
             }
         }
