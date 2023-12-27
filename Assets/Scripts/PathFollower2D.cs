@@ -24,7 +24,7 @@ namespace u1w202312
         }
 
         [HideInInspector]
-        public float speed = 5;
+        public float speed { get; private set; }
 
         [HideInInspector]
         public PathCreator pathCreator;
@@ -33,9 +33,18 @@ namespace u1w202312
         public UnityAction<PathCreator> onEnterPath;
 
         [HideInInspector]
+        public UnityAction<float> onSpeedChanged;
+
+        [HideInInspector]
         public Railroad CurrentRailroad { get { return pathCreator?.GetComponent<Railroad>(); } }
 
         private float _distanceTravelled;
+
+        public void SetSpeed(float value)
+        {
+            speed = value;
+            onSpeedChanged?.Invoke(speed);
+        }
 
         void Start()
         {

@@ -91,6 +91,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 752847111318086360}
+  - component: {fileID: 3226208797936539714}
+  - component: {fileID: 5363106400999602257}
   m_Layer: 0
   m_Name: SpriteRoot
   m_TagString: Untagged
@@ -117,6 +119,35 @@ Transform:
   m_Father: {fileID: 752847113273052935}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3226208797936539714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752847111318086363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d244d0651333f7146948e8d7133db51c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wheels:
+  - {fileID: 2124916433246280802}
+  - {fileID: 237970704900863789}
+  - {fileID: 1096432331839660377}
+  - {fileID: 9046509736866859447}
+  angularVelocity: 1
+--- !u!210 &5363106400999602257
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752847111318086363}
+  m_Enabled: 1
+  m_SortingLayerID: -946660565
+  m_SortingLayer: 7
+  m_SortingOrder: 0
 --- !u!1 &752847113273052937
 GameObject:
   m_ObjectHideFlags: 0

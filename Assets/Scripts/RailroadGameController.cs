@@ -107,7 +107,7 @@ namespace u1w202312
 
             _gameState = GameState.Title;
 
-            pathFollower.speed = initialSpeed;
+            pathFollower.SetSpeed(initialSpeed);
 
             _totalDistanceTravelled = 0;
             _currentFuel = initialFuel;
@@ -130,7 +130,8 @@ namespace u1w202312
                 {
                     _gameState = GameState.Result;
 
-                    pathFollower.enabled = false;
+                    pathFollower.SetSpeed(0f);
+                    //pathFollower.enabled = false;
 
                     OnPlayerDied.Invoke();
                 }
@@ -200,7 +201,7 @@ namespace u1w202312
         {
             // 速度アップはクリスタルの大きさに関わらず一定とする
             var newSpeed = pathFollower.speed * (1f + speedUpFactor);
-            pathFollower.speed = Mathf.Min(newSpeed, maxSpeed);
+            pathFollower.SetSpeed(Mathf.Min(newSpeed, maxSpeed));
 
             // 燃料の増える量は大きさで変わる
             if (itemType == ItemType.Small)
@@ -224,7 +225,7 @@ namespace u1w202312
             // 列車の速度を落とす？
             _currentFuel -= fuelDecreasing;
 
-            pathFollower.speed = initialSpeed;
+            pathFollower.SetSpeed(initialSpeed);
         }
 
         // リトライ
