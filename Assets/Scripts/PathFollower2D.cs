@@ -18,6 +18,12 @@ namespace u1w202312
         private float offset = 0f;
 
         [HideInInspector]
+        public float Offset
+        {
+            get { return offset; }
+        }
+
+        [HideInInspector]
         public float speed = 5;
 
         [HideInInspector]

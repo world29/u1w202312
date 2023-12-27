@@ -14,6 +14,9 @@ namespace u1w202312
         public PathFollower2D pathFollower;
 
         [SerializeField]
+        public List<PathFollower2DFollower> cars;
+
+        [SerializeField]
         public float initialFuel = 30f;
 
         // １メートルあたりの燃料消費量
@@ -69,6 +72,35 @@ namespace u1w202312
         private GameState _gameState;
         private GameState _nextGameState;
 
+        private void SetupCarsOffset()
+        {
+            Debug.Log("GameController.SetupCarsOffset");
+
+            float offset = 0f;
+            for (int i = 0; i < cars.Count; ++i)
+            {
+                PathFollower2DFollower car = cars[i];
+
+                // スプライトサイズからオフセットを自動算出する
+                SpriteRenderer previousSpriteRenderer = null;
+                if (i == 0)
+                {
+                    previousSpriteRenderer = pathFollower.GetComponentInChildren<SpriteRenderer>();
+                }
+                else
+                {
+                    previousSpriteRenderer = cars[i - 1].GetComponentInChildren<SpriteRenderer>();
+                }
+
+                SpriteRenderer thisSpriteRenderer = car.GetComponentInChildren<SpriteRenderer>();
+
+                offset += (previousSpriteRenderer.sprite.bounds.size.x + thisSpriteRenderer.sprite.bounds.size.x) * 0.5f;
+
+                car.SetOffset(-offset + pathFollower.Offset);
+            }
+
+        }
+
         private void Start()
         {
             Debug.Assert(pathFollower != null);
@@ -79,6 +111,8 @@ namespace u1w202312
 
             _totalDistanceTravelled = 0;
             _currentFuel = initialFuel;
+
+            SetupCarsOffset();
         }
 
         private void Update()
