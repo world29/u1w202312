@@ -10,7 +10,7 @@ namespace u1w202312
     public class RailroadTrainSmoke : MonoBehaviour
     {
         [SerializeField]
-        private ParticleSystem particleSystem;
+        private ParticleSystem particle;
 
         [SerializeField]
         private float rateOverTimePerSpeed = 10f / 5f;
@@ -35,7 +35,7 @@ namespace u1w202312
 
         public void OnTrainSpeedChanged(float newSpeed)
         {
-            var em = particleSystem.emission;
+            var em = particle.emission;
 
             em.rateOverTime = newSpeed * rateOverTimePerSpeed;
         }
