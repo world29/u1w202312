@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 namespace u1w202312
 {
@@ -130,7 +131,8 @@ namespace u1w202312
                 {
                     _gameState = GameState.Result;
 
-                    pathFollower.SetSpeed(0f);
+                    // 減速する
+                    DOVirtual.Float(pathFollower.speed, 0f, 2f, value => pathFollower.SetSpeed(value));
                     //pathFollower.enabled = false;
 
                     OnPlayerDied.Invoke();

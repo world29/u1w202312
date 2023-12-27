@@ -5185,6 +5185,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4922571470168878407}
   - component: {fileID: 4922571470168878424}
+  - component: {fileID: 7968598348414005913}
   - component: {fileID: 4922571470168878405}
   - component: {fileID: 4922571470168878406}
   m_Layer: 0
@@ -5226,6 +5227,20 @@ MonoBehaviour:
   railroadSwitch: {fileID: 0}
   offset: 10
   pathCreator: {fileID: 0}
+--- !u!114 &7968598348414005913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4922571470168878425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0211bc3abc2c8ec478ff3a02b3c47560, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSystem: {fileID: 4922571469611467404}
+  rateOverTimePerSpeed: 2
 --- !u!65 &4922571470168878405
 BoxCollider:
   m_ObjectHideFlags: 0
