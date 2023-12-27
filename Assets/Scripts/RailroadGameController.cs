@@ -43,6 +43,9 @@ namespace u1w202312
         public float speedUpFactor = 0.1f;
 
         [SerializeField]
+        public float speedDownFactor = 0.25f;
+
+        [SerializeField]
         public float maxSpeed = 8f;
 
         [SerializeField]
@@ -227,7 +230,10 @@ namespace u1w202312
             // 列車の速度を落とす？
             _currentFuel -= fuelDecreasing;
 
-            pathFollower.SetSpeed(initialSpeed);
+            var speed = pathFollower.speed / (1f + speedDownFactor);
+            speed = Mathf.Max(speed, initialSpeed);
+
+            pathFollower.SetSpeed(speed);
         }
 
         // リトライ
