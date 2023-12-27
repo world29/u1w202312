@@ -8,6 +8,7 @@ public class TimeMachineBehaviour : PlayableBehaviour
     public Condition condition;
     public string markerToJumpTo, markerLabel;
     public Unity1Week.InputWait inputWait;
+    public u1w202312.ScoreWait scoreWait;
 
     public bool ConditionMet()
     {
@@ -19,6 +20,15 @@ public class TimeMachineBehaviour : PlayableBehaviour
                 if (inputWait != null)
                 {
                     return inputWait.IsWaiting;
+                }
+                else
+                {
+                    return false;
+                }
+            case Condition.IsScoreWaiting:
+                if (scoreWait != null)
+                {
+                    return scoreWait.IsWaiting;
                 }
                 else
                 {
@@ -41,5 +51,6 @@ public class TimeMachineBehaviour : PlayableBehaviour
         Always,
         Never,
         IsInputWaiting,
+        IsScoreWaiting,
     }
 }

@@ -16,6 +16,10 @@ public class TimeMachineClip : PlayableAsset
     [SerializeField]
     ExposedReference<Unity1Week.InputWait> inputWait;
 
+    [SerializeField]
+    ExposedReference<u1w202312.ScoreWait> scoreWait;
+
+
     public override Playable CreatePlayable(PlayableGraph graph, GameObject owner)
     {
         var playable = ScriptPlayable<TimeMachineBehaviour>.Create(graph);
@@ -23,6 +27,7 @@ public class TimeMachineClip : PlayableAsset
         TimeMachineBehaviour clone = playable.GetBehaviour();
 
         clone.inputWait = inputWait.Resolve(graph.GetResolver());
+        clone.scoreWait = scoreWait.Resolve(graph.GetResolver());
         clone.action = action;
         clone.condition = condition;
         clone.markerToJumpTo = markerToJumpTo;

@@ -54,6 +54,20 @@ namespace u1w202312
         [SerializeField]
         private RailroadSpawner railroadSpawnerGameplay;
 
+        [SerializeField]
+        private float eventTriggerScore = 100f;
+
+        // スコアが規定値を超えているか
+        [HideInInspector]
+        public bool IsEventPrepareReady { get { return _totalDistanceTravelled > eventTriggerScore; } }
+
+        // イベントの準備ができたか
+        // = スコアが規定値を超え、線路上にイベントオブジェクトが生成された
+        [HideInInspector]
+        public bool IsEventReady { get { return _isEventReady; } }
+
+        private bool _isEventReady;
+
         [HideInInspector]
         public float DistanceTravelled { get { return _totalDistanceTravelled; } }
 
@@ -166,6 +180,9 @@ namespace u1w202312
 
                 // 次の線路生成位置を引き継ぐ
                 railroadSpawnerGameplay._spawnPosition = railroadSpawnerTitle._spawnPosition;
+
+                // オブジェクトが生成されてから数秒後にレディにする
+                railroadSpawnerGameplay.onEventPrepared += () => DOVirtual.DelayedCall(1f, () => _isEventReady = true);
             }
         }
 
@@ -246,6 +263,31 @@ namespace u1w202312
         public void BackToTitle()
         {
             Debug.Log("Back to Title");
+        }
+
+
+        [ContextMenu("Pause")]
+        public void Pause()
+        {
+            if (Application.isPlaying)
+            {
+                Debug.Log("Pause");
+
+                //Time.timeScale = 0f;
+                pathFollower.SetSpeed(0f);
+            }
+        }
+
+        [ContextMenu("Resume")]
+        public void Resume()
+        {
+            if (Application.isPlaying)
+            {
+                Debug.Log("Resume");
+
+                //Time.timeScale = 1f;
+                pathFollower.SetSpeed(initialSpeed);
+            }
         }
     }
 }

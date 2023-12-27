@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using UnityEngine.Events;
 using PathCreation;
 
 using System.Collections;
@@ -19,6 +19,8 @@ namespace u1w202312
 
         [SerializeField] GameObject pickupPrefabSmall; // Small
         [SerializeField] GameObject pickupPrefabLarge; // Large
+        [SerializeField] GameObject prefabGirl; // 
+        [SerializeField] GameObject prefabOld; // 
 
         // 大きなクリスタルがスポーンする確率 [0f, 1f]
         [SerializeField] float pickupPrefabLargePercent;
@@ -27,6 +29,11 @@ namespace u1w202312
 
         [HideInInspector]
         public Vector3 _spawnPosition; // GameController からアクセスする
+
+        [HideInInspector]
+        public UnityAction onEventPrepared;
+
+        private bool _eventObjectsSpawned;
 
         private List<PathCreator> _pathCreators = new List<PathCreator>();
 
@@ -95,9 +102,44 @@ namespace u1w202312
                 _pathCreators.Add(item.path);
             }
 
-            // アイテムなどの生成
-            if (spawnObjects)
+            if (spawnObjects && !_eventObjectsSpawned && _controller.IsEventPrepareReady)
             {
+                // トロッコ問題イベントオブジェクトの生成
+
+                // 上
+                {
+                    var placer = roads[1].gameObject.AddComponent<PathPlacerPickups>();
+
+                    placer.holder = holder.gameObject;
+                    placer.offset = new Vector3(8f, 0.5f, 0);
+                    placer.prefab = prefabGirl;
+                    placer.pathCreator = roads[1].path;
+                    placer.maxCount = 1;
+
+                    placer.TriggerUpdate();
+                }
+
+                // 下
+                {
+                    var placer = roads[2].gameObject.AddComponent<PathPlacerPickups>();
+
+                    placer.holder = holder2.gameObject;
+                    placer.offset = new Vector3(6f, 0.5f, 0);
+                    placer.spacing = 1f;
+                    placer.prefab = prefabOld;
+                    placer.pathCreator = roads[2].path;
+                    placer.maxCount = 5;
+
+                    placer.TriggerUpdate();
+                }
+
+                _eventObjectsSpawned = true;
+
+                onEventPrepared?.Invoke();
+            }
+            else if (spawnObjects)
+            {
+                // アイテムなどの生成
                 // ランダムで左右いずれかの線路上に生成する
                 Railroad itemRoad, obstacleRoad;
                 if (Random.Range(0f, 1f) > 0.5f)
