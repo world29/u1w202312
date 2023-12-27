@@ -136,7 +136,7 @@ MonoBehaviour:
   - {fileID: 237970704900863789}
   - {fileID: 1096432331839660377}
   - {fileID: 9046509736866859447}
-  angularVelocity: 1
+  angularVelocity: 90
 --- !u!210 &5363106400999602257
 SortingGroup:
   m_ObjectHideFlags: 0

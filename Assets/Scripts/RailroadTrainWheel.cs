@@ -35,7 +35,8 @@ namespace u1w202312
             // 車輪の回転
             foreach (var wheel in wheels)
             {
-                wheel.transform.Rotate(0, 0, -_speed * angularVelocity);
+                float rot = _speed * angularVelocity * Time.deltaTime;
+                wheel.transform.Rotate(0, 0, -rot);
             }
         }
 
