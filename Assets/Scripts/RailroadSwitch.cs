@@ -35,6 +35,8 @@ namespace u1w202312
         // 次の線路分岐での方向を切り替える
         public void Toggle()
         {
+            Debug.Log("RailroadSwitch.Toggle");
+
             if (_nextBranch == RailroadBranchs.Left)
             {
                 _nextBranch = RailroadBranchs.Right;

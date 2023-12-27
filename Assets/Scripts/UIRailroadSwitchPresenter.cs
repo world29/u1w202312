@@ -14,24 +14,18 @@ namespace u1w202312
         [SerializeField]
         private RailroadSwitch _railroadSwitch;
 
-        private TextMeshProUGUI _switchButtonText;
+        [SerializeField]
+        private List<SpriteRenderer> _sprites;
 
         void Start()
         {
-            _switchButtonText = switchButton.GetComponentInChildren<TextMeshProUGUI>();
-            Debug.Assert(_switchButtonText != null);
-
             switchButton.onClick.AddListener(() =>
             {
                 _railroadSwitch.Toggle();
 
-                if (_railroadSwitch.NextBranch == RailroadBranchs.Left)
+                foreach (var spriteRenderer in _sprites)
                 {
-                    _switchButtonText.text = "↑";
-                }
-                else
-                {
-                    _switchButtonText.text = "↓";
+                    spriteRenderer.flipY = !spriteRenderer.flipY;
                 }
             });
         }

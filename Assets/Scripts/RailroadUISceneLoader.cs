@@ -20,6 +20,9 @@ namespace u1w202312
         [SerializeField]
         private Canvas canvasToHideOnResult;
 
+        [SerializeField]
+        private List<GameObject> objectsToHideOnResult;
+
         private RailroadGameController _controller;
 
         void Start()
@@ -35,6 +38,7 @@ namespace u1w202312
                 if (canvasToHideOnResult != null)
                 {
                     canvasToHideOnResult.gameObject.SetActive(false);
+                    objectsToHideOnResult.ForEach(obj => obj.SetActive(false));
                 }
 
                 LoadResultScene();
