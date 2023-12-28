@@ -570,6 +570,9 @@ MonoBehaviour:
   inputWait:
     exposedName: 32913b0637f5f9a4bbf5353a3db9d3ae
     defaultValue: {fileID: 0}
+  scoreWait:
+    exposedName: 
+    defaultValue: {fileID: 0}
 --- !u!114 &-1027493794184690544
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -588,6 +591,9 @@ MonoBehaviour:
   markerLabel: WaitInput
   inputWait:
     exposedName: 8fa27e87e8b763e48b74154d54998d72
+    defaultValue: {fileID: 0}
+  scoreWait:
+    exposedName: 
     defaultValue: {fileID: 0}
 --- !u!114 &-875542739170334412
 MonoBehaviour:
@@ -744,49 +750,13 @@ MonoBehaviour:
     m_BlendOutDuration: 0.5166666666666666
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
