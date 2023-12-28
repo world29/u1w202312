@@ -128,7 +128,7 @@ namespace Unity1Week
 
             if (_dragging)
             {
-                Debug.Log($"Launch speed: {_launchSpeed.ToString("F1")}");
+                Debug.Log($"Launch speed: {_launchSpeed.ToString("F0")}");
                 LaunchPlayer(_launchSpeed, _launchAngle);
 
                 projectileLine.enabled = false;

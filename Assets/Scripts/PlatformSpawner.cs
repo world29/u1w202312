@@ -76,7 +76,7 @@ namespace Unity1Week
 
                     platformMove.ResetState();
                     platformMove.ChangeSize(size);
-                    Debug.Log($"PlatformMove spawned. size={size.ToString("F1")}");
+                    Debug.Log($"PlatformMove spawned. size={size.ToString("F0")}");
 
                     // プラットフォーム生成通知
                     platformManager.NotifyPlatformSpawned(platform);
@@ -97,7 +97,7 @@ namespace Unity1Week
 
                     platformNormal.ResetState();
                     platformNormal.ChangeSize(size);
-                    Debug.Log($"PlatformNormal spawned. size={size.ToString("F1")}");
+                    Debug.Log($"PlatformNormal spawned. size={size.ToString("F0")}");
 
                     // プラットフォーム生成通知
                     platformManager.NotifyPlatformSpawned(platform);

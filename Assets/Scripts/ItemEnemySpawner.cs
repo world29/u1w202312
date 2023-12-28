@@ -115,7 +115,7 @@ namespace Unity1Week
                 var spawnPosition = new Vector3(mid.x, Random.Range(spawnBottom, spawnTop), 0);
                 Instantiate(phase.enemyLootTable[idx].prefab, spawnPosition, Quaternion.identity);
 
-                Debug.Log($"Enemy spawned. {phase.enemyLootTable[idx].prefab.name} ({spawnPosition.ToString("F1")})");
+                Debug.Log($"Enemy spawned. {phase.enemyLootTable[idx].prefab.name} ({spawnPosition.ToString("F0")})");
 
                 _isEnemySpawned = true;
             }
@@ -160,7 +160,7 @@ namespace Unity1Week
                 var spawnPosition = new Vector3(mid.x, Random.Range(spawnBottom, spawnTop), 0);
                 Instantiate(phase.itemLootTable[idx].prefab, spawnPosition, Quaternion.identity);
 
-                Debug.Log($"Item spawned. {phase.itemLootTable[idx].prefab.name} ({spawnPosition.ToString("F1")})");
+                Debug.Log($"Item spawned. {phase.itemLootTable[idx].prefab.name} ({spawnPosition.ToString("F0")})");
 
                 _isItemSpawned = true;
             }

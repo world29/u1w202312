@@ -54,7 +54,7 @@ namespace Unity1Week
             GUIStyle style = GUI.skin.label;
             style.fontSize = 30;
 
-            GUILayout.Label($"FPS: {framePerSecond.ToString("F1")}", style);
+            GUILayout.Label($"FPS: {framePerSecond.ToString("F0")}", style);
         }
     }
 }

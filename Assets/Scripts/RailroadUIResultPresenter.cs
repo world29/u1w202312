@@ -65,7 +65,7 @@ namespace u1w202312
                 .Join(totalScoreLabelUnit.DOFade(1f, 0.5f))
                 .Append(totalScoreValue.DOFade(1, 1f))
                 //.Join(DOVirtual.Float(0, totalScore, 1f, (value) => { totalScoreValue.text = $"{(int)value}"; }))
-                .Join(DOTween.To(() => 0, x => totalScoreValue.text = x.ToString("F1"), totalScore, 1f))
+                .Join(DOTween.To(() => 0, x => totalScoreValue.text = x.ToString("F0"), totalScore, 1f))
                 .AppendCallback(() => totalScoreValue.transform.localScale = Vector3.one * 1.25f)
                 .Append(totalScoreValue.transform.DOScale(Vector3.one, 0.5f));
 
