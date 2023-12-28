@@ -39,6 +39,8 @@ namespace u1w202312
 
         private RailroadGameController _controller;
 
+        private bool _fuelNotSpawned = false;
+
         private void OnEnable()
         {
             Debug.Log("RailroadSpawnerTitle.OnEnable");
@@ -154,7 +156,7 @@ namespace u1w202312
                 }
 
                 // アイテム生成
-                {
+                if (Random.Range(0f, 1f)>0.5 || _fuelNotSpawned){
                     // ランダムで小さいクリスタルか大きいクリスタルを配置する
                     var prefab = (Random.Range(0f, 1f) < pickupPrefabLargePercent) ? pickupPrefabLarge : pickupPrefabSmall;
 
@@ -167,10 +169,16 @@ namespace u1w202312
                     placer.maxCount = 1;
 
                     placer.TriggerUpdate();
+                    _fuelNotSpawned = false;
+                }
+                else
+                {
+                    // 生成されなかった場合、次回は必ず生成する
+                    _fuelNotSpawned = true;
                 }
 
                 // 障害物を生成
-                {
+                if (Random.Range(0f, 1f) > 0.5 || _fuelNotSpawned){
                     var placer = obstacleRoad.gameObject.AddComponent<PathPlacerPickups>();
 
                     placer.holder = holder2.gameObject;

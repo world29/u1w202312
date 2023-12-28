@@ -3809,14 +3809,14 @@ MonoBehaviour:
   - {fileID: 972871970}
   - {fileID: 203699856}
   initialFuel: 30
-  fuelConsumptionPerMeter: 0.3
+  fuelConsumptionPerMeter: 0.15
   fuelIncreasingSmall: 8.5
   fuelIncreasingLarge: 18
-  fuelDecreasing: 5
+  fuelDecreasing: 15
   initialSpeed: 15
-  speedUpFactor: 0.1
-  speedDownFactor: 0.25
-  maxSpeed: 25
+  speedUpFactor: 0.05
+  speedDownFactor: 0.5
+  maxSpeed: 40
   railroadSpawnerTitle: {fileID: 1844195796}
   railroadSpawnerGameplay: {fileID: 1844195794}
   eventTriggerScore: 50
