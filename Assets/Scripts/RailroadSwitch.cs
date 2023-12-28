@@ -36,6 +36,8 @@ namespace u1w202312
         public void Toggle()
         {
             Debug.Log("RailroadSwitch.Toggle");
+            var audioSource = gameObject.GetComponent<AudioSource>();
+            audioSource.Play();
 
             if (_nextBranch == RailroadBranchs.Left)
             {
