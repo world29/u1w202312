@@ -87,6 +87,12 @@ namespace u1w202312
             get { return _gameState; }
         }
 
+        [HideInInspector]
+        public HumanType SelectedHumanType { get; private set; }
+
+        [HideInInspector]
+        public int SelectedHumanCount { get; private set; }
+
         private float _totalDistanceTravelled;
 
         private float _currentFuel;
@@ -170,6 +176,12 @@ namespace u1w202312
         void OnDisable()
         {
             Unity1Week.BroadcastReceivers.UnregisterBroadcastReceiver<IRailroadGameControllerRequests>(gameObject);
+        }
+
+        public void SelectHuman(HumanType type, int count)
+        {
+            SelectedHumanCount = count;
+            SelectedHumanType = type;
         }
 
         public void SetNextGameState(GameState nextState)
