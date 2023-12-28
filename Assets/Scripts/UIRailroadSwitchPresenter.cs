@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+using DG.Tweening;
 
 namespace u1w202312
 {
@@ -12,21 +12,28 @@ namespace u1w202312
         public Button switchButton;
 
         [SerializeField]
-        private RailroadSwitch _railroadSwitch;
+        private Animator switchAnimator;
 
         [SerializeField]
-        private List<SpriteRenderer> _sprites;
+        private RailroadSwitch _railroadSwitch;
 
         void Start()
         {
             switchButton.onClick.AddListener(() =>
             {
+                if (_railroadSwitch.NextBranch == RailroadBranchs.Left)
+                {
+                    switchAnimator.SetTrigger("toright");
+                }
+                else
+                {
+                    switchAnimator.SetTrigger("toleft");
+                }
+
                 _railroadSwitch.Toggle();
 
-                foreach (var spriteRenderer in _sprites)
-                {
-                    spriteRenderer.flipY = !spriteRenderer.flipY;
-                }
+                switchButton.enabled = false;
+                DOVirtual.DelayedCall(.2f, () => switchButton.enabled = true);
             });
         }
     }

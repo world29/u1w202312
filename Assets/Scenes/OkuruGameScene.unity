@@ -488,11 +488,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &234543825 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 6109301701035119406, guid: 0dd9c297fb6b5a4429521f43a0355b54, type: 3}
-  m_PrefabInstance: {fileID: 6109301701206444543}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &268738133
 GameObject:
   m_ObjectHideFlags: 0
@@ -1256,7 +1251,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &628844214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1610,7 +1605,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.611, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2156,10 +2151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   switchButton: {fileID: 461251783}
+  switchAnimator: {fileID: 1226312003}
   _railroadSwitch: {fileID: 724659884}
-  _sprites:
-  - {fileID: 2069589833}
-  - {fileID: 234543825}
 --- !u!4 &890761796
 Transform:
   m_ObjectHideFlags: 0
@@ -2524,6 +2517,11 @@ GameObject:
 --- !u!4 &1226312002 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6109301700013686973, guid: 0dd9c297fb6b5a4429521f43a0355b54, type: 3}
+  m_PrefabInstance: {fileID: 6109301701206444543}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1226312003 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 894459210270571585, guid: 0dd9c297fb6b5a4429521f43a0355b54, type: 3}
   m_PrefabInstance: {fileID: 6109301701206444543}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1306734497
@@ -3214,20 +3212,14 @@ PlayableDirector:
     value: {fileID: 795331511}
   - key: {fileID: 7154233470991689953, guid: 98d02bf1e3f86274497e244aaf21bb66, type: 2}
     value: {fileID: 795331517}
-  - key: {fileID: -6942077817596114087, guid: 98d02bf1e3f86274497e244aaf21bb66, type: 2}
-    value: {fileID: 628844213}
   - key: {fileID: -1433634815519836296, guid: 98d02bf1e3f86274497e244aaf21bb66, type: 2}
     value: {fileID: 1645182459}
-  - key: {fileID: 2643391454120782680, guid: 98d02bf1e3f86274497e244aaf21bb66, type: 2}
-    value: {fileID: 628844219}
   - key: {fileID: -2319082047641784020, guid: 98d02bf1e3f86274497e244aaf21bb66, type: 2}
     value: {fileID: 268738133}
   - key: {fileID: -6894733611094951321, guid: 98d02bf1e3f86274497e244aaf21bb66, type: 2}
     value: {fileID: 268738139}
   - key: {fileID: -8997303292309917509, guid: 98d02bf1e3f86274497e244aaf21bb66, type: 2}
     value: {fileID: 1704785036}
-  - key: {fileID: -2605359596264451052, guid: 98d02bf1e3f86274497e244aaf21bb66, type: 2}
-    value: {fileID: 1226312001}
   - key: {fileID: -5883578165964361463, guid: 98d02bf1e3f86274497e244aaf21bb66, type: 2}
     value: {fileID: 0}
   m_ExposedReferences:
@@ -3654,6 +3646,8 @@ MonoBehaviour:
   railroadSpawnerGameplay: {fileID: 1844195794}
   eventTriggerScore: 50
   eventPreparedToReadyDistance: 5
+  gameplayCanvasGroup: {fileID: 628844218}
+  switchPanel: {fileID: 1226312001}
   OnPlayerDied:
     m_PersistentCalls:
       m_Calls: []
@@ -4309,11 +4303,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!212 &2069589833 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 6109301700252853942, guid: 0dd9c297fb6b5a4429521f43a0355b54, type: 3}
-  m_PrefabInstance: {fileID: 6109301701206444543}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2124817875
 GameObject:
   m_ObjectHideFlags: 0
@@ -4594,6 +4583,10 @@ PrefabInstance:
     - target: {fileID: 6109301700013686974, guid: 0dd9c297fb6b5a4429521f43a0355b54, type: 3}
       propertyPath: m_Name
       value: SwitchPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6109301700013686974, guid: 0dd9c297fb6b5a4429521f43a0355b54, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dd9c297fb6b5a4429521f43a0355b54, type: 3}

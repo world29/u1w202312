@@ -61,6 +61,12 @@ namespace u1w202312
         [SerializeField]
         private float eventPreparedToReadyDistance = 15f;
 
+        [SerializeField]
+        private CanvasGroup gameplayCanvasGroup;
+
+        [SerializeField]
+        private GameObject switchPanel;
+
         // スコアが規定値を超えているか
         [HideInInspector]
         public bool IsEventPrepareReady { get { return _totalDistanceTravelled > eventTriggerScore; } }
@@ -218,6 +224,17 @@ namespace u1w202312
         public void SetNextGameStateToGameplay()
         {
             SetNextGameState(GameState.Gameplay);
+
+            // ハードコード
+            DOVirtual.DelayedCall(.5f, () =>
+            {
+                gameplayCanvasGroup.gameObject.SetActive(true);
+                gameplayCanvasGroup.DOFade(1f, .5f);
+            });
+            DOVirtual.DelayedCall(1f, () =>
+            {
+                switchPanel.SetActive(true);
+            });
         }
 
         // 走行距離
