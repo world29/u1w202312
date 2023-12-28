@@ -3810,7 +3810,7 @@ MonoBehaviour:
   - {fileID: 203699856}
   initialFuel: 30
   fuelConsumptionPerMeter: 0.3
-  fuelIncreasingSmall: 8
+  fuelIncreasingSmall: 8.5
   fuelIncreasingLarge: 15
   fuelDecreasing: 5
   initialSpeed: 5
