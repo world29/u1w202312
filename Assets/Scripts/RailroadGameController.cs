@@ -57,6 +57,10 @@ namespace u1w202312
         [SerializeField]
         private float eventTriggerScore = 100f;
 
+        // イベントオブジェクトを生成してから、デモが始まるまでに待機する距離
+        [SerializeField]
+        private float eventPreparedToReadyDistance = 15f;
+
         // スコアが規定値を超えているか
         [HideInInspector]
         public bool IsEventPrepareReady { get { return _totalDistanceTravelled > eventTriggerScore; } }
@@ -182,8 +186,21 @@ namespace u1w202312
                 railroadSpawnerGameplay._spawnPosition = railroadSpawnerTitle._spawnPosition;
 
                 // オブジェクトが生成されてから数秒後にレディにする
-                railroadSpawnerGameplay.onEventPrepared += () => DOVirtual.DelayedCall(1f, () => _isEventReady = true);
+                railroadSpawnerGameplay.onEventPrepared += () => StartCoroutine(EventReadyCoroutine());
             }
+        }
+
+        private IEnumerator EventReadyCoroutine()
+        {
+            // 一定距離走ったらレディにする
+            float start = _totalDistanceTravelled;
+
+            while ((_totalDistanceTravelled - start) < eventPreparedToReadyDistance)
+            {
+                yield return null;
+            }
+
+            _isEventReady = true;
         }
 
         public void SetNextGameStateToGameplay()

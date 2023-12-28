@@ -1099,7 +1099,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BindingMode: 0
   m_FollowOffset: {x: 8, y: 4, z: -20}
-  m_XDamping: 1
+  m_XDamping: 0.2
   m_YDamping: 1
   m_ZDamping: 1
   m_AngularDampingMode: 0
@@ -2404,7 +2404,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 941466538}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 33, y: 4, z: -20}
+  m_LocalPosition: {x: 28, y: 4, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2055481160}
@@ -2741,7 +2741,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BindingMode: 1
   m_FollowOffset: {x: -2.34, y: 2.16, z: -10}
-  m_XDamping: 1
+  m_XDamping: 0.2
   m_YDamping: 1
   m_ZDamping: 1
   m_AngularDampingMode: 0
@@ -3537,7 +3537,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1569797772}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 33, y: 4, z: -20}
+  m_LocalPosition: {x: 28, y: 4, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 687774551}
@@ -3813,13 +3813,14 @@ MonoBehaviour:
   fuelIncreasingSmall: 8.5
   fuelIncreasingLarge: 15
   fuelDecreasing: 5
-  initialSpeed: 5
+  initialSpeed: 15
   speedUpFactor: 0.1
   speedDownFactor: 0.25
   maxSpeed: 25
   railroadSpawnerTitle: {fileID: 1844195796}
   railroadSpawnerGameplay: {fileID: 1844195794}
-  eventTriggerScore: 100
+  eventTriggerScore: 50
+  eventPreparedToReadyDistance: 5
   OnPlayerDied:
     m_PersistentCalls:
       m_Calls: []
@@ -4536,8 +4537,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 0
-  m_FollowOffset: {x: 30, y: 4, z: -20}
-  m_XDamping: 1
+  m_FollowOffset: {x: 25, y: 4, z: -20}
+  m_XDamping: 0
   m_YDamping: 1
   m_ZDamping: 1
   m_AngularDampingMode: 0

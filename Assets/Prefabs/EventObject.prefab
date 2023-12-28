@@ -157,5 +157,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45cba000995b84a959d78453d2b0efb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceOnHit: {x: 10, y: 5}
+  forceOnHit: {x: 20, y: 10}
   torqueOnHit: 30
