@@ -3811,7 +3811,7 @@ MonoBehaviour:
   initialFuel: 30
   fuelConsumptionPerMeter: 0.3
   fuelIncreasingSmall: 8.5
-  fuelIncreasingLarge: 15
+  fuelIncreasingLarge: 18
   fuelDecreasing: 5
   initialSpeed: 15
   speedUpFactor: 0.1
