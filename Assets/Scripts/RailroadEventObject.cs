@@ -18,6 +18,7 @@ namespace u1w202312
         private float torqueOnHit;
 
         private bool _isAlive = true;
+        private AudioSource audioSource;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -32,6 +33,8 @@ namespace u1w202312
 
                 GetComponent<Collider>().enabled = false;
 
+                audioSource = gameObject.GetComponent<AudioSource>();
+                audioSource.Play();
                 DOVirtual.DelayedCall(5f, () => Destroy(gameObject));
             }
         }
