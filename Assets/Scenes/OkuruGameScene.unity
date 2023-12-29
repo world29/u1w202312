@@ -2358,7 +2358,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 1098350640}
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 9
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -2379,14 +2379,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 941466538}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28, y: 4, z: -20}
+  m_LocalRotation: {x: 0.027759202, y: -0, z: -0, w: 0.99961466}
+  m_LocalPosition: {x: 24.9, y: 2.2, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2055481160}
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 3.181, y: 0, z: 0}
 --- !u!1001 &972871969
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3463,7 +3463,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 40
+  field of view: 9
   orthographic: 0
   orthographic size: 6
   m_Depth: -1
@@ -3488,8 +3488,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1569797772}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28, y: 4, z: -20}
+  m_LocalRotation: {x: 0.027759202, y: 0, z: 0, w: 0.99961466}
+  m_LocalPosition: {x: 24.9, y: 2.2, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 687774551}
@@ -3773,7 +3773,7 @@ MonoBehaviour:
   maxSpeed: 40
   railroadSpawnerTitle: {fileID: 1844195796}
   railroadSpawnerGameplay: {fileID: 1844195794}
-  eventTriggerScore: 50
+  eventTriggerScore: 950
   eventPreparedToReadyDistance: 5
   gameplayCanvasGroup: {fileID: 628844218}
   switchPanel: {fileID: 1226312001}
@@ -4411,7 +4411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 0
-  m_FollowOffset: {x: 25, y: 4, z: -20}
+  m_FollowOffset: {x: 21.9, y: 2.2, z: -20}
   m_XDamping: 0
   m_YDamping: 1
   m_ZDamping: 1

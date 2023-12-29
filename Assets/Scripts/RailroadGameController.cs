@@ -57,7 +57,7 @@ namespace u1w202312
         private RailroadSpawner railroadSpawnerGameplay;
 
         [SerializeField]
-        private float eventTriggerScore = 100f;
+        public float eventTriggerScore = 100f;
 
         // イベントオブジェクトを生成してから、デモが始まるまでに待機する距離
         [SerializeField]

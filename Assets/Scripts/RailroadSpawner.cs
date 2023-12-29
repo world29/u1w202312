@@ -108,20 +108,20 @@ namespace u1w202312
             {
                 // トロッコ問題イベントオブジェクトの生成
 
-                // 上
+                // 下
                 {
                     var placer = roads[1].gameObject.AddComponent<PathPlacerPickups>();
 
                     placer.holder = holder.gameObject;
                     placer.offset = new Vector3(8f, 0.5f, 0);
                     placer.prefab = prefabGirl;
-                    placer.pathCreator = roads[1].path;
+                    placer.pathCreator = roads[2].path;
                     placer.maxCount = 1;
 
                     placer.TriggerUpdate();
                 }
 
-                // 下
+                // 上
                 {
                     var placer = roads[2].gameObject.AddComponent<PathPlacerPickups>();
 
@@ -129,7 +129,7 @@ namespace u1w202312
                     placer.offset = new Vector3(6f, 0.5f, 0);
                     placer.spacing = 1f;
                     placer.prefab = prefabOld;
-                    placer.pathCreator = roads[2].path;
+                    placer.pathCreator = roads[1].path;
                     placer.maxCount = 5;
 
                     placer.TriggerUpdate();
