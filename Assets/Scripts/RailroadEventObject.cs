@@ -15,6 +15,7 @@ namespace u1w202312
     {
         [SerializeField]
         private HumanType humanType;
+        public GameObject Audio_Object;
 
         [SerializeField]
         private Vector2 forceOnHit;
@@ -39,6 +40,7 @@ namespace u1w202312
         {
             if (other.CompareTag("Player"))
             {
+                Instantiate(Audio_Object, transform.position, transform.rotation);
                 _controller.SelectHuman(humanType, _controller.SelectedHumanCount + 1);
 
                 _isAlive = false;
@@ -50,8 +52,7 @@ namespace u1w202312
 
                 GetComponent<Collider>().enabled = false;
 
-                audioSource = gameObject.GetComponent<AudioSource>();
-                audioSource.Play();
+
                 DOVirtual.DelayedCall(5f, () => Destroy(gameObject));
             }
         }

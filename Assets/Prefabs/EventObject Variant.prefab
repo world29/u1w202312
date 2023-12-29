@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: humanType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1716512678417783529, guid: 1173f454557d8a643b6afd253d8c82d7, type: 3}
+      propertyPath: Audio_Object
+      value: 
+      objectReference: {fileID: 7195000811432925288, guid: 08c3218031c81c041b0d3d670738cd6a, type: 3}
     - target: {fileID: 2187132591443177937, guid: 1173f454557d8a643b6afd253d8c82d7, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -68,6 +72,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4591721288557543338, guid: 1173f454557d8a643b6afd253d8c82d7, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b94114ab895464a4f8a10cb83ed90ee8, type: 3}
+    - target: {fileID: 4733143176882928295, guid: 1173f454557d8a643b6afd253d8c82d7, type: 3}
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: b94114ab895464a4f8a10cb83ed90ee8, type: 3}
