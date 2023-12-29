@@ -3769,7 +3769,7 @@ MonoBehaviour:
   fuelDecreasing: 15
   initialSpeed: 15
   speedUpFactor: 0.05
-  speedDownFactor: 0.4
+  speedDownFactor: 0.6
   maxSpeed: 40
   railroadSpawnerTitle: {fileID: 1844195796}
   railroadSpawnerGameplay: {fileID: 1844195794}
