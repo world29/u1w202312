@@ -178,7 +178,8 @@ namespace u1w202312
                     var audioSource = pathFollower.GetComponent<AudioSource>();
                     audioSource.volume = 0;
                     Main_BGM.volume = 0;
-                    GameOver_BGM.Play();
+                    DOVirtual.DelayedCall(1.5f, ()=>GameOver_BGM.Play());
+                    
                 }
 
             }
