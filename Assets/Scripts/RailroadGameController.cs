@@ -13,6 +13,8 @@ namespace u1w202312
     {
         [SerializeField]
         public PathFollower2D pathFollower;
+        public AudioSource Main_BGM;
+        public AudioSource GameOver_BGM;
 
         [SerializeField]
         public List<PathFollower2DFollower> cars;
@@ -175,8 +177,10 @@ namespace u1w202312
                     FadeDeltaTime += Time.deltaTime;
                     var audioSource = pathFollower.GetComponent<AudioSource>();
                     audioSource.volume = 0;
-
+                    Main_BGM.volume = 0;
+                    GameOver_BGM.Play();
                 }
+
             }
         }
 
