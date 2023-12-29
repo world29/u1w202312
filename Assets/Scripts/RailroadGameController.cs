@@ -105,6 +105,7 @@ namespace u1w202312
 
         private GameState _gameState;
         private GameState _nextGameState;
+        double FadeDeltaTime = 0;
 
         private void SetupCarsOffset()
         {
@@ -169,6 +170,12 @@ namespace u1w202312
                     //pathFollower.enabled = false;
 
                     OnPlayerDied.Invoke();
+
+                    //Fadeout
+                    FadeDeltaTime += Time.deltaTime;
+                    var audioSource = pathFollower.GetComponent<AudioSource>();
+                    audioSource.volume = 0;
+
                 }
             }
         }
